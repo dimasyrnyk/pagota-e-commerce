@@ -1,11 +1,37 @@
+import { Route, Routes } from "react-router-dom";
+
 import "./App.scss";
-import AppLoader from "@components/AppLoader/AppLoader";
+import CartPage from "@pages/CartPage/CartPage";
+import HomePage from "@pages/HomePage/HomePage";
+import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
+import ProductItemPage from "@pages/ProductItemPage/ProductItemPage";
+import ProductsListPage from "@pages/ProductsListPage/ProductsListPage";
 
 function App() {
   return (
     <div className="app__container">
-      <AppLoader />
-      <div>PAGOTA e-commerce</div>
+      <Routes>
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+        <Route
+          path="/products"
+          element={<ProductsListPage />}
+        />
+        <Route
+          path="/products/:id"
+          element={<ProductItemPage />}
+        />
+        <Route
+          path="/cart"
+          element={<CartPage />}
+        />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
+        />
+      </Routes>
     </div>
   );
 }
