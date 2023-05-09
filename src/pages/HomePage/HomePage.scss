@@ -1,0 +1,8 @@
+@use "@styles/colors" as *;
+
+.home-page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+}

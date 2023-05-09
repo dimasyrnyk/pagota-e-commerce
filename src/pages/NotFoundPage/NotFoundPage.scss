@@ -1,0 +1,8 @@
+@use "@styles/colors" as *;
+
+.not-found {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+}

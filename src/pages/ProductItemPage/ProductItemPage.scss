@@ -1,0 +1,8 @@
+@use "@styles/colors" as *;
+
+.products-item {
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+}
