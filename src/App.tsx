@@ -28,7 +28,7 @@ function App() {
           element={<CartPage />}
         />
         <Route
-          path="/*"
+          path="*"
           element={<NotFoundPage />}
         />
       </Routes>

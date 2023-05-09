@@ -18,7 +18,7 @@ root.render(
         loading={null}
         persistor={persistor}
       >
-        <Router>
+        <Router basename="/pagota-e-commerce">
           <App />
         </Router>
       </PersistGate>
