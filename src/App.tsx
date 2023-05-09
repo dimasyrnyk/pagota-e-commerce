@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 
 import "./App.scss";
-import CartPage from "@pages/CartPage/CartPage";
-import HomePage from "@pages/HomePage/HomePage";
-import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
-import ProductItemPage from "@pages/ProductItemPage/ProductItemPage";
-import ProductsListPage from "@pages/ProductsListPage/ProductsListPage";
+import CartPage from "@pages/CartPage";
+import HomePage from "@pages/HomePage";
+import NotFoundPage from "@pages/NotFoundPage";
+import ProductItemPage from "@pages/ProductItemPage";
+import ProductsListPage from "@pages/ProductsListPage";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           element={<CartPage />}
         />
         <Route
-          path="*"
+          path="/*"
           element={<NotFoundPage />}
         />
       </Routes>
