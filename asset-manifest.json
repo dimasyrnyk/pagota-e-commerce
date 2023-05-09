@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/pagota-e-commerce/static/css/main.7dff7f73.css",
-    "main.js": "/pagota-e-commerce/static/js/main.b1d81ecb.js",
+    "main.css": "/pagota-e-commerce/static/css/main.93549828.css",
+    "main.js": "/pagota-e-commerce/static/js/main.88aaa881.js",
     "index.html": "/pagota-e-commerce/index.html",
-    "main.7dff7f73.css.map": "/pagota-e-commerce/static/css/main.7dff7f73.css.map",
-    "main.b1d81ecb.js.map": "/pagota-e-commerce/static/js/main.b1d81ecb.js.map"
+    "main.93549828.css.map": "/pagota-e-commerce/static/css/main.93549828.css.map",
+    "main.88aaa881.js.map": "/pagota-e-commerce/static/js/main.88aaa881.js.map"
   },
   "entrypoints": [
-    "static/css/main.7dff7f73.css",
-    "static/js/main.b1d81ecb.js"
+    "static/css/main.93549828.css",
+    "static/js/main.88aaa881.js"
   ]
 }
