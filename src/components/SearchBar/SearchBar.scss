@@ -21,6 +21,10 @@
 /* ---------- MEDIA SCREEN -- TABLET && DESKTOP ---------- */
 @media screen and (min-width: 601px) {
   .search-bar {
+    &__container {
+      width: 500px;
+    }
+
     &__title {
       display: block;
     }

@@ -7,6 +7,7 @@ import { ReactComponent as Logo } from "@assets/icons/logo.svg";
 import ChatIcon from "@components/Icons/ChatIcon";
 import UserIcon from "@components/Icons/UserIcon";
 import CartIcon from "@components/Icons/CartIcon";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -22,12 +23,14 @@ function Header() {
       </div>
       <div className="header__second-row">
         <div className="main-section__container">
-          <Logo className="main-section__logo" />
+          <Link to="/">
+            <Logo className="main-section__logo" />
+          </Link>
           <SearchBar />
-          <span className="main-section__user-profile">
+          <div className="main-section__user-profile">
             <UserIcon />
             <CartIcon productsCount={4} />
-          </span>
+          </div>
         </div>
         <CategoriesList />
       </div>
