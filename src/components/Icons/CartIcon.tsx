@@ -7,7 +7,7 @@ type Props = {
 };
 
 function CartIcon({ className, productsCount = 0 }: Props) {
-  const classes = productsCount === 0 ? "empty" : "not-empty";
+  const classes = productsCount > 0 ? "not-empty" : "";
 
   return (
     <div className={className}>

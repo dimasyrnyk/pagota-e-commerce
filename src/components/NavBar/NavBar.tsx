@@ -30,8 +30,12 @@ function NavBar() {
           <li className="navbar__chat">
             <a href="#">Chat wit us</a>
           </li>
-          <li>+420 336 775 664</li>
-          <li>info@freshnesecom.com</li>
+          <li>
+            <a href="tel:+420336775664">+420 336 775 664</a>
+          </li>
+          <li>
+            <a href="mailto:info@freshnesecom.com">info@freshnesecom.com</a>
+          </li>
         </ul>
         <ul className="navbar__navigation">
           <li>
