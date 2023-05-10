@@ -7,7 +7,10 @@ type Props = {
 function ChatIcon({ className }: Props) {
   return (
     <div className={className}>
-      <img src={chatIcon} />
+      <img
+        src={chatIcon}
+        alt="Chat icon"
+      />
     </div>
   );
 }

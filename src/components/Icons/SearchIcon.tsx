@@ -7,7 +7,10 @@ type Props = {
 function SearchIcon({ className }: Props) {
   return (
     <div className={className}>
-      <img src={searchIcon} />
+      <img
+        src={searchIcon}
+        alt="Search icon"
+      />
     </div>
   );
 }

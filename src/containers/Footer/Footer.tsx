@@ -1,26 +1,6 @@
 import "./Footer.scss";
-
-const tags = [
-  "Beans",
-  "Carrots",
-  "Apples",
-  "Garlic",
-  "Mushrooms",
-  "Tomatoes",
-  "Chilli pepers",
-  "Broccoli",
-  "Watermelons",
-  "Oranges",
-  "Bananas",
-  "Grapes",
-  "Cherries",
-  "Meat",
-  "Seo tag",
-  "Fish",
-  "Seo tag",
-  "Fresh food",
-  "Lemons",
-];
+import { Tags } from "src/mockData/mockData";
+import FooterLink from "./Link";
 
 function Footer() {
   return (
@@ -29,48 +9,48 @@ function Footer() {
         <div className="navbar__column">
           <h3>Get in touch</h3>
           <ul className="navbar__list">
-            <li className="navbar__item">About Us</li>
-            <li className="navbar__item">Career</li>
-            <li className="navbar__item">Press Releases</li>
-            <li className="navbar__item">Blog</li>
+            <FooterLink href="#">About Us</FooterLink>
+            <FooterLink href="#">Career</FooterLink>
+            <FooterLink href="#">Press Releases</FooterLink>
+            <FooterLink href="#">Blog</FooterLink>
           </ul>
         </div>
         <div className="navbar__column">
           <h3>Connections</h3>
           <ul className="navbar__list">
-            <li className="navbar__item">Facebook</li>
-            <li className="navbar__item">Twitter</li>
-            <li className="navbar__item">Instagram</li>
-            <li className="navbar__item">Youtube</li>
-            <li className="navbar__item">LinkedIn</li>
+            <FooterLink href="#">Facebook</FooterLink>
+            <FooterLink href="#">Twitter</FooterLink>
+            <FooterLink href="#">Instagram</FooterLink>
+            <FooterLink href="#">Youtube</FooterLink>
+            <FooterLink href="#">LinkedIn</FooterLink>
           </ul>
         </div>
         <div className="navbar__column">
           <h3>Earnings</h3>
           <ul className="navbar__list">
-            <li className="navbar__item">Become an Affilate</li>
-            <li className="navbar__item">Advertise your product</li>
-            <li className="navbar__item">Sell on Market</li>
+            <FooterLink href="#">Become an Affilate</FooterLink>
+            <FooterLink href="#">Advertise your product</FooterLink>
+            <FooterLink href="#">Sell on Market</FooterLink>
           </ul>
         </div>
         <div className="navbar__column">
           <h3>Account</h3>
           <ul className="navbar__list">
-            <li className="navbar__item">Your account</li>
-            <li className="navbar__item">Returns Center</li>
-            <li className="navbar__item">100% purchase protection</li>
-            <li className="navbar__item">Chat with us</li>
-            <li className="navbar__item">Help</li>
+            <FooterLink href="#">Your account</FooterLink>
+            <FooterLink href="#">Returns Center</FooterLink>
+            <FooterLink href="#">100% purchase protection</FooterLink>
+            <FooterLink href="#">Chat with us</FooterLink>
+            <FooterLink href="#">Help</FooterLink>
           </ul>
         </div>
       </div>
       <div className="footer__second-row">
         <h3>Product tags</h3>
         <ul className="tags__container">
-          {tags.map((tag) => (
+          {Tags.map((tag) => (
             <li
               className="tags__item"
-              key={tag + Math.random() * 100}
+              key={tag + Math.floor(Math.random() * 10000000)}
             >
               {tag}
             </li>

@@ -7,7 +7,8 @@ const options = ["All categories"].concat(Object.values(Categories));
 
 function SearchBar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedOption, setSelectedOption] =
+    useState<string>("All categories");
   const toggleOpen = () => setIsOpen(!isOpen);
 
   const handleSelect = (value: string) => {
@@ -22,7 +23,7 @@ function SearchBar() {
           onClick={toggleOpen}
           className="custom-select__header"
         >
-          {selectedOption || "All categories"}
+          {selectedOption}
           <ChevronDownIcon />
         </h4>
         {isOpen && (

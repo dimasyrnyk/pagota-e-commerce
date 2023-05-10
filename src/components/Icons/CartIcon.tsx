@@ -15,7 +15,10 @@ function CartIcon({ className, productsCount = 0 }: Props) {
         className={"icon-cart__container " + classes}
         data-count={productsCount}
       >
-        <img src={basketIcon} />
+        <img
+          src={basketIcon}
+          alt="Cart icon"
+        />
       </div>
     </div>
   );

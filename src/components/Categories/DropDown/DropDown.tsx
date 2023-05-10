@@ -1,7 +1,10 @@
 import "./DropDown.scss";
 
 type Props = {
-  brands: any[];
+  brands: {
+    id: string;
+    name: string;
+  }[];
 };
 
 function DropDown({ brands }: Props) {

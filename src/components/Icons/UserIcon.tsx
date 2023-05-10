@@ -7,7 +7,10 @@ type Props = {
 function UserIcon({ className }: Props) {
   return (
     <div className={className}>
-      <img src={userIcon} />
+      <img
+        src={userIcon}
+        alt="User icon"
+      />
     </div>
   );
 }
