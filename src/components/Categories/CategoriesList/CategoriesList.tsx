@@ -1,5 +1,5 @@
 import "./CategoriesList.scss";
-import { Categories } from "../../../types/categories";
+import { Categories } from "@constants/categories";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
 function CategoriesList() {

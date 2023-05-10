@@ -1,5 +1,5 @@
 import "./CustomSelect.scss";
-import { Categories } from "../../types/categories";
+import { Categories } from "@constants/categories";
 import { useState } from "react";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
 

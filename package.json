@@ -2,7 +2,7 @@
   "name": "pagota-ecommerce",
   "author": "Dimitri Syrnyk <dsyrnyk@reenbit.com>",
   "version": "0.1.0",
-  "homepage": "https://dimasyrnyk.github.io/pagota-e-commerce",
+  "homepage": "https://dimasyrnyk.github.io/pagota-e-commerce/#",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
