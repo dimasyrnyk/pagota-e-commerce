@@ -1,0 +1,26 @@
+@use "@styles/colors" as *;
+
+.breadcrumbs {
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 16px 37px;
+    font-size: 0.75rem;
+    color: $text_color_lightgrey;
+
+    a {
+      text-decoration: none;
+      color: $text_color_lightgrey;
+      margin: 0 8px;
+
+      &:hover {
+        color: darken($text_color_lightgrey, 10%);
+      }
+    }
+
+    .disabled-link {
+      cursor: not-allowed;
+      color: $text_color_black;
+    }
+  }
+}

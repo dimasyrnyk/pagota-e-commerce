@@ -1,0 +1,128 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .header {
+    &__first-row {
+      display: flex;
+      justify-content: space-around;
+      flex: 1;
+
+      .icon-mobile {
+        cursor: pointer;
+      }
+    }
+
+    &__second-row {
+      margin: 13px 15px;
+    }
+  }
+
+  .main-section {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__logo {
+      margin-bottom: 15px;
+    }
+
+    &__user-profile {
+      display: none;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .header {
+    &__container {
+      padding: 0 10px;
+    }
+
+    &__first-row {
+      display: flex;
+      justify-content: space-around;
+      flex: 1;
+
+      .icon-mobile {
+        cursor: pointer;
+      }
+    }
+
+    &__second-row {
+      margin: 13px 20px;
+    }
+  }
+
+  .main-section {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__logo {
+      margin-bottom: 15px;
+    }
+
+    &__user-profile {
+      display: none;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 900px) {
+  .header {
+    &__container {
+      padding: 0 10px;
+    }
+
+    &__first-row {
+      margin: 0 35px 13px 35px;
+
+      .icon-mobile {
+        display: none;
+      }
+    }
+
+    &__second-row {
+      margin: 13px 1.6875rem 13px 3.875rem;
+    }
+  }
+
+  .main-section {
+    &__user-profile {
+      display: flex;
+      justify-content: space-between;
+      width: 8%;
+    }
+  }
+}
+
+.header {
+  &__first-row {
+    border-bottom: 1px solid $border_color_lightgrey;
+    padding: 15px 0;
+  }
+
+  &__mobile-navbar {
+    align-items: center;
+  }
+
+  &__second-row {
+    .logo {
+      font-size: 1.125rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.main-section {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+}
