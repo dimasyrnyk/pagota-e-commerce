@@ -1,0 +1,256 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media screen and (max-width: 550px) {
+  .product-card {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__image {
+      flex: 1;
+    }
+
+    &__info {
+      flex-direction: column;
+      padding: 20px 15px 5px 15px;
+    }
+
+    &__payment-info {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__shipping {
+      align-items: flex-end;
+    }
+
+    &__btn-detail {
+      width: 100%;
+      justify-content: center;
+      margin: 12px 0;
+    }
+
+    &__btn-wish-list {
+      width: 100%;
+      justify-content: center;
+      margin: 12px 0;
+    }
+  }
+
+  .description {
+    &__container {
+      flex: 1;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    &__keys,
+    &__values {
+      gap: 4px;
+    }
+
+    &__values {
+      align-items: flex-end;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 551px) and (max-width: 750px) {
+  .product-card {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__image {
+      flex: 1;
+    }
+
+    &__info {
+      padding: 32px;
+    }
+
+    &__shipping {
+      padding: 16px 0;
+    }
+
+    &__btn-detail {
+      margin: 12px 6px;
+    }
+
+    &__btn-wish-list {
+      margin: 12px 6px;
+    }
+  }
+
+  .description {
+    &__keys,
+    &__values {
+      gap: 12px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 751px) {
+  .product-card {
+    &__image {
+      width: 260px;
+    }
+
+    &__info {
+      padding: 32px;
+    }
+
+    &__shipping {
+      padding: 16px 0;
+    }
+
+    &__btn-detail {
+      margin: 12px 6px;
+    }
+
+    &__btn-wish-list {
+      margin: 12px 6px;
+    }
+  }
+
+  .description {
+    &__keys,
+    &__values {
+      gap: 12px;
+    }
+  }
+}
+
+.product-card {
+  &__container {
+    display: flex;
+    border: 1px solid $border_color_grey;
+    border-radius: 12px;
+    width: 100%;
+    gap: 32;
+    margin-bottom: 32px;
+  }
+
+  &__image {
+    border-radius: 12px 12px;
+  }
+
+  &__info {
+    display: flex;
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    margin-bottom: 4px;
+  }
+
+  &__small-description {
+    font-size: 0.75rem;
+    color: $text_color_darkgrey;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 210px;
+  }
+  &__first-column {
+    flex: 4;
+
+    // white-space: nowrap;
+  }
+
+  &__second-column {
+    flex: 3;
+  }
+
+  &__price-current {
+    font-size: 1.125rem;
+  }
+
+  &__price-old {
+    text-decoration: line-through;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: $text_color_lightgrey;
+  }
+
+  &__shipping {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    color: $text_color_lightgrey;
+
+    span:first-child {
+      font-weight: 600;
+    }
+  }
+
+  &__btn-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 12px;
+    background: $background_color_green;
+    border: 2px solid $border_color_darkgreen;
+    border-radius: 12px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+    color: $text_color_white;
+
+    &:hover {
+      background-color: darken($background_color_green, 10%);
+    }
+  }
+
+  &__btn-wish-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 7px;
+    background: $background_color_grey;
+    border-radius: 12px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.375rem;
+  }
+}
+
+.description {
+  &__container {
+    display: flex;
+    font-size: 0.875rem;
+    gap: 12px;
+    margin-top: 27px;
+    color: $text_color_lightgrey;
+  }
+
+  &__keys {
+    display: flex;
+    flex-direction: column;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__values {
+    display: flex;
+    flex-direction: column;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &_green {
+      color: $text_color_green;
+    }
+  }
+}
