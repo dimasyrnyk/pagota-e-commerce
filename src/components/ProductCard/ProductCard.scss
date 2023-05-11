@@ -136,6 +136,7 @@
 
   &__image {
     border-radius: 12px 12px;
+    object-fit: cover;
   }
 
   &__info {
@@ -158,8 +159,6 @@
   }
   &__first-column {
     flex: 4;
-
-    // white-space: nowrap;
   }
 
   &__second-column {
