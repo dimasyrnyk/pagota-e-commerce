@@ -1,4 +1,4 @@
-@use "./styles/colors" as *;
+@use "@styles/colors" as *;
 
 body {
   margin: 0;
@@ -15,5 +15,6 @@ code {
 }
 
 .app__container {
-  text-align: center;
+  margin: 0 auto;
+  max-width: 1260px;
 }

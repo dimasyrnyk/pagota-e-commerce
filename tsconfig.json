@@ -17,14 +17,15 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
+      "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
       "@containers/*": ["src/containers/*"],
       "@pages/*": ["src/pages/*"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "svg.d.ts"]
 }

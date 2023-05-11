@@ -1,0 +1,30 @@
+@use "@styles/colors" as *;
+
+.category-item {
+  position: relative;
+  display: flex;
+  margin: 0 20px;
+
+  &:hover .category-item__icon {
+    transform: rotate(180deg);
+    transition: 0.5s;
+  }
+
+  &:not(:hover) .category-item__icon {
+    transition: 0.5s;
+  }
+
+  &__title {
+    display: flex;
+    font-size: 0.9375rem;
+    padding: 2px 0;
+  }
+
+  &__icon {
+    display: inline-block;
+    align-self: center;
+    font-size: 8px;
+    color: $text_color_green;
+    padding: 5px;
+  }
+}

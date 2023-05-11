@@ -1,0 +1,26 @@
+@use "@styles/colors" as *;
+
+.not-empty {
+  position: relative;
+  display: inline-block;
+
+  &:after {
+    content: attr(data-count);
+    position: absolute;
+    bottom: -5px;
+    left: -6px;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    color: $text_color_white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 50%;
+    background-color: $background_color_red;
+    padding: 2px;
+    width: 16px;
+    height: 16px;
+  }
+}

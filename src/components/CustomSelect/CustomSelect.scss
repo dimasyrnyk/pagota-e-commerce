@@ -1,0 +1,68 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .custom-select {
+    &__container {
+      border-bottom: 1px solid $border_color_grey;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+    }
+
+    &__body {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &__header {
+      align-self: center;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET && DESKTOP ---------- */
+@media screen and (min-width: 601px) {
+  .custom-select {
+    &__header {
+      border-right: 1px solid $border_color_grey;
+      padding-right: 10px;
+    }
+  }
+}
+
+.custom-select {
+  &__container {
+    display: flex;
+    font-weight: 600;
+  }
+
+  &__body {
+    position: relative;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  &__list {
+    position: absolute;
+    top: 25px;
+    background-color: $background_color_grey;
+    width: 200px;
+    z-index: 90;
+  }
+
+  &__list-item {
+    padding: 5px 15px;
+
+    &:hover {
+      background-color: darken($background_color_grey, 10%);
+    }
+  }
+}

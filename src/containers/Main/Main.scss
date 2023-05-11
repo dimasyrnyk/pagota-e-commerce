@@ -1,0 +1,7 @@
+@use "@styles/colors" as *;
+
+.main {
+  &__container {
+    min-height: 50vh;
+  }
+}

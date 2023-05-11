@@ -1,0 +1,40 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .categories {
+    &__list {
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .categories {
+    &__list {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-gap: auto;
+      justify-items: start;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 900px) {
+  .categories {
+    &__list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.categories {
+  &__container {
+    display: flex;
+    flex: 1;
+    background-color: $background_color_lightgrey;
+    padding: 16px 25px;
+  }
+}

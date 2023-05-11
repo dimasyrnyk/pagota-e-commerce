@@ -1,0 +1,84 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .search-bar {
+    &__container {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &__title {
+      display: none;
+    }
+
+    &__input {
+      font-size: 1rem;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET && DESKTOP ---------- */
+@media screen and (min-width: 601px) {
+  .search-bar {
+    &__container {
+      width: 500px;
+    }
+
+    &__title {
+      display: block;
+    }
+
+    &__input {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+.search-bar {
+  &__container {
+    display: flex;
+    border: 1px solid $border_color_grey;
+    border-radius: 12px;
+    background-color: $background_color_lightgrey;
+    padding: 8px 16px;
+  }
+
+  &__categories {
+    display: flex;
+    font-weight: 600;
+    border-right: 1px solid $border_color_grey;
+    padding-right: 28px;
+  }
+
+  &__title {
+    margin-right: 12px;
+  }
+
+  &__icon-categories {
+    display: inline-block;
+    align-self: center;
+    color: $text_color_green;
+    font-size: 12px;
+  }
+
+  &__icon-search {
+    display: inline-block;
+    align-self: center;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    line-height: 0.9;
+    background-color: $background_color_lightgrey;
+    width: 90%;
+
+    &_wrapper {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      margin-left: 10px;
+    }
+  }
+}

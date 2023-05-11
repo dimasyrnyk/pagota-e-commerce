@@ -1,0 +1,43 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .breadcrumbs {
+    &__container {
+      padding: 16px 15px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET & DESKTOP ---------- */
+@media screen and (min-width: 601px) {
+  .breadcrumbs {
+    &__container {
+      padding: 16px 45px;
+    }
+  }
+}
+
+.breadcrumbs {
+  &__container {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.75rem;
+    color: $text_color_lightgrey;
+
+    a {
+      text-decoration: none;
+      color: $text_color_lightgrey;
+      margin: 0 8px;
+
+      &:hover {
+        color: darken($text_color_lightgrey, 10%);
+      }
+    }
+
+    .disabled-link {
+      cursor: not-allowed;
+      color: $text_color_black;
+    }
+  }
+}
