@@ -68,3 +68,9 @@ ol {
   list-style: none;
   padding: 0;
 }
+/*
+  9. Remove default styles for links
+*/
+a {
+  text-decoration: none;
+}

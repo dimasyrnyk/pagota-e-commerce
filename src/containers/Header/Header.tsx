@@ -16,10 +16,9 @@ function Header() {
         <NavBar />
         <ChatIcon className="icon-mobile" />
         <UserIcon className="icon-mobile" />
-        <CartIcon
-          className="icon-mobile"
-          productsCount={4}
-        />
+        <span className="icon-mobile">
+          <CartIcon productsCount={4} />
+        </span>
       </div>
       <div className="header__second-row">
         <div className="main-section__container">
