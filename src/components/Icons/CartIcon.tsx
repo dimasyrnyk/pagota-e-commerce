@@ -10,8 +10,8 @@ function CartIcon({ className, productsCount = 0 }: Props) {
   const classes = productsCount > 0 ? "not-empty" : "";
 
   return (
-    <div className={className}>
-      <div
+    <span className={className}>
+      <span
         className={"icon-cart__container " + classes}
         data-count={productsCount}
       >
@@ -19,8 +19,8 @@ function CartIcon({ className, productsCount = 0 }: Props) {
           src={basketIcon}
           alt="Cart icon"
         />
-      </div>
-    </div>
+      </span>
+    </span>
   );
 }
 

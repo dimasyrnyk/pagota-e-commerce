@@ -6,12 +6,11 @@ type Props = {
 
 function ChevronDownIcon({ className }: Props) {
   return (
-    <div className={className}>
-      <img
-        src={chevronDownIcon}
-        alt="Chevron down icon"
-      />
-    </div>
+    <img
+      className={className}
+      src={chevronDownIcon}
+      alt="Chevron down icon"
+    />
   );
 }
 

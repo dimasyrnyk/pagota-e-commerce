@@ -6,12 +6,11 @@ type Props = {
 
 function Logo({ className }: Props) {
   return (
-    <div className={className}>
-      <img
-        src={logo}
-        alt="Logo Freshnesecom"
-      />
-    </div>
+    <img
+      className={className}
+      src={logo}
+      alt="Logo Freshnesecom"
+    />
   );
 }
 

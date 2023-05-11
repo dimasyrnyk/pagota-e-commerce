@@ -7,7 +7,6 @@
       display: flex;
       justify-content: space-around;
       flex: 1;
-      margin: 0 -15px;
 
       .icon-mobile {
         cursor: pointer;
@@ -15,7 +14,7 @@
     }
 
     &__second-row {
-      margin: 13px 0;
+      padding: 13px 15px;
     }
   }
 
@@ -41,6 +40,7 @@
       display: flex;
       justify-content: space-around;
       flex: 1;
+      margin: 0 20px;
 
       .icon-mobile {
         cursor: pointer;
@@ -48,7 +48,7 @@
     }
 
     &__second-row {
-      margin: 13px 0;
+      padding: 13px 20px;
     }
   }
 
@@ -71,13 +71,15 @@
 @media screen and (min-width: 900px) {
   .header {
     &__first-row {
+      margin: 0 45px;
+
       .icon-mobile {
         display: none;
       }
     }
 
     &__second-row {
-      margin: 13px -18px 13px 17px;
+      padding: 13px 27px 13px 62px;
     }
   }
 

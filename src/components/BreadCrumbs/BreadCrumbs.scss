@@ -1,10 +1,27 @@
 @use "@styles/colors" as *;
 
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .breadcrumbs {
+    &__container {
+      padding: 16px 15px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET & DESKTOP ---------- */
+@media screen and (min-width: 601px) {
+  .breadcrumbs {
+    &__container {
+      padding: 16px 45px;
+    }
+  }
+}
+
 .breadcrumbs {
   &__container {
     display: flex;
     justify-content: flex-start;
-    padding: 16px 0;
     font-size: 0.75rem;
     color: $text_color_lightgrey;
 

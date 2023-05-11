@@ -1,5 +1,26 @@
 @use "@styles/colors" as *;
 
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .products-item__container {
+    padding: 0 15px;
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .products-item__container {
+    padding: 0 20px;
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 901px) {
+  .products-item__container {
+    padding: 0 45px;
+  }
+}
+
 .products-item {
   &__container {
     display: flex;

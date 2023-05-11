@@ -6,12 +6,11 @@ type Props = {
 
 function ChatIcon({ className }: Props) {
   return (
-    <div className={className}>
-      <img
-        src={chatIcon}
-        alt="Chat icon"
-      />
-    </div>
+    <img
+      className={className}
+      src={chatIcon}
+      alt="Chat icon"
+    />
   );
 }
 
