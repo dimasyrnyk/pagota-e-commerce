@@ -1,3 +1,6 @@
+export const BASE_URL =
+  "https://645b7a19a8f9e4d6e7699f11.mockapi.io/api/products";
+
 export interface ILink {
   href: string;
   name: string;
