@@ -1,3 +1,5 @@
+export const ALL_CATEGORIES = "All categories";
+
 export enum Categories {
   ELECTRINICS = "Electronics",
   FOOD = "Food",

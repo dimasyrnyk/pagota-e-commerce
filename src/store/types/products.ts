@@ -2,7 +2,7 @@ import { IProduct } from "@constants/products";
 
 export interface ProductsState {
   allProducts: IProduct[];
-  searchValue: string;
+  categories: string[];
   isLoading: boolean;
 }
 

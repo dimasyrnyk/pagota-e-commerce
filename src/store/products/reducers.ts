@@ -1,12 +1,18 @@
+import { IProduct } from "@constants/products";
 import {
   ProductsState,
   ProductsTypes,
   ProductsAction,
 } from "../types/products";
+import { ALL_CATEGORIES } from "@constants/categories";
+
+interface ICategories {
+  [key: string]: boolean;
+}
 
 const initialState: ProductsState = {
   allProducts: [],
-  searchValue: "",
+  categories: [ALL_CATEGORIES],
   isLoading: false,
 };
 
@@ -20,7 +26,19 @@ export default function productsReducer(
     case ProductsTypes.END_LOADING_PRODUCTS:
       return { ...state, isLoading: false };
     case ProductsTypes.GET_ALL_PRODUCTS:
-      return { ...state, allProducts: action.payload };
+      const uniqueCategories = action.payload.reduce(
+        (accumulator: ICategories, product: IProduct) => {
+          accumulator[product.category] = true;
+          return accumulator;
+        },
+        {}
+      );
+      const categories = Object.keys(uniqueCategories);
+      return {
+        ...state,
+        allProducts: action.payload,
+        categories: initialState.categories.concat(categories),
+      };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -10,16 +10,24 @@ import AppLoader from "@components/AppLoader/AppLoader";
 import { AppDispatch, RootState } from "@store/index";
 import { getAllProducts } from "@store/products/actions";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
+import { IProduct } from "@constants/products";
+import searchProducts from "@utils/filters";
 
 function ProductsListPage() {
+  const { category, query } = useSelector((state: RootState) => state.filters);
   const { allProducts, isLoading } = useSelector(
     (state: RootState) => state.products
   );
+  const [result, setResult] = useState<IProduct[]>(allProducts);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
+
+  useEffect(() => {
+    setResult(searchProducts(allProducts, category, query));
+  }, [query, category]);
 
   return (
     <>
@@ -28,7 +36,7 @@ function ProductsListPage() {
         <div className="products-list__header">
           <h1>All Products</h1>
           <div className="products-list__quantity">
-            <span>{allProducts.length}</span>
+            <span>{result.length}</span>
             <span>Products</span>
           </div>
         </div>
@@ -42,11 +50,7 @@ function ProductsListPage() {
         <div className="products-list__body">
           <section className="body__sidebar">Filters</section>
           <ul className="body__container">
-            {isLoading ? (
-              <AppLoader />
-            ) : (
-              <ProductsList products={allProducts} />
-            )}
+            {isLoading ? <AppLoader /> : <ProductsList products={result} />}
           </ul>
         </div>
       </div>
