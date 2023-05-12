@@ -83,14 +83,14 @@
     gap: 4px;
     font-size: 0.75rem;
 
-    li:first-child {
+    span:first-child {
       border-radius: 12px;
       color: $text_color_green;
       background-color: $background_color_lightgreen;
       padding: 0px 8px;
     }
 
-    li:last-child {
+    span:last-child {
       color: $text_color_lightgrey;
     }
   }

@@ -44,15 +44,6 @@
       justify-content: space-between;
       margin-bottom: 10px;
     }
-
-    &__keys,
-    &__values {
-      gap: 4px;
-    }
-
-    &__values {
-      align-items: flex-end;
-    }
   }
 }
 
@@ -83,13 +74,6 @@
       margin: 12px 6px;
     }
   }
-
-  .description {
-    &__keys,
-    &__values {
-      gap: 12px;
-    }
-  }
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
@@ -113,13 +97,6 @@
 
     &__btn-wish-list {
       margin: 12px 6px;
-    }
-  }
-
-  .description {
-    &__keys,
-    &__values {
-      gap: 12px;
     }
   }
 }
@@ -171,7 +148,7 @@
     }
   }
   &__first-column {
-    flex: 4;
+    flex: 5;
   }
 
   &__second-column {
@@ -250,25 +227,14 @@
     color: $text_color_lightgrey;
   }
 
-  &__keys {
-    display: flex;
-    flex-direction: column;
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
 
-  &__values {
-    display: flex;
-    flex-direction: column;
-    max-width: 140px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    &_green {
-      color: $text_color_green;
+    span {
+      word-break: break-all;
+      white-space: wrap;
     }
   }
 }

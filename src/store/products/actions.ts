@@ -1,12 +1,11 @@
+import { BASE_URL } from "@constants/app";
 import { AppDispatch } from "..";
 import { ProductsTypes } from "../types/products";
 
 export function getAllProducts() {
   return async (dispatch: AppDispatch) => {
     dispatch({ type: ProductsTypes.START_LOADING_PRODUCTS });
-    const response = await fetch(
-      "https://645b7a19a8f9e4d6e7699f11.mockapi.io/api/products"
-    );
+    const response = await fetch(BASE_URL);
 
     const data = await response.json();
 

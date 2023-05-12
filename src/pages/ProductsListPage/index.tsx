@@ -27,10 +27,10 @@ function ProductsListPage() {
       <div className="products-list__container">
         <div className="products-list__header">
           <h1>All Products</h1>
-          <ul className="products-list__quantity">
-            <li>{allProducts.length}</li>
-            <li>Products</li>
-          </ul>
+          <div className="products-list__quantity">
+            <span>{allProducts.length}</span>
+            <span>Products</span>
+          </div>
         </div>
         <div className="products-list__sort">
           <span>Sort By</span>

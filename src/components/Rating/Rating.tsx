@@ -1,6 +1,5 @@
 import "./Rating.scss";
-import StarBlackIcon from "@components/Icons/StarBlackIcon";
-import StarWhiteIcon from "@components/Icons/StarWhiteIcon";
+import { generateStars } from "@utils/productUtils";
 
 type Props = {
   rating: number;
@@ -8,16 +7,14 @@ type Props = {
 
 function Rating({ rating }: Props) {
   const intRating = Math.round(rating);
+  const stars = generateStars(intRating);
 
   return (
-    <div className="rating__container">
-      {Array.from({ length: intRating }, (_, index) => (
-        <StarBlackIcon key={`star-${index}`} />
+    <ul className="rating__container">
+      {stars.map((star) => (
+        <li key={star.key}>{star}</li>
       ))}
-      {Array.from({ length: 5 - intRating }, (_, index) => (
-        <StarWhiteIcon key={`star-${intRating + index}`} />
-      ))}
-    </div>
+    </ul>
   );
 }
 

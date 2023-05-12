@@ -1,11 +1,14 @@
+import { Link } from "react-router-dom";
+
 import "./ProductCard.scss";
 import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
 import HeartIcon from "@components/Icons/HeartIcon";
 import Rating from "@components/Rating/Rating";
-import { Link } from "react-router-dom";
+import { IProduct } from "@constants/products";
+import { formatPrice } from "@utils/productUtils";
 
 type Props = {
-  product: any;
+  product: IProduct;
 };
 
 function ProductCard({ product }: Props) {
@@ -33,19 +36,29 @@ function ProductCard({ product }: Props) {
           </p>
           <Rating rating={product.rating} />
           <div className="description__container">
-            <ul className="description__keys">
-              <li>Fresheness</li>
-              <li>Farm</li>
-              <li>Delivery</li>
-              <li>Stock</li>
-            </ul>
-            <ul className="description__values">
-              <li>
-                <span className="text__green">New</span> (Extra fresh)
+            <ul className="description__list">
+              <li className="description__row">
+                <span className="description__label">Fresheness:</span>
+                <span className="description__value">
+                  <span className="text__green">New</span> (Extra fresh)
+                </span>
               </li>
-              <li>{product.producer}</li>
-              <li>{product.deliveryArea}</li>
-              <li className="description__values_green">{product.quantity}</li>
+              <li className="description__row">
+                <span className="description__label">Farm:</span>
+                <span className="description__value">{product.producer}</span>
+              </li>
+              <li className="description__row">
+                <span className="description__label">Delivery:</span>
+                <span className="description__value">
+                  {product.deliveryArea}
+                </span>
+              </li>
+              <li className="description__row">
+                <span className="description__label">Stock:</span>
+                <span className="description__value">
+                  <span className="text__green">{product.quantity}</span>
+                </span>
+              </li>
             </ul>
           </div>
         </div>
@@ -53,10 +66,10 @@ function ProductCard({ product }: Props) {
           <div className="product-card__payment-info">
             <div className="product-card__price">
               <h3 className="product-card__price-current">
-                {currentPrice.toFixed(2)} USD
+                {formatPrice(currentPrice)} USD
               </h3>
               <span className="product-card__price-old">
-                {product.price.toFixed(2)}
+                {formatPrice(product.price)}
               </span>
             </div>
             <div className="product-card__shipping">
