@@ -229,10 +229,11 @@
 
   &__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 110px 1fr;
     gap: 5px;
 
     span {
+      word-wrap: break-word;
       word-break: break-all;
     }
   }

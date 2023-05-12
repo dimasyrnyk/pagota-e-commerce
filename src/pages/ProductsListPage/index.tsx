@@ -41,13 +41,13 @@ function ProductsListPage() {
         </div>
         <div className="products-list__body">
           <section className="body__sidebar">Filters</section>
-          <div className="body__container">
+          <ul className="body__container">
             {isLoading ? (
               <AppLoader />
             ) : (
               <ProductsList products={allProducts} />
             )}
-          </div>
+          </ul>
         </div>
       </div>
       <Footer />

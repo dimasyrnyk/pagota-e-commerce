@@ -15,7 +15,7 @@ function ProductCard({ product }: Props) {
   const currentPrice = product.price * ((100 - product.discount) / 100);
 
   return (
-    <div className="product-card__container">
+    <li className="product-card__container">
       <Link
         className="product-card__image-link"
         to={"/products/" + product.id}
@@ -88,7 +88,7 @@ function ProductCard({ product }: Props) {
           </button>
         </div>
       </div>
-    </div>
+    </li>
   );
 }
 
