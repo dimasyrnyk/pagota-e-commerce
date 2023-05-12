@@ -130,13 +130,17 @@
     border: 1px solid $border_color_grey;
     border-radius: 12px;
     width: 100%;
-    gap: 32;
     margin-bottom: 32px;
   }
 
   &__image {
+    cursor: pointer;
     border-radius: 12px 12px;
     object-fit: cover;
+
+    &-link {
+      display: flex;
+    }
   }
 
   &__info {
@@ -147,6 +151,11 @@
   &__title {
     font-size: 1.125rem;
     margin-bottom: 4px;
+    color: $text_color_black;
+
+    &:hover {
+      color: $text_color_green;
+    }
   }
 
   &__small-description {
@@ -156,6 +165,10 @@
     overflow: hidden;
     white-space: nowrap;
     max-width: 210px;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
   }
   &__first-column {
     flex: 4;
@@ -188,6 +201,7 @@
   }
 
   &__btn-detail {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -208,17 +222,22 @@
   }
 
   &__btn-wish-list {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 6px 12px;
     gap: 7px;
-    background: $background_color_grey;
+    background-color: $background_color_grey;
     border-radius: 12px;
     border: none;
     font-weight: 700;
     font-size: 0.9375rem;
     line-height: 1.375rem;
+
+    &:hover {
+      background-color: darken($background_color_grey, 10%);
+    }
   }
 }
 
@@ -252,4 +271,8 @@
       color: $text_color_green;
     }
   }
+}
+
+.text__green {
+  color: $text_color_green;
 }

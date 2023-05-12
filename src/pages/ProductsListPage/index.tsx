@@ -28,7 +28,7 @@ function ProductsListPage() {
         <div className="products-list__header">
           <h1>All Products</h1>
           <ul className="products-list__quantity">
-            <li>{allProducts.length}22</li>
+            <li>{allProducts.length}</li>
             <li>Products</li>
           </ul>
         </div>

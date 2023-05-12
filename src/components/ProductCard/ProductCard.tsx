@@ -13,14 +13,21 @@ function ProductCard({ product }: Props) {
 
   return (
     <div className="product-card__container">
-      <img
-        className="product-card__image"
-        src={product.image}
-        alt={product.title}
-      />
+      <Link
+        className="product-card__image-link"
+        to={"/products/" + product.id}
+      >
+        <img
+          className="product-card__image"
+          src={product.image}
+          alt={product.title}
+        />
+      </Link>
       <div className="product-card__info">
         <div className="product-card__first-column">
-          <h2 className="product-card__title">{product.title}</h2>
+          <Link to={"/products/" + product.id}>
+            <h2 className="product-card__title">{product.title}</h2>
+          </Link>
           <p className="product-card__small-description">
             {product.shortDescription}
           </p>
@@ -33,7 +40,9 @@ function ProductCard({ product }: Props) {
               <li>Stock</li>
             </ul>
             <ul className="description__values">
-              <li>New (Extra fresh)</li>
+              <li>
+                <span className="text__green">New</span> (Extra fresh)
+              </li>
               <li>{product.producer}</li>
               <li>{product.deliveryArea}</li>
               <li className="description__values_green">{product.quantity}</li>
@@ -46,9 +55,9 @@ function ProductCard({ product }: Props) {
               <h3 className="product-card__price-current">
                 {currentPrice.toFixed(2)} USD
               </h3>
-              <div className="product-card__price-old">
+              <span className="product-card__price-old">
                 {product.price.toFixed(2)}
-              </div>
+              </span>
             </div>
             <div className="product-card__shipping">
               <span>Free Shipping</span>
