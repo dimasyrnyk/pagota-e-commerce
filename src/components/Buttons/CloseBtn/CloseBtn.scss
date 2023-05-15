@@ -1,0 +1,21 @@
+@use "@styles/colors" as *;
+
+.close-btn {
+  border: 1px solid $border_color_green;
+  border-radius: 5px;
+  padding: 4px;
+  align-self: center;
+
+  &:hover {
+    scale: 1.1;
+  }
+
+  &:focus {
+    scale: 0.9;
+  }
+
+  &__icon {
+    filter: invert(51%) sepia(55%) saturate(461%) hue-rotate(47deg)
+      brightness(94%) contrast(84%);
+  }
+}

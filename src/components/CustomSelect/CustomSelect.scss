@@ -54,12 +54,12 @@
     position: absolute;
     top: 25px;
     background-color: $background_color_grey;
-    width: 200px;
     z-index: 90;
   }
 
   &__list-item {
     padding: 5px 15px;
+    white-space: nowrap;
 
     &:hover {
       background-color: darken($background_color_grey, 10%);
