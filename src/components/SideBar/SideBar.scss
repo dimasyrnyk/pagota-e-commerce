@@ -13,21 +13,35 @@
       width: 308px;
       overflow-y: auto;
 
-      .mobile-open {
+      &.mobile-close {
+        left: -320px;
+        overflow: hidden;
+      }
+
+      &.mobile-open {
+        left: 0;
+        border-right: 1px solid $border-color-grey;
         background-color: $background-color-white;
       }
     }
-  }
 
-  .mobile-close {
-    left: -300px;
-    overflow: hidden;
-  }
+    &__overlay {
+      &-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 180;
+        background-color: $background_color_black;
+        opacity: 0.4;
+        pointer-events: all;
+      }
 
-  .mobile-open {
-    left: 0;
-    border-right: 1px solid $border-color-grey;
-    box-shadow: 10px 0px 30px $text_color_lightgrey;
+      &-close {
+        display: none;
+      }
+    }
   }
 
   .mobile-btn {

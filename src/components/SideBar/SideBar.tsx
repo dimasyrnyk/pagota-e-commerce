@@ -40,67 +40,73 @@ function SideBar() {
   };
 
   return (
-    <>
+    <div>
       <FilterBtn onClick={handleOpen} />
-      <section className={"sidebar__container mobile-" + classes}>
-        <div className="sidebar">
-          <div className="mobile-btn">
-            <CloseBtn onClick={handleClose} />
+      <section className="sidebar__wrapper">
+        <div className={"sidebar__container mobile-" + classes}>
+          <div className="sidebar">
+            <div className="mobile-btn">
+              <CloseBtn onClick={handleClose} />
+            </div>
+            <div className="sidebar__categories">
+              <h3>Categories</h3>
+              <ul className="sidebar__categories-list">
+                {categories.map((cat) => (
+                  <li key={cat}>
+                    <span onClick={() => handleCategoryChange(cat)}>{cat}</span>
+                    <ProductsQuantity quantity={getCategoryLength(cat)} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="sidebar__brands">
+              <h3>Brands</h3>
+              <ul className="sidebar__brands-list">
+                {brands.map((brand) => (
+                  <CustomCheckbox
+                    key={brand}
+                    isChecked={checked}
+                    onChange={setChecked}
+                    label={brand}
+                  />
+                ))}
+              </ul>
+            </div>
+            <div className="sidebar__rating">
+              <h3>Rating</h3>
+              <ul className="sidebar__brands-list">
+                {SIDEBAR_RATING.map((item) => (
+                  <CustomCheckbox
+                    key={item}
+                    isChecked={checked}
+                    onChange={setChecked}
+                    label={
+                      <Rating
+                        rating={item}
+                        isMonochrome={false}
+                      />
+                    }
+                  />
+                ))}
+              </ul>
+            </div>
+            <div className="sidebar__price">
+              <h3>Price</h3>
+              <PriceRange
+                min={1}
+                max={1}
+                onChange={setPriceRange}
+              />
+            </div>
+            <span className="sidebar__reset-btn">Reset</span>
           </div>
-          <div className="sidebar__categories">
-            <h3>Categories</h3>
-            <ul className="sidebar__categories-list">
-              {categories.map((cat) => (
-                <li key={cat}>
-                  <span onClick={() => handleCategoryChange(cat)}>{cat}</span>
-                  <ProductsQuantity quantity={getCategoryLength(cat)} />
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="sidebar__brands">
-            <h3>Brands</h3>
-            <ul className="sidebar__brands-list">
-              {brands.map((brand) => (
-                <CustomCheckbox
-                  key={brand}
-                  isChecked={checked}
-                  onChange={setChecked}
-                  label={brand}
-                />
-              ))}
-            </ul>
-          </div>
-          <div className="sidebar__rating">
-            <h3>Rating</h3>
-            <ul className="sidebar__brands-list">
-              {SIDEBAR_RATING.map((item) => (
-                <CustomCheckbox
-                  key={item}
-                  isChecked={checked}
-                  onChange={setChecked}
-                  label={
-                    <Rating
-                      rating={item}
-                      isMonochrome={false}
-                    />
-                  }
-                />
-              ))}
-            </ul>
-          </div>
-          <div className="sidebar__price">
-            <h3>Price</h3>
-            <PriceRange
-              min={1}
-              max={1}
-              onChange={setPriceRange}
-            />
-          </div>
-          <span className="sidebar__reset-btn">Reset</span>
         </div>
       </section>
-    </>
+      <div
+        className={"sidebar__overlay-" + classes}
+        onClick={handleClose}
+      />
+    </div>
   );
 }
 

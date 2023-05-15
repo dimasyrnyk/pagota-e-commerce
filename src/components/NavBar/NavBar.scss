@@ -85,6 +85,11 @@
     display: flex;
     justify-content: flex-start;
     flex: 1;
+
+    [href="tel:+420336775664"],
+    [href="mailto:info@freshnesecom.com"] {
+      color: $text_color_black;
+    }
   }
 
   &__navigation {
