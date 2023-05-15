@@ -12,12 +12,16 @@ type Props = {
 function CustomCheckbox({ isChecked, onChange, label }: Props) {
   const [checked, setChecked] = useState(isChecked);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target ? e.target.checked : !checked;
     setChecked(newValue);
     if (onChange) {
       onChange(newValue);
     }
+  };
+
+  const handleLabelClick = () => {
+    setChecked(!checked);
   };
 
   return (
@@ -26,7 +30,7 @@ function CustomCheckbox({ isChecked, onChange, label }: Props) {
         type="checkbox"
         checked={checked}
         className="custom-checkbox"
-        onChange={handleOnChange}
+        onChange={handleInputChange}
       />
       {!checked ? (
         <CheckBoxIcon className="custom-checkbox__icon" />
@@ -35,7 +39,7 @@ function CustomCheckbox({ isChecked, onChange, label }: Props) {
       )}
       <label
         htmlFor="custom-checkbox"
-        onClick={() => setChecked(!checked)}
+        onClick={handleLabelClick}
       >
         {label}
       </label>

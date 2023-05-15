@@ -23,18 +23,17 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
     }
   }, [price]);
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const newMinVal = Math.min(+e.target.value, maxValue - step);
-    if (!price) setMinValue(newMinVal);
-    onChange({ min: newMinVal, max: maxValue });
-  };
-
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const newMaxVal = Math.max(+e.target.value, minValue + step);
-    if (!price) setMaxValue(newMaxVal);
-    onChange({ min: minValue, max: newMaxVal });
+    if (e.target.name === "priceMin") {
+      const newMinVal = Math.min(+e.target.value, maxValue - step);
+      if (!price) setMinValue(newMinVal);
+      onChange({ min: newMinVal, max: maxValue });
+    } else {
+      const newMaxVal = Math.max(+e.target.value, minValue + step);
+      if (!price) setMaxValue(newMaxVal);
+      onChange({ min: minValue, max: newMaxVal });
+    }
   };
 
   const minPos = ((minValue - min) / (max - min)) * 100;
@@ -46,20 +45,22 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
         <input
           className="range"
           type="range"
+          name="priceMin"
           value={minValue}
           min={min}
           max={max}
           step={step}
-          onChange={handleMinChange}
+          onChange={handleRangeChange}
         />
         <input
           className="range"
           type="range"
+          name="priceMax"
           value={maxValue}
           min={min}
           max={max}
           step={step}
-          onChange={handleMaxChange}
+          onChange={handleRangeChange}
         />
       </div>
 
