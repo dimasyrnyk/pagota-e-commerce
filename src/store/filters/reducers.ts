@@ -4,7 +4,10 @@ import { FiltersActionType, FiltersState, FilterTypes } from "../types/filters";
 const initialState: FiltersState = {
   query: "",
   category: ALL_CATEGORIES,
-  brand: "",
+  brands: [],
+  rating: [],
+  minPrice: 0,
+  maxPrice: 0,
   isLoading: false,
 };
 

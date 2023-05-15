@@ -1,0 +1,41 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE & TABLET ---------- */
+@media (max-width: 1100px) {
+  .filter-btn {
+    display: flex;
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP LARGE ---------- */
+@media screen and (min-width: 1101px) {
+  .filter-btn {
+    display: none;
+  }
+}
+
+.filter-btn {
+  cursor: pointer;
+  align-items: center;
+  gap: 20px;
+  background: $background-color-green;
+  width: 140px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid $border_color_darkgreen;
+  color: $text_color_white;
+  padding: 9px 16px;
+  gap: 24px;
+
+  &:hover {
+    background: darken($background-color-green, 10%);
+  }
+
+  &__icon {
+    width: 25px;
+    display: inline;
+    transform: rotate(90deg);
+    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(104deg)
+      brightness(105%) contrast(101%);
+  }
+}

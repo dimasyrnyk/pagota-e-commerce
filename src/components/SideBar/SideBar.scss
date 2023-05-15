@@ -1,0 +1,160 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE & TABLET ---------- */
+@media (max-width: 1100px) {
+  .sidebar {
+    &__container {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      padding: 20px 30px;
+      transition: 1s;
+      z-index: 200;
+      width: 308px;
+      overflow-y: auto;
+
+      &.mobile-close {
+        left: -320px;
+        overflow: hidden;
+      }
+
+      &.mobile-open {
+        left: 0;
+        border-right: 1px solid $border-color-grey;
+        background-color: $background-color-white;
+      }
+    }
+
+    &__overlay {
+      &-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 180;
+        background-color: $background_color_black;
+        opacity: 0.4;
+        pointer-events: all;
+      }
+
+      &-close {
+        display: none;
+      }
+    }
+  }
+
+  .mobile-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  background-color: $background-color-green;
+}
+::-webkit-scrollbar-track {
+  background-color: $background-color-grey;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $background-color-green;
+}
+
+* {
+  scrollbar-color: #888 #f0f0f0;
+  scrollbar-width: thin;
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP LARGE ---------- */
+@media screen and (min-width: 1101px) {
+  .sidebar {
+    width: 268px;
+  }
+
+  .mobile-btn {
+    display: none;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  &__container {
+    font-size: 0.875rem;
+    background-color: $background-color-white;
+  }
+
+  h3 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.6875rem;
+  }
+
+  &__categories,
+  &__brands,
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__categories-list,
+  &__brands-list,
+  &__rating-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__categories-list li {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      color: $text_color_green;
+    }
+  }
+
+  &__brands {
+    overflow: hidden;
+    height: 300px;
+
+    &-list {
+      overflow: auto;
+
+      li {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &:hover {
+          color: $text_color_green;
+        }
+      }
+    }
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__reset-btn {
+    cursor: pointer;
+    color: $text_color_darkgrey;
+    font-weight: 700;
+    font-size: 1rem;
+    align-self: center;
+    padding: 10px;
+
+    &:hover {
+      color: $text_color_green;
+    }
+  }
+}
