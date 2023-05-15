@@ -1,9 +1,10 @@
-import { IProduct } from "@constants/products";
-
 export interface FiltersState {
   query: string;
   category: string;
-  brand: string;
+  brands: string[];
+  rating: number[];
+  minPrice: number;
+  maxPrice: number;
   isLoading: boolean;
 }
 

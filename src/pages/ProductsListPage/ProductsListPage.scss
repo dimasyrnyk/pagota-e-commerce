@@ -13,7 +13,6 @@
 
     &__body {
       flex-direction: column;
-      padding-top: 24px;
     }
   }
 }
@@ -27,7 +26,6 @@
 
     &__body {
       flex-direction: column;
-      padding-top: 44px;
     }
   }
 }
@@ -41,7 +39,6 @@
 
     &__body {
       flex-direction: column;
-      padding-top: 64px;
     }
   }
 }
@@ -55,10 +52,6 @@
 
     &__sort {
       margin: 16px 3px;
-    }
-
-    &__body {
-      padding-top: 64px;
     }
   }
 }
@@ -82,13 +75,6 @@
     align-items: center;
     gap: 4px;
     font-size: 0.75rem;
-
-    span:first-child {
-      border-radius: 12px;
-      color: $text_color_green;
-      background-color: $background_color_lightgreen;
-      padding: 0px 8px;
-    }
 
     span:last-child {
       color: $text_color_lightgrey;
@@ -126,14 +112,11 @@
   &__body {
     display: flex;
     gap: 33px;
+    padding-top: 24px;
   }
 }
 
 .body {
-  &__sidebar {
-    width: 268px;
-  }
-
   &__container {
     display: flex;
     flex-direction: column;

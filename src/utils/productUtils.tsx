@@ -1,13 +1,33 @@
-import StarBlackIcon from "@components/Icons/StarBlackIcon";
-import StarWhiteIcon from "@components/Icons/StarWhiteIcon";
+import starBlackIcon from "@assets/icons/starBlackIcon.svg";
+import starYellowIcon from "@assets/icons/starYellowIcon.svg";
+import starBigWhiteIcon from "@assets/icons/starBigWhiteIcon.svg";
+import starSmallWhiteIcon from "@assets/icons/starSmallWhiteIcon.svg";
+import { ALL_CATEGORIES } from "@constants/categories";
+import { IProduct } from "@constants/products";
+import { store } from "@store/index";
 
-export function generateStars(intRating: number): JSX.Element[] {
+interface ICategories {
+  [key: string]: boolean;
+}
+
+export function generateStars(
+  intRating: number,
+  isMonochrome: boolean
+): JSX.Element[] {
   const fullStars = Array.from({ length: intRating }, (_, index) => (
-    <StarBlackIcon key={`star-${index}`} />
+    <img
+      key={`star-${index}`}
+      src={isMonochrome ? starBlackIcon : starYellowIcon}
+      alt="Full star icon"
+    />
   ));
 
   const emptyStars = Array.from({ length: 5 - intRating }, (_, index) => (
-    <StarWhiteIcon key={`star-${intRating + index}`} />
+    <img
+      key={`star-${intRating + index}`}
+      src={isMonochrome ? starBigWhiteIcon : starSmallWhiteIcon}
+      alt="Empty star icon"
+    />
   ));
 
   return [...fullStars, ...emptyStars];
@@ -15,4 +35,38 @@ export function generateStars(intRating: number): JSX.Element[] {
 
 export function formatPrice(price: number) {
   return price.toFixed(2);
+}
+
+export function getCategoryLength(category: string) {
+  const allProducts = store.getState().products.allProducts;
+  if (category === ALL_CATEGORIES) {
+    return allProducts.length;
+  }
+  return allProducts.filter((p: IProduct) => p.category === category).length;
+}
+
+export function getTransformedData(products: IProduct[]) {
+  const uniqueBrands = new Set<string>();
+  const uniqueCategories = new Set<string>();
+  let minPrice = Infinity;
+  let maxPrice = 0;
+
+  products.forEach((product: IProduct) => {
+    const productCurrentPrice = Math.round(
+      product.price * ((100 - product.discount) / 100)
+    );
+
+    uniqueBrands.add(product.producer);
+    uniqueCategories.add(product.category);
+    minPrice = Math.min(minPrice, productCurrentPrice);
+    maxPrice = Math.max(maxPrice, productCurrentPrice);
+  });
+
+  return {
+    products: products,
+    categories: [...uniqueCategories],
+    brands: [...uniqueBrands],
+    minPrice: minPrice,
+    maxPrice: maxPrice,
+  };
 }

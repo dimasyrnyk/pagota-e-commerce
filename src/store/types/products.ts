@@ -3,6 +3,9 @@ import { IProduct } from "@constants/products";
 export interface ProductsState {
   allProducts: IProduct[];
   categories: string[];
+  brands: string[];
+  minPrice: number;
+  maxPrice: number;
   isLoading: boolean;
 }
 
@@ -22,7 +25,13 @@ interface EndLoadingAction {
 
 interface GetAllAction {
   type: ProductsTypes.GET_ALL_PRODUCTS;
-  payload: IProduct[];
+  payload: {
+    products: IProduct[];
+    categories: string[];
+    brands: string[];
+    minPrice: number;
+    maxPrice: number;
+  };
 }
 
 export type ProductsAction =

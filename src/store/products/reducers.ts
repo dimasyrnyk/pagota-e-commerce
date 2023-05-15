@@ -1,4 +1,3 @@
-import { IProduct } from "@constants/products";
 import {
   ProductsState,
   ProductsTypes,
@@ -6,13 +5,12 @@ import {
 } from "../types/products";
 import { ALL_CATEGORIES } from "@constants/categories";
 
-interface ICategories {
-  [key: string]: boolean;
-}
-
 const initialState: ProductsState = {
   allProducts: [],
   categories: [ALL_CATEGORIES],
+  brands: [],
+  minPrice: 0,
+  maxPrice: 0,
   isLoading: false,
 };
 
@@ -26,18 +24,13 @@ export default function productsReducer(
     case ProductsTypes.END_LOADING_PRODUCTS:
       return { ...state, isLoading: false };
     case ProductsTypes.GET_ALL_PRODUCTS:
-      const uniqueCategories = action.payload.reduce(
-        (accumulator: ICategories, product: IProduct) => {
-          accumulator[product.category] = true;
-          return accumulator;
-        },
-        {}
-      );
-      const categories = Object.keys(uniqueCategories);
       return {
         ...state,
-        allProducts: action.payload,
-        categories: initialState.categories.concat(categories),
+        allProducts: action.payload.products,
+        categories: initialState.categories.concat(action.payload.categories),
+        brands: action.payload.brands,
+        minPrice: action.payload.minPrice,
+        maxPrice: action.payload.maxPrice,
       };
     default:
       return state;

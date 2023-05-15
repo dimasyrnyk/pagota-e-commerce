@@ -68,9 +68,11 @@ function ProductCard({ product }: Props) {
               <h3 className="product-card__price-current">
                 {formatPrice(currentPrice)} USD
               </h3>
-              <span className="product-card__price-old">
-                {formatPrice(product.price)}
-              </span>
+              {product.discount ? (
+                <span className="product-card__price-old">
+                  {formatPrice(product.price)}
+                </span>
+              ) : null}
             </div>
             <div className="product-card__shipping">
               <span>Free Shipping</span>

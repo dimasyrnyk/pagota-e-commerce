@@ -3,11 +3,12 @@ import { generateStars } from "@utils/productUtils";
 
 type Props = {
   rating: number;
+  isMonochrome?: boolean;
 };
 
-function Rating({ rating }: Props) {
+function Rating({ rating, isMonochrome = true }: Props) {
   const intRating = Math.round(rating);
-  const stars = generateStars(intRating);
+  const stars = generateStars(intRating, isMonochrome);
 
   return (
     <ul className="rating__container">

@@ -12,6 +12,8 @@ import { getAllProducts } from "@store/products/actions";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
 import { IProduct } from "@constants/products";
 import searchProducts from "@utils/filters";
+import SideBar from "@components/SideBar/SideBar";
+import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 
 function ProductsListPage() {
   const { category, query } = useSelector((state: RootState) => state.filters);
@@ -36,7 +38,7 @@ function ProductsListPage() {
         <div className="products-list__header">
           <h1>All Products</h1>
           <div className="products-list__quantity">
-            <span>{result.length}</span>
+            <ProductsQuantity quantity={result.length} />
             <span>Products</span>
           </div>
         </div>
@@ -48,10 +50,10 @@ function ProductsListPage() {
           </span>
         </div>
         <div className="products-list__body">
-          <section className="body__sidebar">Filters</section>
-          <ul className="body__container">
+          <SideBar />
+          <div className="body__container">
             {isLoading ? <AppLoader /> : <ProductsList products={result} />}
-          </ul>
+          </div>
         </div>
       </div>
       <Footer />
