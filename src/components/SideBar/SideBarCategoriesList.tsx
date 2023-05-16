@@ -1,0 +1,44 @@
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import "./SideBar.scss";
+import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
+import { getCategoryLength } from "@utils/productUtils";
+import { setFilterBrands, setFilterCategory } from "@store/filters/actions";
+import { AppDispatch, RootState } from "@store/index";
+import { updateUrl } from "@utils/filtersUtils";
+
+function SideBarCategoriesList() {
+  const filters = useSelector((state: RootState) => state.filters);
+  const { categories } = useSelector((state: RootState) => state.products);
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleCategoryChange = (categoryName: string) => {
+    dispatch(setFilterCategory(categoryName));
+    dispatch(setFilterBrands([]));
+    updateUrl(
+      { ...filters, category: categoryName, brands: [] },
+      navigate,
+      location
+    );
+  };
+
+  return (
+    <div className="sidebar__categories">
+      <h3>Categories</h3>
+      <ul className="sidebar__categories-list">
+        {categories.map((cat) => (
+          <li key={cat}>
+            <span onClick={() => handleCategoryChange(cat)}>{cat}</span>
+            <ProductsQuantity quantity={getCategoryLength(cat)} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default SideBarCategoriesList;

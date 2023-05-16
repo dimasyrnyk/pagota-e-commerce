@@ -7,7 +7,11 @@ import "./SearchBar.scss";
 import CustomSelect from "@components/CustomSelect/CustomSelect";
 import SearchIcon from "@components/Icons/SearchIcon";
 import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
-import { setFilterCategory, setFilterQuery } from "@store/filters/actions";
+import {
+  setFilterBrands,
+  setFilterCategory,
+  setFilterQuery,
+} from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
 import { useDebounce } from "../../hooks/useDebbounce";
 import { updateUrl } from "@utils/filtersUtils";
@@ -37,7 +41,12 @@ function SearchBar() {
 
   const handleCategoryChange = (categoryName: string) => {
     dispatch(setFilterCategory(categoryName));
-    updateUrl({ ...filters, category: categoryName }, navigate, location);
+    dispatch(setFilterBrands([]));
+    updateUrl(
+      { ...filters, category: categoryName, brands: [] },
+      navigate,
+      location
+    );
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

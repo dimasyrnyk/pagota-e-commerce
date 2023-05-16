@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import "./CategoryItem.scss";
 import DropDown from "../DropDown/DropDown";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
-import { Brands } from "src/mockData/mockData";
 import { RootState } from "@store/index";
 import { IProduct } from "@constants/products";
 

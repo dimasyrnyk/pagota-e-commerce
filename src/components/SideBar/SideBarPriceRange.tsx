@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import "./PriceRange.scss";
+import "./SideBar.scss";
 import { SLIDER_STEP } from "@constants/app";
 import CustomSlider from "@components/CustomSlider/CustomSlider";
 import { AppDispatch, RootState } from "@store/index";
@@ -81,7 +81,8 @@ const PriceRange = () => {
   };
 
   return (
-    <div className="price-range">
+    <div className="sidebar__price">
+      <h3>Price</h3>
       <CustomSlider
         min={minPrice}
         max={maxPrice}
