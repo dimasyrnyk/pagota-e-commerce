@@ -1,3 +1,4 @@
+import AppBtn from "../AppBtn/AppBtn";
 import "./FilterBtn.scss";
 import filterIcon from "@assets/icons/filterIcon.svg";
 
@@ -7,7 +8,7 @@ type Props = {
 
 function FilterBtn({ onClick }: Props) {
   return (
-    <button
+    <AppBtn
       className="filter-btn"
       onClick={onClick}
     >
@@ -17,7 +18,7 @@ function FilterBtn({ onClick }: Props) {
         alt="Filter icon"
       />
       Filters
-    </button>
+    </AppBtn>
   );
 }
 

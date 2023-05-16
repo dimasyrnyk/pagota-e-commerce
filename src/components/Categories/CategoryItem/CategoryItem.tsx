@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import "./CategoryItem.scss";
 import DropDown from "../DropDown/DropDown";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
 import { Brands } from "src/mockData/mockData";
+import { RootState } from "@store/index";
+import { IProduct } from "@constants/products";
 
 type Props = {
   category: string;
@@ -11,6 +14,16 @@ type Props = {
 
 function CategoryItem({ category }: Props) {
   const [isHovered, setIsHovered] = useState(false);
+  const { allProducts } = useSelector((state: RootState) => state.products);
+  const categoryBrands = allProducts.reduce(
+    (acc: string[], product: IProduct) => {
+      if (product.category === category) {
+        acc.push(product.producer);
+      }
+      return acc;
+    },
+    []
+  );
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -33,7 +46,7 @@ function CategoryItem({ category }: Props) {
         <ChevronDownIcon className="category-item__icon" />
       </span>
 
-      {isHovered && <DropDown brands={Brands} />}
+      {isHovered && <DropDown brands={categoryBrands} />}
     </li>
   );
 }

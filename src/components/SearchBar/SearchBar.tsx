@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SearchBar.scss";
 import CustomSelect from "@components/CustomSelect/CustomSelect";
@@ -9,25 +10,34 @@ import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
 import { setFilterCategory, setFilterQuery } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
 import { useDebounce } from "../../hooks/useDebbounce";
+import { updateUrl } from "@utils/filtersUtils";
 
 function SearchBar() {
-  const { category, query } = useSelector((state: RootState) => state.filters);
+  const filters = useSelector((state: RootState) => state.filters);
   const categoriesList = useSelector(
     (state: RootState) => state.products.categories
   );
-  const [searchQuery, setSearchQuery] = useState<string>(query);
+  const [searchQuery, setSearchQuery] = useState<string>(filters.query);
   const debouncedQuery = useDebounce(searchQuery, 500);
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    setSearchQuery(filters.query);
+  }, [filters.query]);
 
   useEffect(() => {
     if (debouncedQuery && searchQuery) {
       const newDebouncedQuery = debouncedQuery.replace(/\s+/g, " ").trim();
       dispatch(setFilterQuery(newDebouncedQuery));
+      updateUrl({ ...filters, query: newDebouncedQuery }, navigate, location);
     }
   }, [debouncedQuery]);
 
   const handleCategoryChange = (categoryName: string) => {
     dispatch(setFilterCategory(categoryName));
+    updateUrl({ ...filters, category: categoryName }, navigate, location);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,12 +47,13 @@ function SearchBar() {
   const handleInputReset = () => {
     setSearchQuery("");
     dispatch(setFilterQuery(""));
+    updateUrl({ ...filters, query: "" }, navigate, location);
   };
 
   return (
     <div className="search-bar__container">
       <CustomSelect
-        title={category}
+        title={filters.category}
         options={categoriesList}
         onChange={handleCategoryChange}
       />

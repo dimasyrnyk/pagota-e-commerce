@@ -5,14 +5,15 @@ import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
 import HeartIcon from "@components/Icons/HeartIcon";
 import Rating from "@components/Rating/Rating";
 import { IProduct } from "@constants/products";
-import { formatPrice } from "@utils/productUtils";
+import { formatPrice, getCurrentPrice } from "@utils/productUtils";
+import AppBtn from "@components/Buttons/AppBtn/AppBtn";
 
 type Props = {
   product: IProduct;
 };
 
 function ProductCard({ product }: Props) {
-  const currentPrice = product.price * ((100 - product.discount) / 100);
+  const currentPrice = getCurrentPrice(product.price, product.discount);
 
   return (
     <li className="product-card__container">
@@ -80,9 +81,9 @@ function ProductCard({ product }: Props) {
             </div>
           </div>
           <Link to={"/products/" + product.id}>
-            <button className="product-card__btn-detail">
+            <AppBtn className="product-card__btn-detail">
               Product Detail <ChevronRightIcon />
-            </button>
+            </AppBtn>
           </Link>
           <button className="product-card__btn-wish-list">
             <HeartIcon />

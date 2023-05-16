@@ -1,7 +1,6 @@
 import { BASE_URL } from "@constants/app";
 import { AppDispatch } from "..";
 import { ProductsTypes } from "../types/products";
-import { IProduct } from "@constants/products";
 import { getTransformedData } from "@utils/productUtils";
 
 export function getAllProducts() {

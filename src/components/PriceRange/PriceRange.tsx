@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import "./PriceRange.scss";
 import { SLIDER_STEP } from "@constants/app";
 import CustomSlider from "@components/CustomSlider/CustomSlider";
-import { useSelector } from "react-redux";
-import { RootState } from "@store/index";
+import { AppDispatch, RootState } from "@store/index";
+import { setFilterPrices } from "@store/filters/actions";
+import { updateUrl } from "@utils/filtersUtils";
 
 type Price = {
   min: number;
@@ -12,20 +16,37 @@ type Price = {
   [key: string]: number;
 };
 
-type Props = {
-  min?: number;
-  max?: number;
-  onChange?: (price: { min: number; max: number }) => void;
-};
-
-const PriceRange = ({ min, max, onChange }: Props) => {
+const PriceRange = () => {
   const { minPrice, maxPrice } = useSelector(
     (state: RootState) => state.products
   );
+  const filters = useSelector((state: RootState) => state.filters);
+  const { prices } = useSelector((state: RootState) => state.filters);
+  const [isValidMinPrice, setIsValidMinPrice] = useState<boolean>(true);
+  const [isValidMaxPrice, setIsValidMaxPrice] = useState<boolean>(true);
   const [priceRange, setPriceRange] = useState<Price>({
-    min: minPrice,
-    max: maxPrice,
+    min: prices.min,
+    max: prices.max,
   });
+  const [validPriceRange, setValidPriceRange] = useState<Price>({
+    min: prices.min,
+    max: prices.max,
+  });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setFilterPrices(validPriceRange));
+    updateUrl({ ...filters, prices: validPriceRange }, navigate, location);
+  }, [validPriceRange.min, validPriceRange.max]);
+
+  useEffect(() => {
+    setValidPriceRange({ min: prices.min, max: prices.max });
+    setPriceRange({ min: prices.min, max: prices.max });
+    setIsValidMinPrice(true);
+    setIsValidMaxPrice(true);
+  }, [prices.min, prices.max]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,13 +58,26 @@ const PriceRange = ({ min, max, onChange }: Props) => {
 
     if (name === "min") {
       if (newValue >= minPrice && newValue <= priceRange.max) {
-        setPriceRange({ ...priceRange, min: newValue });
+        setValidPriceRange({ ...validPriceRange, min: newValue });
+        setIsValidMinPrice(true);
+      } else {
+        setIsValidMinPrice(false);
       }
+      setPriceRange({ ...priceRange, min: newValue });
     } else {
       if (newValue <= maxPrice && newValue >= priceRange.min) {
-        setPriceRange({ ...priceRange, max: newValue });
+        setValidPriceRange({ ...validPriceRange, max: newValue });
+        setIsValidMaxPrice(true);
+      } else {
+        setIsValidMaxPrice(false);
       }
+      setPriceRange({ ...priceRange, max: newValue });
     }
+  };
+
+  const handleSliderChange = (prices: Price) => {
+    setValidPriceRange(prices);
+    setPriceRange(prices);
   };
 
   return (
@@ -52,14 +86,16 @@ const PriceRange = ({ min, max, onChange }: Props) => {
         min={minPrice}
         max={maxPrice}
         step={SLIDER_STEP}
-        price={priceRange}
-        onChange={setPriceRange}
+        price={validPriceRange}
+        onChange={handleSliderChange}
       />
 
       <div className="price-input__container">
         <span>
           Min
-          <span className="price-input">
+          <span
+            className={"price-input " + (!isValidMinPrice ? "input-error" : "")}
+          >
             <input
               type="text"
               name="min"
@@ -73,7 +109,9 @@ const PriceRange = ({ min, max, onChange }: Props) => {
         <span className="price-input__separator">_</span>
         <span>
           Max
-          <span className="price-input">
+          <span
+            className={"price-input " + (!isValidMaxPrice ? "input-error" : "")}
+          >
             <input
               type="text"
               name="max"

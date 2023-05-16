@@ -27,13 +27,15 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
     e.preventDefault();
     if (e.target.name === "priceMin") {
       const newMinVal = Math.min(+e.target.value, maxValue - step);
-      if (!price) setMinValue(newMinVal);
-      onChange({ min: newMinVal, max: maxValue });
+      setMinValue(newMinVal);
     } else {
       const newMaxVal = Math.max(+e.target.value, minValue + step);
-      if (!price) setMaxValue(newMaxVal);
-      onChange({ min: minValue, max: newMaxVal });
+      setMaxValue(newMaxVal);
     }
+  };
+
+  const handleEndDragging = () => {
+    onChange({ min: minValue, max: maxValue });
   };
 
   const minPos = ((minValue - min) / (max - min)) * 100;
@@ -51,6 +53,7 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
           max={max}
           step={step}
           onChange={handleRangeChange}
+          onMouseUp={handleEndDragging}
         />
         <input
           className="range"
@@ -61,6 +64,7 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
           max={max}
           step={step}
           onChange={handleRangeChange}
+          onMouseUp={handleEndDragging}
         />
       </div>
 

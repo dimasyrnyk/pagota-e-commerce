@@ -6,10 +6,6 @@ import { ALL_CATEGORIES } from "@constants/categories";
 import { IProduct } from "@constants/products";
 import { store } from "@store/index";
 
-interface ICategories {
-  [key: string]: boolean;
-}
-
 export function generateStars(
   intRating: number,
   isMonochrome: boolean
@@ -35,6 +31,10 @@ export function generateStars(
 
 export function formatPrice(price: number) {
   return price.toFixed(2);
+}
+
+export function getCurrentPrice(productPrice: number, productDiscount: number) {
+  return productPrice * ((100 - productDiscount) / 100);
 }
 
 export function getCategoryLength(category: string) {
@@ -66,7 +66,7 @@ export function getTransformedData(products: IProduct[]) {
     products: products,
     categories: [...uniqueCategories],
     brands: [...uniqueBrands],
-    minPrice: minPrice,
-    maxPrice: maxPrice,
+    minPrice: minPrice - 1,
+    maxPrice: maxPrice + 1,
   };
 }
