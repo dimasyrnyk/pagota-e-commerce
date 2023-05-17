@@ -7,14 +7,12 @@ import { AppDispatch, RootState } from "@store/index";
 import { updateUrl } from "@utils/filtersUtils";
 import { resetFilters } from "@store/filters/actions";
 import { ALL_CATEGORIES } from "@constants/categories";
-import { IFilters } from "@store/types/filters";
 
 type Props = {
   brands: string[];
 };
 
 function DropDown({ brands }: Props) {
-  const filters = useSelector((state: RootState) => state.filters);
   const { minPrice, maxPrice } = useSelector(
     (state: RootState) => state.products
   );
@@ -22,11 +20,11 @@ function DropDown({ brands }: Props) {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
 
-  const handleBrandClick = (selecedBrand: string) => {
+  const handleBrandClick = (selectedBrand: string) => {
     const resetFiltersWithNewBrand = {
       query: "",
       category: ALL_CATEGORIES,
-      brands: [selecedBrand],
+      brands: [selectedBrand],
       ratings: [],
       prices: { min: minPrice, max: maxPrice },
     };

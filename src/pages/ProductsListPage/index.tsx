@@ -62,7 +62,7 @@ function ProductsListPage() {
       prices,
     });
     setResult(filteredProducts);
-  }, [query, category, brands, ratings, prices.min, prices.max]);
+  }, [query, category, brands, ratings, prices, allProducts]);
 
   return (
     <>

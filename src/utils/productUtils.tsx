@@ -37,6 +37,19 @@ export function getCurrentPrice(productPrice: number, productDiscount: number) {
   return productPrice * ((100 - productDiscount) / 100);
 }
 
+export function getCategoryBrands(category: string) {
+  const { allProducts, brands } = store.getState().products;
+  if (category === ALL_CATEGORIES) {
+    return brands;
+  }
+  return allProducts.reduce((acc: string[], product: IProduct) => {
+    if (product.category === category) {
+      acc.push(product.producer);
+    }
+    return acc;
+  }, []);
+}
+
 export function getCategoryLength(category: string) {
   const allProducts = store.getState().products.allProducts;
   if (category === ALL_CATEGORIES) {

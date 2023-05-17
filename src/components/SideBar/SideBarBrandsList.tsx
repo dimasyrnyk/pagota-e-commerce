@@ -6,43 +6,26 @@ import "./SideBar.scss";
 import { setFilterBrands } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
 import CustomCheckbox from "@components/CustomCheckbox/CustomCheckbox";
-import { ALL_CATEGORIES } from "@constants/categories";
 import { updateUrl } from "@utils/filtersUtils";
-import { IProduct } from "@constants/products";
 import { useEffect, useState } from "react";
+import { getCategoryBrands } from "@utils/productUtils";
 
 function SideBarBrandsList() {
   const filters = useSelector((state: RootState) => state.filters);
-  const { allProducts, brands } = useSelector(
-    (state: RootState) => state.products
-  );
   const [categoryBrands, setCategoryBrands] = useState<string[]>([]);
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (filters.category !== ALL_CATEGORIES) {
-      const updatedCategoryBrands = allProducts.reduce(
-        (acc: string[], product: IProduct) => {
-          if (product.category === filters.category) {
-            acc.push(product.producer);
-          }
-          return acc;
-        },
-        []
-      );
-      console.log();
-      setCategoryBrands(updatedCategoryBrands);
-    } else {
-      setCategoryBrands(brands);
-    }
+    const updatedCategoryBrands = getCategoryBrands(filters.category);
+    setCategoryBrands(updatedCategoryBrands);
   }, [filters.category]);
 
-  const handleBrandToggle = (selecedBrand: string) => {
-    const updatedBrands = filters.brands.includes(selecedBrand)
-      ? filters.brands.filter((brand) => brand !== selecedBrand)
-      : [...filters.brands, selecedBrand];
+  const handleBrandToggle = (selectedBrand: string) => {
+    const updatedBrands = filters.brands.includes(selectedBrand)
+      ? filters.brands.filter((brand) => brand !== selectedBrand)
+      : [...filters.brands, selectedBrand];
     dispatch(setFilterBrands(updatedBrands));
     updateUrl({ ...filters, brands: updatedBrands }, navigate, location);
   };

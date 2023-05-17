@@ -75,10 +75,43 @@
     width: 90%;
 
     &_wrapper {
+      position: relative;
       display: flex;
       flex: 1;
       justify-content: space-between;
       margin-left: 10px;
+    }
+  }
+
+  &__brands-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 38px;
+    border-radius: 12px;
+    background-color: $background_color_white;
+    z-index: 90;
+
+    &-item {
+      padding: 10px 15px;
+      white-space: nowrap;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid lightgrey;
+      }
+
+      &:first-child {
+        border-radius: 12px 12px 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 0 12px 12px;
+      }
+
+      &:hover {
+        background-color: darken($background_color_grey, 10%);
+      }
     }
   }
 }
