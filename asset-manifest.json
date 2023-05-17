@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pagota-e-commerce/static/css/main.32cba4af.css",
-    "main.js": "/pagota-e-commerce/static/js/main.26da6431.js",
+    "main.css": "/pagota-e-commerce/static/css/main.ee0ec16f.css",
+    "main.js": "/pagota-e-commerce/static/js/main.dfd10b48.js",
     "static/media/logo.svg": "/pagota-e-commerce/static/media/logo.b57d9120996d735aac5f2a6415103304.svg",
     "static/media/filterIcon.svg": "/pagota-e-commerce/static/media/filterIcon.d6393bf28af3141c65206156fcf4a6e8.svg",
     "static/media/chatIcon.svg": "/pagota-e-commerce/static/media/chatIcon.6c4efd4508cb59ac2db22876bb3edee5.svg",
@@ -20,11 +20,11 @@
     "static/media/checkBoxIcon.svg": "/pagota-e-commerce/static/media/checkBoxIcon.825ef3b0d24fa78b7deaa8862d116cb7.svg",
     "static/media/chevronDownIcon.svg": "/pagota-e-commerce/static/media/chevronDownIcon.28574778042690fa9522348886018fc0.svg",
     "static/media/chevronRightIcon.svg": "/pagota-e-commerce/static/media/chevronRightIcon.87d311cb5d3a3c19143d202cb54e789f.svg",
-    "main.32cba4af.css.map": "/pagota-e-commerce/static/css/main.32cba4af.css.map",
-    "main.26da6431.js.map": "/pagota-e-commerce/static/js/main.26da6431.js.map"
+    "main.ee0ec16f.css.map": "/pagota-e-commerce/static/css/main.ee0ec16f.css.map",
+    "main.dfd10b48.js.map": "/pagota-e-commerce/static/js/main.dfd10b48.js.map"
   },
   "entrypoints": [
-    "static/css/main.32cba4af.css",
-    "static/js/main.26da6431.js"
+    "static/css/main.ee0ec16f.css",
+    "static/js/main.dfd10b48.js"
   ]
 }
