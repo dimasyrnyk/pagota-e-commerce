@@ -94,11 +94,24 @@
     z-index: 90;
 
     &-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding: 10px 15px;
       white-space: nowrap;
+      background-color: lighten($background_color_grey, 3%);
+
+      .item {
+        &__category {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          color: $text_color_lightgrey;
+        }
+      }
 
       &:not(:last-child) {
-        border-bottom: 1px solid lightgrey;
+        border-bottom: 1px solid $border_color_grey;
       }
 
       &:first-child {

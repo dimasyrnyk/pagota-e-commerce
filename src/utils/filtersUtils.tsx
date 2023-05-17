@@ -93,3 +93,17 @@ export const updateUrl = (
   const newUrl = `${location.pathname}?${searchParams.toString()}`;
   navigate(newUrl);
 };
+
+export function getFiltersWithNewBrand(
+  category: string,
+  selectedBrand: string
+) {
+  const { minPrice, maxPrice } = store.getState().products;
+  return {
+    query: "",
+    category: category,
+    brands: [selectedBrand],
+    ratings: [],
+    prices: { min: minPrice, max: maxPrice },
+  };
+}

@@ -1,9 +1,9 @@
-import { IProduct } from "@constants/products";
+import { Brand, IProduct } from "@constants/products";
 
 export interface ProductsState {
   allProducts: IProduct[];
   categories: string[];
-  brands: string[];
+  brands: Brand[];
   minPrice: number;
   maxPrice: number;
   isLoading: boolean;
@@ -28,7 +28,7 @@ interface GetAllAction {
   payload: {
     products: IProduct[];
     categories: string[];
-    brands: string[];
+    brands: Brand[];
     minPrice: number;
     maxPrice: number;
   };

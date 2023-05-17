@@ -18,3 +18,8 @@ export interface IProduct {
   rating: number;
   id: string;
 }
+
+export type Brand = {
+  name: string;
+  category: string;
+};

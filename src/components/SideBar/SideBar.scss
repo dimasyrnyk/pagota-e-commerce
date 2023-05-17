@@ -178,6 +178,10 @@
     font-size: 0.75rem;
   }
 
+  &__wrapper {
+    position: relative;
+  }
+
   &__separator {
     padding-top: 8px;
     color: $text_color_lightgrey;
@@ -192,6 +196,21 @@
   }
 }
 
-.input-error {
+.input__error {
   outline: 1px solid $border_color_red;
+
+  &-msg {
+    position: absolute;
+    top: 75px;
+    left: 5px;
+    color: $border_color_red;
+  }
+}
+
+.active-category {
+  color: $text_color_green;
+  background-color: $background_color_lightgreen;
+  border-radius: 6px;
+  padding-left: 8px;
+  cursor: none;
 }

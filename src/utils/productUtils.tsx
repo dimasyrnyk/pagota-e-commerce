@@ -6,6 +6,11 @@ import { ALL_CATEGORIES } from "@constants/categories";
 import { IProduct } from "@constants/products";
 import { store } from "@store/index";
 
+export type Brand = {
+  name: string;
+  category: string;
+};
+
 export function generateStars(
   intRating: number,
   isMonochrome: boolean
@@ -40,7 +45,7 @@ export function getCurrentPrice(productPrice: number, productDiscount: number) {
 export function getCategoryBrands(category: string) {
   const { allProducts, brands } = store.getState().products;
   if (category === ALL_CATEGORIES) {
-    return brands;
+    return brands.map((brand: Brand) => brand.name);
   }
   return allProducts.reduce((acc: string[], product: IProduct) => {
     if (product.category === category) {
@@ -59,7 +64,7 @@ export function getCategoryLength(category: string) {
 }
 
 export function getTransformedData(products: IProduct[]) {
-  const uniqueBrands = new Set<string>();
+  const uniqueBrands = new Set<Brand>();
   const uniqueCategories = new Set<string>();
   let minPrice = Infinity;
   let maxPrice = 0;
@@ -69,7 +74,7 @@ export function getTransformedData(products: IProduct[]) {
       product.price * ((100 - product.discount) / 100)
     );
 
-    uniqueBrands.add(product.producer);
+    uniqueBrands.add({ name: product.producer, category: product.category });
     uniqueCategories.add(product.category);
     minPrice = Math.min(minPrice, productCurrentPrice);
     maxPrice = Math.max(maxPrice, productCurrentPrice);

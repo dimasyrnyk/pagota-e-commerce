@@ -31,8 +31,12 @@ function SideBarCategoriesList() {
       <h3>Categories</h3>
       <ul className="sidebar__categories-list">
         {categories.map((cat) => (
-          <li key={cat}>
-            <span onClick={() => handleCategoryChange(cat)}>{cat}</span>
+          <li
+            key={cat}
+            className={cat === filters.category ? "active-category" : ""}
+            onClick={() => handleCategoryChange(cat)}
+          >
+            <span>{cat}</span>
             <ProductsQuantity quantity={getCategoryLength(cat)} />
           </li>
         ))}

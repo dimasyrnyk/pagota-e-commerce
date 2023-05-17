@@ -10,6 +10,16 @@ import { AppDispatch, RootState } from "@store/index";
 import { setFilterPrices } from "@store/filters/actions";
 import { updateUrl } from "@utils/filtersUtils";
 
+const initState = {
+  min: true,
+  max: true,
+};
+
+type State = {
+  min: boolean;
+  max: boolean;
+};
+
 type Price = {
   min: number;
   max: number;
@@ -22,8 +32,7 @@ const PriceRange = () => {
   );
   const filters = useSelector((state: RootState) => state.filters);
   const { prices } = useSelector((state: RootState) => state.filters);
-  const [isValidMinPrice, setIsValidMinPrice] = useState<boolean>(true);
-  const [isValidMaxPrice, setIsValidMaxPrice] = useState<boolean>(true);
+  const [isValidPrices, setIsValidPrices] = useState<State>(initState);
   const [priceRange, setPriceRange] = useState<Price>({
     min: prices.min,
     max: prices.max,
@@ -44,8 +53,7 @@ const PriceRange = () => {
   useEffect(() => {
     setValidPriceRange({ min: prices.min, max: prices.max });
     setPriceRange({ min: prices.min, max: prices.max });
-    setIsValidMinPrice(true);
-    setIsValidMaxPrice(true);
+    setIsValidPrices(initState);
   }, [prices.min, prices.max]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,26 +61,19 @@ const PriceRange = () => {
     let newValue = parseInt(value, 10);
 
     if (isNaN(newValue)) {
-      return;
+      newValue = 0;
+      setIsValidPrices({ ...isValidPrices, [name]: false });
+    } else if (
+      (name === "min" && newValue >= minPrice && newValue <= priceRange.max) ||
+      (name === "max" && newValue <= maxPrice && newValue >= priceRange.min)
+    ) {
+      setValidPriceRange({ ...validPriceRange, [name]: newValue });
+      setIsValidPrices({ ...isValidPrices, [name]: true });
+    } else {
+      setIsValidPrices({ ...isValidPrices, [name]: false });
     }
 
-    if (name === "min") {
-      if (newValue >= minPrice && newValue <= priceRange.max) {
-        setValidPriceRange({ ...validPriceRange, min: newValue });
-        setIsValidMinPrice(true);
-      } else {
-        setIsValidMinPrice(false);
-      }
-      setPriceRange({ ...priceRange, min: newValue });
-    } else {
-      if (newValue <= maxPrice && newValue >= priceRange.min) {
-        setValidPriceRange({ ...validPriceRange, max: newValue });
-        setIsValidMaxPrice(true);
-      } else {
-        setIsValidMaxPrice(false);
-      }
-      setPriceRange({ ...priceRange, max: newValue });
-    }
+    setPriceRange({ ...priceRange, [name]: newValue });
   };
 
   const handleSliderChange = (prices: Price) => {
@@ -92,10 +93,12 @@ const PriceRange = () => {
       />
 
       <div className="price-input__container">
-        <span>
+        <span className="price-input__wrapper">
           Min
           <span
-            className={"price-input " + (!isValidMinPrice ? "input-error" : "")}
+            className={
+              "price-input " + (!isValidPrices.min ? "input__error" : "")
+            }
           >
             <input
               type="text"
@@ -106,12 +109,19 @@ const PriceRange = () => {
               className="price-input__body"
             />
           </span>
+          {!isValidPrices.min && (
+            <span className="input__error-msg">
+              {`min ${minPrice} max${validPriceRange.max}`}
+            </span>
+          )}
         </span>
         <span className="price-input__separator">_</span>
-        <span>
+        <span className="price-input__wrapper">
           Max
           <span
-            className={"price-input " + (!isValidMaxPrice ? "input-error" : "")}
+            className={
+              "price-input " + (!isValidPrices.max ? "input__error" : "")
+            }
           >
             <input
               type="text"
@@ -122,6 +132,11 @@ const PriceRange = () => {
               className="price-input__body"
             />
           </span>
+          {!isValidPrices.max && (
+            <span className="input__error-msg">
+              {`min ${validPriceRange.min} max${maxPrice}`}
+            </span>
+          )}
         </span>
       </div>
     </div>

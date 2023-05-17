@@ -26,7 +26,6 @@ function SearchBar() {
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
-    console.log("search log----", filters.query);
     setSearchQuery(filters.query);
   }, [filters.query]);
 
