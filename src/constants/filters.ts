@@ -11,10 +11,10 @@ export type Filters = {
 
 export enum SortType {
   DEFAULT = "Default",
-  TITLE_FROM_LOW = "Title from lowest",
-  TITLE_FROM_HIGH = "Title from highest",
-  PRICE_FROM_LOW = "Price from lowest",
-  PRICE_FROM_HIGH = "Price from highest",
-  RATING_FROM_LOW = "Rating from lowest",
-  RATING_FROM_HIGH = "Rating from highest",
+  TITLE_FROM_LOW = "Title A-Z",
+  TITLE_FROM_HIGH = "Title Z-A",
+  PRICE_FROM_LOW = "Price low-high",
+  PRICE_FROM_HIGH = "Price high-low",
+  RATING_FROM_LOW = "Rating low-high",
+  RATING_FROM_HIGH = "Rating high-low",
 }

@@ -13,6 +13,8 @@ function SortBy() {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
 
+  const sortTitle = filters.sort === SortType.DEFAULT ? "Select" : filters.sort;
+
   const handleSelectSortType = (selectedType: string) => {
     dispatch(setSortType(selectedType));
   };
@@ -22,7 +24,7 @@ function SortBy() {
       <span>Sort By</span>
       <CustomSelect
         className="sort__select"
-        title="Select"
+        title={sortTitle}
         options={Object.values(SortType)}
         activeOption={filters.sort}
         onChange={handleSelectSortType}
