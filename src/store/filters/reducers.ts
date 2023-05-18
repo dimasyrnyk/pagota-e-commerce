@@ -1,4 +1,4 @@
-import { ALL_CATEGORIES } from "@constants/categories";
+import { ALL_CATEGORIES } from "@constants/app";
 import { FiltersActionType, FiltersState, FilterTypes } from "../types/filters";
 
 const initialState: FiltersState = {

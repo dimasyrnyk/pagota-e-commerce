@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import "./AppBtn.scss";
+import "./PrimaryBtn.scss";
 
 type Props = {
   className?: string;
@@ -7,7 +7,7 @@ type Props = {
   onClick?: () => void;
 };
 
-function AppBtn({
+function PrimaryBtn({
   children,
   className,
   title,
@@ -24,4 +24,4 @@ function AppBtn({
   );
 }
 
-export default AppBtn;
+export default PrimaryBtn;

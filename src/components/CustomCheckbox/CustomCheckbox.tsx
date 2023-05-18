@@ -9,29 +9,23 @@ type Props = {
 };
 
 function CustomCheckbox({ checked, onChange, label }: Props) {
-  const handleChange = () => {
-    onChange();
-  };
-
   return (
-    <li className="custom-checkbox__container">
+    <li
+      className="custom-checkbox__container"
+      onClick={onChange}
+    >
       <input
         type="checkbox"
         checked={checked}
         className="custom-checkbox"
-        onChange={handleChange}
+        onChange={onChange}
       />
       {!checked ? (
         <CheckBoxIcon className="custom-checkbox__icon" />
       ) : (
         <CheckboxCheckedIcon className="custom-checkbox__icon" />
       )}
-      <label
-        htmlFor="custom-checkbox"
-        onClick={handleChange}
-      >
-        {label}
-      </label>
+      <label htmlFor="custom-checkbox">{label}</label>
     </li>
   );
 }

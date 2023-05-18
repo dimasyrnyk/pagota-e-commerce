@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
-import { SLIDER_STEP } from "@constants/app";
+import { Prices, SLIDER_STEP } from "@constants/app";
 import CustomSlider from "@components/CustomSlider/CustomSlider";
 import { AppDispatch, RootState } from "@store/index";
 import { setFilterPrices } from "@store/filters/actions";
@@ -33,14 +33,8 @@ const PriceRange = () => {
   const filters = useSelector((state: RootState) => state.filters);
   const { prices } = useSelector((state: RootState) => state.filters);
   const [isValidPrices, setIsValidPrices] = useState<State>(initState);
-  const [priceRange, setPriceRange] = useState<Price>({
-    min: prices.min,
-    max: prices.max,
-  });
-  const [validPriceRange, setValidPriceRange] = useState<Price>({
-    min: prices.min,
-    max: prices.max,
-  });
+  const [priceRange, setPriceRange] = useState<Price>({ ...prices });
+  const [validPriceRange, setValidPriceRange] = useState<Price>({ ...prices });
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
@@ -51,8 +45,8 @@ const PriceRange = () => {
   }, [validPriceRange.min, validPriceRange.max]);
 
   useEffect(() => {
-    setValidPriceRange({ min: prices.min, max: prices.max });
-    setPriceRange({ min: prices.min, max: prices.max });
+    setValidPriceRange({ ...prices });
+    setPriceRange({ ...prices });
     setIsValidPrices(initState);
   }, [prices.min, prices.max]);
 
@@ -64,8 +58,12 @@ const PriceRange = () => {
       newValue = 0;
       setIsValidPrices({ ...isValidPrices, [name]: false });
     } else if (
-      (name === "min" && newValue >= minPrice && newValue <= priceRange.max) ||
-      (name === "max" && newValue <= maxPrice && newValue >= priceRange.min)
+      (name === Prices.MIN &&
+        newValue >= minPrice &&
+        newValue <= priceRange.max) ||
+      (name === Prices.MAX &&
+        newValue <= maxPrice &&
+        newValue >= priceRange.min)
     ) {
       setValidPriceRange({ ...validPriceRange, [name]: newValue });
       setIsValidPrices({ ...isValidPrices, [name]: true });
@@ -102,7 +100,7 @@ const PriceRange = () => {
           >
             <input
               type="text"
-              name="min"
+              name={Prices.MIN}
               value={priceRange.min}
               placeholder="0"
               onChange={handleInputChange}
@@ -111,7 +109,7 @@ const PriceRange = () => {
           </span>
           {!isValidPrices.min && (
             <span className="input__error-msg">
-              {`min ${minPrice} max${validPriceRange.max}`}
+              {`Plese enter from ${minPrice} to ${validPriceRange.max}`}
             </span>
           )}
         </span>
@@ -125,7 +123,7 @@ const PriceRange = () => {
           >
             <input
               type="text"
-              name="max"
+              name={Prices.MAX}
               value={priceRange.max}
               placeholder="000"
               onChange={handleInputChange}
@@ -134,7 +132,7 @@ const PriceRange = () => {
           </span>
           {!isValidPrices.max && (
             <span className="input__error-msg">
-              {`min ${validPriceRange.min} max${maxPrice}`}
+              {`Plese enter from ${validPriceRange.min} to ${maxPrice}`}
             </span>
           )}
         </span>

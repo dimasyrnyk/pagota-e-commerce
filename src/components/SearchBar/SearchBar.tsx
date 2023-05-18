@@ -40,8 +40,9 @@ function SearchBar() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    e.target.value ? setShowBrands(true) : setShowBrands(false);
+    const searchValue = e.target.value;
+    setSearchQuery(searchValue);
+    setShowBrands(!!searchValue);
   };
 
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -68,6 +69,7 @@ function SearchBar() {
   return (
     <div className="search-bar__container">
       <CustomSelect
+        className="search-bar__select"
         title={filters.category}
         options={categories}
         onChange={handleCategoryChange}

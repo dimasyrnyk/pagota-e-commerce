@@ -4,9 +4,9 @@ import "./ProductCard.scss";
 import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
 import HeartIcon from "@components/Icons/HeartIcon";
 import Rating from "@components/Rating/Rating";
-import { IProduct } from "@constants/products";
+import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import { formatPrice, getCurrentPrice } from "@utils/productUtils";
-import AppBtn from "@components/Buttons/AppBtn/AppBtn";
+import { IProduct } from "@constants/products";
 
 type Props = {
   product: IProduct;
@@ -81,9 +81,9 @@ function ProductCard({ product }: Props) {
             </div>
           </div>
           <Link to={"/products/" + product.id}>
-            <AppBtn className="product-card__btn-detail">
+            <PrimaryBtn className="product-card__btn-detail">
               Product Detail <ChevronRightIcon />
-            </AppBtn>
+            </PrimaryBtn>
           </Link>
           <button className="product-card__btn-wish-list">
             <HeartIcon />

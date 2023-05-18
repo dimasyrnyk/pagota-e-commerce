@@ -8,8 +8,15 @@
       width: 100%;
     }
 
-    &__title {
-      display: none;
+    &__select {
+      .custom-select__header {
+        align-self: center;
+      }
+      .custom-select__body {
+        border-bottom: 1px solid $border_color_grey;
+        padding-bottom: 5px;
+        margin-bottom: 8px;
+      }
     }
 
     &__input {
@@ -25,8 +32,11 @@
       width: 500px;
     }
 
-    &__title {
-      display: block;
+    &__select {
+      .custom-select__header {
+        border-right: 1px solid $border_color_grey;
+        padding-right: 10px;
+      }
     }
 
     &__input {
@@ -51,8 +61,12 @@
     padding-right: 28px;
   }
 
-  &__title {
-    margin-right: 12px;
+  &__select {
+    font-weight: 600;
+
+    .custom-select__body {
+      display: flex;
+    }
   }
 
   &__icon-categories {
@@ -84,14 +98,18 @@
   }
 
   &__brands-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: absolute;
-    top: 38px;
-    border-radius: 12px;
-    background-color: $background_color_white;
-    z-index: 90;
+    &:not(:empty) {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      top: 38px;
+      border-radius: 12px;
+      border: 1px solid $border_color_grey;
+      background-color: $background_color_white;
+      box-shadow: 0px 0px 4px $shadow_color_darkgrey;
+      z-index: 90;
+    }
 
     &-item {
       display: flex;
@@ -120,6 +138,10 @@
 
       &:last-child {
         border-radius: 0 0 12px 12px;
+      }
+
+      &:only-child {
+        border-radius: 12px;
       }
 
       &:hover {

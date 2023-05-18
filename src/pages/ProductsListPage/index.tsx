@@ -8,22 +8,15 @@ import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 import ProductsList from "@components/ProductsList/ProductsList";
 import AppLoader from "@components/AppLoader/AppLoader";
-import { AppDispatch, RootState } from "@store/index";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
-import { IProduct } from "@constants/products";
-import { filterProducts } from "@utils/filtersUtils";
 import SideBar from "@components/SideBar/SideBar";
 import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
-import {
-  setFilterBrands,
-  setFilterCategory,
-  setFilterPrices,
-  setFilterQuery,
-  setFilterRatings,
-} from "@store/filters/actions";
+import { AppDispatch, RootState } from "@store/index";
+import { IProduct } from "@constants/products";
+import { filterProducts, parseSearchParams } from "@utils/filtersUtils";
 
 function ProductsListPage() {
-  const { allProducts, isLoading, minPrice, maxPrice } = useSelector(
+  const { allProducts, isLoading } = useSelector(
     (state: RootState) => state.products
   );
   const { query, category, brands, ratings, prices } = useSelector(
@@ -36,21 +29,7 @@ function ProductsListPage() {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const query = searchParams.get("query") || "";
-    const category = searchParams.get("category") || "";
-    const brands = searchParams.getAll("brands") || [];
-    const ratings =
-      (searchParams.getAll("ratings") as string[]).map(Number) || [];
-    const prices = {
-      min: parseFloat(searchParams.getAll("price")[0]),
-      max: parseFloat(searchParams.getAll("price")[1]),
-    };
-
-    query && dispatch(setFilterQuery(query));
-    category && dispatch(setFilterCategory(category));
-    brands.length && dispatch(setFilterBrands(brands));
-    ratings.length && dispatch(setFilterRatings(ratings));
-    prices.min && prices.max && dispatch(setFilterPrices(prices));
+    parseSearchParams(searchParams, dispatch);
   }, []);
 
   useEffect(() => {

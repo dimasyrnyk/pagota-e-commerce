@@ -13,11 +13,11 @@ export interface FiltersState {
 }
 
 export interface IFilters {
-  query?: string;
-  category?: string;
-  brands?: string[];
-  ratings?: number[];
-  prices?: IPrices;
+  query: string;
+  category: string;
+  brands: string[];
+  ratings: number[];
+  prices: IPrices;
 }
 
 export enum FilterTypes {

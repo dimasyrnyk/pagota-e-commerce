@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./HomePage.scss";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
-import AppBtn from "@components/Buttons/AppBtn/AppBtn";
+import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 
 function HomePage() {
   return (
@@ -42,7 +42,7 @@ function HomePage() {
           <br />
           Click{" "}
           <Link to="/products">
-            <AppBtn title="Get Started" />
+            <PrimaryBtn title="Get Started" />
           </Link>{" "}
           now and let the shopping adventure begin!
         </p>

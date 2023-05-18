@@ -3,7 +3,7 @@ import {
   ProductsTypes,
   ProductsAction,
 } from "../types/products";
-import { ALL_CATEGORIES } from "@constants/categories";
+import { ALL_CATEGORIES } from "@constants/app";
 
 const initialState: ProductsState = {
   allProducts: [],

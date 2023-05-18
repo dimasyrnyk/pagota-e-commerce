@@ -2,7 +2,7 @@ import starBlackIcon from "@assets/icons/starBlackIcon.svg";
 import starYellowIcon from "@assets/icons/starYellowIcon.svg";
 import starBigWhiteIcon from "@assets/icons/starBigWhiteIcon.svg";
 import starSmallWhiteIcon from "@assets/icons/starSmallWhiteIcon.svg";
-import { ALL_CATEGORIES } from "@constants/categories";
+import { ALL_CATEGORIES } from "@constants/app";
 import { IProduct } from "@constants/products";
 import { store } from "@store/index";
 

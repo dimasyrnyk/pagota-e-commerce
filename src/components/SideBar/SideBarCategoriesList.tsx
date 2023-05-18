@@ -7,7 +7,7 @@ import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 import { getCategoryLength } from "@utils/productUtils";
 import { setFilterBrands, setFilterCategory } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
-import { updateUrl } from "@utils/filtersUtils";
+import { isBrandsInNewCategory, updateUrl } from "@utils/filtersUtils";
 
 function SideBarCategoriesList() {
   const filters = useSelector((state: RootState) => state.filters);
@@ -17,10 +17,11 @@ function SideBarCategoriesList() {
   const location = useLocation();
 
   const handleCategoryChange = (categoryName: string) => {
+    const updatedBrands = isBrandsInNewCategory(categoryName, filters.brands);
     dispatch(setFilterCategory(categoryName));
-    dispatch(setFilterBrands([]));
+    dispatch(setFilterBrands(updatedBrands));
     updateUrl(
-      { ...filters, category: categoryName, brands: [] },
+      { ...filters, category: categoryName, brands: updatedBrands },
       navigate,
       location
     );

@@ -8,7 +8,7 @@ import { AppDispatch, RootState } from "@store/index";
 import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
 import FilterBtn from "@components/Buttons/FilterBtn/FilterBtn";
 import { resetFilters } from "@store/filters/actions";
-import { ALL_CATEGORIES } from "@constants/categories";
+import { ALL_CATEGORIES } from "@constants/app";
 import { updateUrl } from "@utils/filtersUtils";
 import SideBarBrandsList from "./SideBarBrandsList";
 import SideBarRatingsList from "./SideBarRatingsList";

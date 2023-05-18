@@ -1,8 +1,14 @@
 export const BASE_URL =
   "https://645b7a19a8f9e4d6e7699f11.mockapi.io/api/products";
 
+export const ALL_CATEGORIES = "All categories";
 export const SIDEBAR_RATING = [5, 4, 3, 2, 1];
 export const SLIDER_STEP = 10;
+
+export enum Prices {
+  MIN = "min",
+  MAX = "max",
+}
 
 export interface ILink {
   href: string;

@@ -24,16 +24,19 @@ function SideBarRatingsList() {
     updateUrl({ ...filters, ratings: updatedRatings }, navigate, location);
   };
 
+  const isRatingChecked = (rating: number) => {
+    return filters.ratings.includes(rating);
+  };
+
   return (
     <div className="sidebar__rating">
       <h3>Rating</h3>
       <ul className="sidebar__brands-list">
         {SIDEBAR_RATING.map((rating) => {
-          const isChecked = filters.ratings.includes(rating);
           return (
             <CustomCheckbox
               key={rating}
-              checked={isChecked}
+              checked={isRatingChecked(rating)}
               onChange={() => handleRatingToggle(rating)}
               label={
                 <Rating

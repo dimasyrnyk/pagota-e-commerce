@@ -30,16 +30,19 @@ function SideBarBrandsList() {
     updateUrl({ ...filters, brands: updatedBrands }, navigate, location);
   };
 
+  const isBrandChecked = (brand: string) => {
+    return filters.brands.includes(brand);
+  };
+
   return (
     <div className="sidebar__brands">
       <h3>Brands</h3>
       <ul className="sidebar__brands-list">
         {categoryBrands.map((brand) => {
-          const isChecked = filters.brands.includes(brand);
           return (
             <CustomCheckbox
               key={brand}
-              checked={isChecked}
+              checked={isBrandChecked(brand)}
               onChange={() => handleBrandToggle(brand)}
               label={brand}
             />
