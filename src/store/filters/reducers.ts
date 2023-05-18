@@ -1,5 +1,6 @@
 import { ALL_CATEGORIES } from "@constants/app";
 import { FiltersActionType, FiltersState, FilterTypes } from "../types/filters";
+import { SortType } from "@constants/filters";
 
 const initialState: FiltersState = {
   query: "",
@@ -10,6 +11,7 @@ const initialState: FiltersState = {
     min: 0,
     max: Infinity,
   },
+  sort: SortType.DEFAULT,
   isLoading: false,
 };
 
@@ -30,6 +32,8 @@ export default function filtersReducer(
       return { ...state, prices: action.payload };
     case FilterTypes.RESET_FILTERS:
       return { ...state, ...action.payload };
+    case FilterTypes.SET_SORT_TYPE:
+      return { ...state, sort: action.payload };
     default:
       return state;
   }

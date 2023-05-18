@@ -8,7 +8,7 @@ import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 import ProductsList from "@components/ProductsList/ProductsList";
 import AppLoader from "@components/AppLoader/AppLoader";
-import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
+import SortBy from "@components/SortBy/SortBy";
 import SideBar from "@components/SideBar/SideBar";
 import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 import { AppDispatch, RootState } from "@store/index";
@@ -19,7 +19,7 @@ function ProductsListPage() {
   const { allProducts, isLoading } = useSelector(
     (state: RootState) => state.products
   );
-  const { query, category, brands, ratings, prices } = useSelector(
+  const { query, category, brands, ratings, prices, sort } = useSelector(
     (state: RootState) => state.filters
   );
 
@@ -39,9 +39,10 @@ function ProductsListPage() {
       brands,
       ratings,
       prices,
+      sort,
     });
     setResult(filteredProducts);
-  }, [query, category, brands, ratings, prices, allProducts]);
+  }, [query, category, brands, ratings, prices, sort, allProducts]);
 
   return (
     <>
@@ -54,13 +55,7 @@ function ProductsListPage() {
             <span>Products</span>
           </div>
         </div>
-        <div className="products-list__sort">
-          <span>Sort By</span>
-          <span>
-            Select
-            <ChevronDownIcon className="products-list__sort-icon" />
-          </span>
-        </div>
+        <SortBy />
         <div className="products-list__body">
           <SideBar />
           <div className="body__container">

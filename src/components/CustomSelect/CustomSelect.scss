@@ -39,6 +39,7 @@
   }
 
   &__list-item {
+    cursor: pointer;
     padding: 10px 15px;
     white-space: nowrap;
     background-color: lighten($background_color_grey, 3%);
@@ -60,6 +61,11 @@
     }
 
     &:hover {
+      background-color: darken($background_color_grey, 10%);
+    }
+
+    &.active {
+      cursor: not-allowed;
       background-color: darken($background_color_grey, 10%);
     }
   }
