@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./CustomSlider.scss";
+import { Prices } from "@constants/app";
 
 type Props = {
   min: number;
@@ -25,15 +26,17 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (e.target.name === "priceMin") {
+    if (e.target.name === Prices.MIN) {
       const newMinVal = Math.min(+e.target.value, maxValue - step);
-      if (!price) setMinValue(newMinVal);
-      onChange({ min: newMinVal, max: maxValue });
+      setMinValue(newMinVal);
     } else {
       const newMaxVal = Math.max(+e.target.value, minValue + step);
-      if (!price) setMaxValue(newMaxVal);
-      onChange({ min: minValue, max: newMaxVal });
+      setMaxValue(newMaxVal);
     }
+  };
+
+  const handleEndDragging = () => {
+    onChange({ min: minValue, max: maxValue });
   };
 
   const minPos = ((minValue - min) / (max - min)) * 100;
@@ -45,22 +48,24 @@ const RangeSlider = ({ min, max, price, step, onChange }: Props) => {
         <input
           className="range"
           type="range"
-          name="priceMin"
+          name={Prices.MIN}
           value={minValue}
           min={min}
           max={max}
           step={step}
           onChange={handleRangeChange}
+          onMouseUp={handleEndDragging}
         />
         <input
           className="range"
           type="range"
-          name="priceMax"
+          name={Prices.MAX}
           value={maxValue}
           min={min}
           max={max}
           step={step}
           onChange={handleRangeChange}
+          onMouseUp={handleEndDragging}
         />
       </div>
 

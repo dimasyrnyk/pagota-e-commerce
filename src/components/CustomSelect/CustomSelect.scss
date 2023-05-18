@@ -3,63 +3,61 @@
 /* ---------- MEDIA SCREEN -- MOBILE ---------- */
 @media (max-width: 600px) {
   .custom-select {
-    &__container {
-      border-bottom: 1px solid $border_color_grey;
-      padding-bottom: 5px;
-      margin-bottom: 8px;
-    }
-
     &__body {
       display: flex;
       justify-content: center;
       width: 100%;
-    }
-
-    &__header {
-      align-self: center;
     }
   }
 }
 
 /* ---------- MEDIA SCREEN -- TABLET && DESKTOP ---------- */
 @media screen and (min-width: 601px) {
-  .custom-select {
-    &__header {
-      border-right: 1px solid $border_color_grey;
-      padding-right: 10px;
-    }
-  }
 }
 
 .custom-select {
-  &__container {
+  &__header {
+    cursor: pointer;
     display: flex;
-    font-weight: 600;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   }
 
   &__body {
     position: relative;
   }
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    gap: 10px;
-    cursor: pointer;
-  }
-
   &__list {
     position: absolute;
-    top: 25px;
-    background-color: $background_color_grey;
-    z-index: 90;
+    top: 38px;
+    border-radius: 12px;
+    border: 1px solid $border_color_grey;
+    background-color: $background_color_white;
+    box-shadow: 0px 0px 4px $shadow_color_darkgrey;
+    z-index: 100;
   }
 
   &__list-item {
-    padding: 5px 15px;
+    padding: 10px 15px;
     white-space: nowrap;
+    background-color: lighten($background_color_grey, 3%);
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $border_color_grey;
+    }
+
+    &:first-child {
+      border-radius: 12px 12px 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 12px 12px;
+    }
+
+    &:only-child {
+      border-radius: 12px;
+    }
 
     &:hover {
       background-color: darken($background_color_grey, 10%);

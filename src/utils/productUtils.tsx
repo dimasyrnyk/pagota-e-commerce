@@ -2,13 +2,14 @@ import starBlackIcon from "@assets/icons/starBlackIcon.svg";
 import starYellowIcon from "@assets/icons/starYellowIcon.svg";
 import starBigWhiteIcon from "@assets/icons/starBigWhiteIcon.svg";
 import starSmallWhiteIcon from "@assets/icons/starSmallWhiteIcon.svg";
-import { ALL_CATEGORIES } from "@constants/categories";
+import { ALL_CATEGORIES } from "@constants/app";
 import { IProduct } from "@constants/products";
 import { store } from "@store/index";
 
-interface ICategories {
-  [key: string]: boolean;
-}
+export type Brand = {
+  name: string;
+  category: string;
+};
 
 export function generateStars(
   intRating: number,
@@ -37,6 +38,23 @@ export function formatPrice(price: number) {
   return price.toFixed(2);
 }
 
+export function getCurrentPrice(productPrice: number, productDiscount: number) {
+  return productPrice * ((100 - productDiscount) / 100);
+}
+
+export function getCategoryBrands(category: string) {
+  const { allProducts, brands } = store.getState().products;
+  if (category === ALL_CATEGORIES) {
+    return brands.map((brand: Brand) => brand.name);
+  }
+  return allProducts.reduce((acc: string[], product: IProduct) => {
+    if (product.category === category) {
+      acc.push(product.producer);
+    }
+    return acc;
+  }, []);
+}
+
 export function getCategoryLength(category: string) {
   const allProducts = store.getState().products.allProducts;
   if (category === ALL_CATEGORIES) {
@@ -46,7 +64,7 @@ export function getCategoryLength(category: string) {
 }
 
 export function getTransformedData(products: IProduct[]) {
-  const uniqueBrands = new Set<string>();
+  const uniqueBrands = new Set<Brand>();
   const uniqueCategories = new Set<string>();
   let minPrice = Infinity;
   let maxPrice = 0;
@@ -56,7 +74,7 @@ export function getTransformedData(products: IProduct[]) {
       product.price * ((100 - product.discount) / 100)
     );
 
-    uniqueBrands.add(product.producer);
+    uniqueBrands.add({ name: product.producer, category: product.category });
     uniqueCategories.add(product.category);
     minPrice = Math.min(minPrice, productCurrentPrice);
     maxPrice = Math.max(maxPrice, productCurrentPrice);
@@ -66,7 +84,7 @@ export function getTransformedData(products: IProduct[]) {
     products: products,
     categories: [...uniqueCategories],
     brands: [...uniqueBrands],
-    minPrice: minPrice,
-    maxPrice: maxPrice,
+    minPrice: minPrice - 1,
+    maxPrice: maxPrice + 1,
   };
 }

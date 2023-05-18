@@ -15,21 +15,9 @@
 }
 
 .filter-btn {
-  cursor: pointer;
   align-items: center;
-  gap: 20px;
-  background: $background-color-green;
   width: 140px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid $border_color_darkgreen;
-  color: $text_color_white;
-  padding: 9px 16px;
   gap: 24px;
-
-  &:hover {
-    background: darken($background-color-green, 10%);
-  }
 
   &__icon {
     width: 25px;

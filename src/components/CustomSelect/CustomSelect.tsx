@@ -3,12 +3,13 @@ import { useState } from "react";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
 
 type Props = {
+  className: string;
   title: string;
   options: string[];
   onChange: (category: string) => void;
 };
 
-function SearchBar({ title, options, onChange }: Props) {
+function SearchBar({ className, title, options, onChange }: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -19,7 +20,7 @@ function SearchBar({ title, options, onChange }: Props) {
   };
 
   return (
-    <div className="custom-select__container">
+    <div className={"custom-select__container " + className}>
       <div className="custom-select__body">
         <h4
           onClick={toggleOpen}

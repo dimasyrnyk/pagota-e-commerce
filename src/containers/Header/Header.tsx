@@ -17,7 +17,9 @@ function Header() {
         <ChatIcon className="icon-mobile" />
         <UserIcon className="icon-mobile" />
         <span className="icon-mobile">
-          <CartIcon productsCount={4} />
+          <Link to="/cart">
+            <CartIcon productsCount={4} />
+          </Link>
         </span>
       </div>
       <div className="header__second-row">
@@ -28,7 +30,9 @@ function Header() {
           <SearchBar />
           <div className="main-section__user-profile">
             <UserIcon />
-            <CartIcon productsCount={4} />
+            <Link to="/cart">
+              <CartIcon productsCount={4} />
+            </Link>
           </div>
         </div>
         <CategoriesList />

@@ -1,0 +1,14 @@
+@use "@styles/colors" as *;
+
+.app-btn {
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid $border_color_darkgreen;
+  background: $background-color-green;
+  color: $text_color_white;
+  padding: 9px 16px;
+
+  &:hover {
+    background: darken($background-color-green, 10%);
+  }
+}

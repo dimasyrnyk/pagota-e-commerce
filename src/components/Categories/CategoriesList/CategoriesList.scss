@@ -4,6 +4,8 @@
 @media (max-width: 600px) {
   .categories {
     &__list {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
@@ -26,6 +28,8 @@
     &__list {
       display: flex;
       flex-wrap: wrap;
+      flex: 1;
+      justify-content: space-around;
     }
   }
 }
