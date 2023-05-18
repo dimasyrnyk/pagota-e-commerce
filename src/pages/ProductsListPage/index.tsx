@@ -7,9 +7,7 @@ import "./ProductsListPage.scss";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 import ProductsList from "@components/ProductsList/ProductsList";
-import AppLoader from "@components/AppLoader/AppLoader";
 import SortBy from "@components/SortBy/SortBy";
-import SideBar from "@components/SideBar/SideBar";
 import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 import { AppDispatch, RootState } from "@store/index";
 import { IProduct } from "@constants/products";
@@ -56,12 +54,10 @@ function ProductsListPage() {
           </div>
         </div>
         <SortBy />
-        <div className="products-list__body">
-          <SideBar />
-          <div className="body__container">
-            {isLoading ? <AppLoader /> : <ProductsList products={result} />}
-          </div>
-        </div>
+        <ProductsList
+          isLoading={isLoading}
+          products={result}
+        />
       </div>
       <Footer />
     </>

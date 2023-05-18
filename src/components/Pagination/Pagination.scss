@@ -1,0 +1,57 @@
+@use "@styles/colors" as *;
+
+.paginate {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & > span {
+    color: $text_color_lightgrey;
+    font-size: 0.75rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  &__pages {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    & > li {
+      padding: 2px 5px;
+
+      &:hover {
+        background-color: $background_color_grey;
+        border-radius: 12px;
+      }
+    }
+
+    .active {
+      color: $text_color_green;
+    }
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+.load-more__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 214px;
+  gap: 6px;
+}
+
+.button-icon {
+  filter: brightness(0) invert(1);
+}

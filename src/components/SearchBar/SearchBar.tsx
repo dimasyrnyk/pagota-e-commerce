@@ -41,6 +41,9 @@ function SearchBar() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;
+    if (searchQuery && !searchValue) {
+      dispatch(setFilterQuery(""));
+    }
     setSearchQuery(searchValue);
     setShowBrands(!!searchValue);
   };
