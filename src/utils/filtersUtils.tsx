@@ -116,13 +116,14 @@ export function getFiltersWithNewBrand(
   selectedBrand: string
 ) {
   const { minPrice, maxPrice } = store.getState().products;
+  const filters = store.getState().filters;
   return {
+    ...filters,
     query: "",
     category: category,
     brands: [selectedBrand],
     ratings: [],
     prices: { min: minPrice, max: maxPrice },
-    sort: SortType.DEFAULT,
   };
 }
 
