@@ -1,15 +1,23 @@
 import "./CustomSelect.scss";
 import { useState } from "react";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
+import { SortType } from "@constants/filters";
 
 type Props = {
   className: string;
   title: string;
   options: string[];
+  activeOption: string;
   onChange: (category: string) => void;
 };
 
-function SearchBar({ className, title, options, onChange }: Props) {
+function SearchBar({
+  className,
+  title,
+  options,
+  activeOption,
+  onChange,
+}: Props) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -17,6 +25,10 @@ function SearchBar({ className, title, options, onChange }: Props) {
   const handleSelect = (value: string) => {
     onChange(value);
     setIsOpen(false);
+  };
+
+  const getClasses = (item: string) => {
+    return item === activeOption ? "active" : "";
   };
 
   return (
@@ -31,11 +43,11 @@ function SearchBar({ className, title, options, onChange }: Props) {
         </h4>
         {isOpen && (
           <ul className="custom-select__list">
-            {options.map((option) => (
+            {options.map((option, index) => (
               <li
-                className="custom-select__list-item"
+                key={index}
+                className={"custom-select__list-item " + getClasses(option)}
                 onClick={() => handleSelect(option)}
-                key={Math.floor(Math.random() * 10000000)}
               >
                 {option}
               </li>

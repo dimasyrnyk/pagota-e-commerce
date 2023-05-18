@@ -72,6 +72,7 @@ function SearchBar() {
         className="search-bar__select"
         title={filters.category}
         options={categories}
+        activeOption={filters.category}
         onChange={handleCategoryChange}
       />
       <div className="search-bar__input_wrapper">

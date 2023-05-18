@@ -14,6 +14,7 @@ import SideBarBrandsList from "./SideBarBrandsList";
 import SideBarRatingsList from "./SideBarRatingsList";
 import SideBarPriceRange from "./SideBarPriceRange";
 import SideBarCategoriesList from "./SideBarCategoriesList";
+import { SortType } from "@constants/filters";
 
 function SideBar() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,6 +34,7 @@ function SideBar() {
         brands: [],
         ratings: [],
         prices: { min: minPrice, max: maxPrice },
+        sort: SortType.DEFAULT,
       })
     );
     updateUrl({}, navigate, location);

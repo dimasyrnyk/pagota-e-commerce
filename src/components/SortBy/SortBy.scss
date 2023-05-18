@@ -1,0 +1,61 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 901px) {
+}
+
+.sort {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $border_color_grey;
+    border-radius: 12px;
+    background-color: $background_color_lightgrey;
+    padding: 9px 16px;
+    gap: 24px;
+    max-width: 280px;
+
+    .custom-select__header {
+      font-weight: normal;
+
+      img {
+        filter: invert(50%);
+      }
+    }
+
+    span:first-child {
+      font-size: 0.875rem;
+      padding-right: 20px;
+      border-right: 1px solid $border_color_grey;
+    }
+
+    span:last-child {
+      display: flex;
+      align-items: center;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__body {
+    display: flex;
+    gap: 33px;
+    padding-top: 24px;
+  }
+}
+
+.body {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}
