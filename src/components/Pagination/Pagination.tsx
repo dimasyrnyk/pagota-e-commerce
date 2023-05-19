@@ -49,7 +49,7 @@ function Pagination({ products, setProducts }: Props) {
 
   useEffect(() => {
     setProducts(currentItems);
-  }, [currentPage, itemsPerPage, sort, products.length]);
+  }, [currentPage, itemsPerPage, products]);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {

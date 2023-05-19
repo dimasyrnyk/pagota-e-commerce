@@ -16,7 +16,7 @@ function ProductsList({ products, isLoading }: Props) {
   const [currentProducts, setCurrentProducts] = useState<IProduct[]>([]);
 
   const renderProductsList = () => {
-    if (!products.length) {
+    if (!currentProducts.length) {
       return <center>No products found</center>;
     }
 

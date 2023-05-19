@@ -85,7 +85,7 @@ function SearchBar() {
           value={searchQuery}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
-          placeholder="Search Products, categories ..."
+          placeholder="Search Products ..."
         />
         {!searchQuery ? (
           <SearchIcon className="search-bar__icon-search" />
