@@ -2,12 +2,12 @@ import "./Pagination.scss";
 
 type Props = {
   title: string;
-  disabled: boolean;
+  show: boolean;
   onClick: () => void;
 };
 
-function PaginationButton({ title, disabled, onClick }: Props) {
-  if (disabled) {
+function PaginationButton({ title, show, onClick }: Props) {
+  if (!show) {
     return null;
   }
 
@@ -16,7 +16,6 @@ function PaginationButton({ title, disabled, onClick }: Props) {
       <button
         className="paginate__button"
         onClick={onClick}
-        disabled={disabled}
       >
         {title}
       </button>

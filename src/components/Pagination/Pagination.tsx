@@ -45,10 +45,11 @@ function Pagination({ products, setProducts }: Props) {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
+  const isLastPage = indexOfLastItem >= products.length;
 
   useEffect(() => {
     setProducts(currentItems);
-  }, [currentPage, itemsPerPage, sort]);
+  }, [currentPage, itemsPerPage, sort, products.length]);
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -121,7 +122,7 @@ function Pagination({ products, setProducts }: Props) {
         <ul className="paginate__pages">
           <PaginationButton
             title="<"
-            disabled={currentPage === pages[0]}
+            show={currentPage !== pages[0]}
             onClick={() => handlePrevbtn(1)}
           />
           {pageDecrementBtn}
@@ -129,13 +130,14 @@ function Pagination({ products, setProducts }: Props) {
           {pageIncrementBtn}
           <PaginationButton
             title=">"
-            disabled={currentPage === pagesCount}
+            show={currentPage !== pagesCount}
             onClick={() => handleNextbtn(1)}
           />
         </ul>
       </div>
       <PrimaryBtn
         className="load-more__button"
+        show={!isLastPage}
         onClick={handleLoadMore}
       >
         Show more products
