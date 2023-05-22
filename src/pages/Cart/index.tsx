@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-import "./CartPage.scss";
+import "./Cart.scss";
 import Header from "@containers/Header/Header";
 
-function CartPage() {
+function Cart() {
   return (
     <>
       <Header />
@@ -19,4 +19,4 @@ function CartPage() {
   );
 }
 
-export default CartPage;
+export default Cart;

@@ -10,10 +10,7 @@ type Props = {
 
 function CustomCheckbox({ checked, onChange, label }: Props) {
   return (
-    <li
-      className="custom-checkbox__container"
-      onClick={onChange}
-    >
+    <li className="custom-checkbox__container">
       <input
         type="checkbox"
         checked={checked}
@@ -25,7 +22,13 @@ function CustomCheckbox({ checked, onChange, label }: Props) {
       ) : (
         <CheckboxCheckedIcon className="custom-checkbox__icon" />
       )}
-      <label htmlFor="custom-checkbox">{label}</label>
+      <label
+        htmlFor="custom-checkbox"
+        className="custom-checkbox__label"
+        onClick={onChange}
+      >
+        {label}
+      </label>
     </li>
   );
 }

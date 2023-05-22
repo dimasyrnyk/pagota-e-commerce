@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import "./CustomSlider.scss";
 import { Prices } from "@constants/app";
 

@@ -1,20 +1,19 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
-import { setFilterRatings } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
-import Rating from "@components/Rating/Rating";
+import { setFilterRatings } from "@store/filters/actions";
+import { updateUrl } from "@utils/filters/searchParams";
 import { SIDEBAR_RATING } from "@constants/app";
 import CustomCheckbox from "@components/CustomCheckbox/CustomCheckbox";
-import { updateUrl } from "@utils/filtersUtils";
+import Rating from "@components/Rating/Rating";
 
 function SideBarRatingsList() {
-  const filters = useSelector((state: RootState) => state.filters);
-  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
+  const filters = useSelector((state: RootState) => state.filters);
 
   const handleRatingToggle = (selectedRating: number) => {
     const updatedRatings = filters.ratings.includes(selectedRating)

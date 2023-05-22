@@ -1,7 +1,8 @@
 import { BASE_URL } from "@constants/app";
 import { AppDispatch } from "..";
 import { ProductsTypes } from "../types/products";
-import { getTransformedData } from "@utils/productUtils";
+import { getTransformedData } from "@utils/products/transformData";
+import { setFilterPrices } from "@store/filters/actions";
 
 export function getAllProducts() {
   return async (dispatch: AppDispatch) => {
@@ -19,6 +20,12 @@ export function getAllProducts() {
         type: ProductsTypes.GET_ALL_PRODUCTS,
         payload: transformedData,
       });
+      dispatch(
+        setFilterPrices({
+          min: transformedData.minPrice,
+          max: transformedData.maxPrice,
+        })
+      );
     }
 
     dispatch({ type: ProductsTypes.END_LOADING_PRODUCTS });

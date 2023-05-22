@@ -13,7 +13,7 @@
         align-self: center;
       }
       .custom-select__body {
-        border-bottom: 1px solid $border_color_grey;
+        border-bottom: 1px solid $primary_gray;
         padding-bottom: 5px;
         margin-bottom: 8px;
       }
@@ -34,7 +34,7 @@
 
     &__select {
       .custom-select__header {
-        border-right: 1px solid $border_color_grey;
+        border-right: 1px solid $primary_gray;
         padding-right: 10px;
       }
     }
@@ -48,16 +48,16 @@
 .search-bar {
   &__container {
     display: flex;
-    border: 1px solid $border_color_grey;
+    border: 1px solid $primary_gray;
     border-radius: 12px;
-    background-color: $background_color_lightgrey;
+    background-color: $primary_lightgray;
     padding: 8px 16px;
   }
 
   &__categories {
     display: flex;
     font-weight: 600;
-    border-right: 1px solid $border_color_grey;
+    border-right: 1px solid $primary_gray;
     padding-right: 28px;
   }
 
@@ -72,7 +72,7 @@
   &__icon-categories {
     display: inline-block;
     align-self: center;
-    color: $text_color_green;
+    color: $primary_green;
     font-size: 12px;
   }
 
@@ -85,7 +85,7 @@
     border: none;
     outline: none;
     line-height: 0.9;
-    background-color: $background_color_lightgrey;
+    background-color: $primary_lightgray;
     width: 90%;
 
     &_wrapper {
@@ -105,9 +105,9 @@
       width: 100%;
       top: 38px;
       border-radius: 12px;
-      border: 1px solid $border_color_grey;
-      background-color: $background_color_white;
-      box-shadow: 0px 0px 4px $shadow_color_darkgrey;
+      border: 1px solid $primary_gray;
+      background-color: $white;
+      box-shadow: 0px 0px 4px $primary_darkgray;
       z-index: 90;
     }
 
@@ -117,19 +117,19 @@
       justify-content: space-between;
       padding: 10px 15px;
       white-space: nowrap;
-      background-color: lighten($background_color_grey, 3%);
+      background-color: lighten($secondary_lightgray, 3%);
 
       .item {
         &__category {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          color: $text_color_lightgrey;
+          color: $secondary_darkgray;
         }
       }
 
       &:not(:last-child) {
-        border-bottom: 1px solid $border_color_grey;
+        border-bottom: 1px solid $primary_gray;
       }
 
       &:first-child {
@@ -145,7 +145,7 @@
       }
 
       &:hover {
-        background-color: darken($background_color_grey, 10%);
+        background-color: darken($secondary_lightgray, 10%);
       }
     }
   }

@@ -15,7 +15,7 @@
       left: 10px;
       flex-direction: column;
       align-items: flex-start;
-      background-color: $background_color_white;
+      background: $white;
       z-index: 100;
 
       li {
@@ -73,10 +73,10 @@
 
     a {
       text-decoration: none;
-      color: $text_color_green;
+      color: $primary_green;
 
       &:hover {
-        color: darken($text_color_green, 10%);
+        color: darken($primary_green, 10%);
       }
     }
   }
@@ -88,7 +88,7 @@
 
     [href="tel:+420336775664"],
     [href="mailto:info@freshnesecom.com"] {
-      color: $text_color_black;
+      color: $black;
     }
   }
 

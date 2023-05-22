@@ -47,9 +47,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: 1.1875rem;
-  color: $text_color_green;
+  color: $primary_green;
 
   &:hover {
-    color: darken($text_color_green, 10%);
+    color: darken($primary_green, 10%);
   }
 }

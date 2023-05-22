@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 
 import "./CategoriesList.scss";
-import CategoryItem from "../CategoryItem/CategoryItem";
 import { RootState } from "@store/index";
 import { ALL_CATEGORIES } from "@constants/app";
+import CategoryItem from "../CategoryItem/CategoryItem";
 
 function CategoriesList() {
   const categories = useSelector(

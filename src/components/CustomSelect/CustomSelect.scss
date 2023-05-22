@@ -32,9 +32,9 @@
     position: absolute;
     top: 38px;
     border-radius: 12px;
-    border: 1px solid $border_color_grey;
-    background-color: $background_color_white;
-    box-shadow: 0px 0px 4px $shadow_color_darkgrey;
+    border: 1px solid $primary_gray;
+    background-color: $white;
+    box-shadow: 0px 0px 4px $primary_darkgray;
     z-index: 100;
   }
 
@@ -42,10 +42,10 @@
     cursor: pointer;
     padding: 10px 15px;
     white-space: nowrap;
-    background-color: lighten($background_color_grey, 3%);
+    background-color: lighten($secondary_lightgray, 3%);
 
     &:not(:last-child) {
-      border-bottom: 1px solid $border_color_grey;
+      border-bottom: 1px solid $primary_gray;
     }
 
     &:first-child {
@@ -61,12 +61,12 @@
     }
 
     &:hover {
-      background-color: darken($background_color_grey, 10%);
+      background-color: darken($secondary_lightgray, 10%);
     }
 
     &.active {
       cursor: not-allowed;
-      background-color: darken($background_color_grey, 10%);
+      background-color: darken($secondary_lightgray, 10%);
     }
   }
 }

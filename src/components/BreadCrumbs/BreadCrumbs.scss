@@ -23,21 +23,21 @@
     display: flex;
     justify-content: flex-start;
     font-size: 0.75rem;
-    color: $text_color_lightgrey;
+    color: $secondary_darkgray;
 
     a {
       text-decoration: none;
-      color: $text_color_lightgrey;
+      color: $secondary_darkgray;
       margin: 0 8px;
 
       &:hover {
-        color: darken($text_color_lightgrey, 10%);
+        color: darken($secondary_darkgray, 10%);
       }
     }
 
     .disabled-link {
       cursor: not-allowed;
-      color: $text_color_black;
+      color: $black;
     }
   }
 }

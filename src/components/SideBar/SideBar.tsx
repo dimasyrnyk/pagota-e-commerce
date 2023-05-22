@@ -1,42 +1,30 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
 import { AppDispatch, RootState } from "@store/index";
+import { resetFilters } from "@store/filters/actions";
+import { updateUrl } from "@utils/filters/searchParams";
 import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
 import FilterBtn from "@components/Buttons/FilterBtn/FilterBtn";
-import { resetFilters } from "@store/filters/actions";
-import { ALL_CATEGORIES } from "@constants/app";
-import { updateUrl } from "@utils/filtersUtils";
+import SideBarCategoriesList from "./SideBarCategoriesList";
 import SideBarBrandsList from "./SideBarBrandsList";
 import SideBarRatingsList from "./SideBarRatingsList";
 import SideBarPriceRange from "./SideBarPriceRange";
-import SideBarCategoriesList from "./SideBarCategoriesList";
-import { SortType } from "@constants/filters";
 
 function SideBar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(
     (state: RootState) => state.products
   );
-  const dispatch: AppDispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const classes = isOpen ? "open" : "close";
 
   const handleResetFilters = () => {
-    dispatch(
-      resetFilters({
-        query: "",
-        category: ALL_CATEGORIES,
-        brands: [],
-        ratings: [],
-        prices: { min: minPrice, max: maxPrice },
-        sort: SortType.DEFAULT,
-      })
-    );
+    dispatch(resetFilters({ min: minPrice, max: maxPrice }));
     updateUrl({}, navigate, location);
   };
 

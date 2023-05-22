@@ -35,7 +35,7 @@
   gap: 10px;
 
   & > span {
-    color: $text_color_lightgrey;
+    color: $secondary_darkgray;
     font-size: 0.75rem;
   }
 
@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   &__pages {
@@ -56,23 +56,25 @@
       padding: 2px 5px;
 
       &:hover {
-        background-color: $background_color_grey;
+        background-color: $secondary_lightgray;
         border-radius: 12px;
       }
     }
 
     .active {
-      color: $text_color_green;
+      color: $primary_green;
     }
   }
 
   &__button {
+    cursor: pointer;
     border: none;
     background-color: transparent;
   }
 }
 
 .load-more__button {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

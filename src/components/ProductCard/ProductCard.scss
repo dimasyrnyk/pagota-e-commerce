@@ -106,7 +106,7 @@
 .product-card {
   &__container {
     display: flex;
-    border: 1px solid $border_color_grey;
+    border: 1px solid $primary_gray;
     border-radius: 12px;
     width: 100%;
     margin-bottom: 32px;
@@ -130,16 +130,16 @@
   &__title {
     font-size: 1.125rem;
     margin-bottom: 4px;
-    color: $text_color_black;
+    color: $black;
 
     &:hover {
-      color: $text_color_green;
+      color: $primary_green;
     }
   }
 
   &__small-description {
     font-size: 0.75rem;
-    color: $text_color_darkgrey;
+    color: $primary_darkgray;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -165,14 +165,14 @@
     text-decoration: line-through;
     font-size: 0.75rem;
     font-weight: 600;
-    color: $text_color_lightgrey;
+    color: $primary_lightgray;
   }
 
   &__shipping {
     display: flex;
     flex-direction: column;
     font-size: 0.75rem;
-    color: $text_color_lightgrey;
+    color: $primary_lightgray;
 
     span:first-child {
       font-weight: 600;
@@ -199,7 +199,7 @@
     align-items: center;
     padding: 6px 12px;
     gap: 7px;
-    background-color: $background_color_grey;
+    background-color: $secondary_lightgray;
     border-radius: 12px;
     border: none;
     font-weight: 700;
@@ -207,7 +207,7 @@
     line-height: 1.375rem;
 
     &:hover {
-      background-color: darken($background_color_grey, 10%);
+      background-color: darken($secondary_lightgray, 10%);
     }
   }
 }
@@ -218,7 +218,7 @@
     font-size: 0.875rem;
     gap: 12px;
     margin-top: 27px;
-    color: $text_color_lightgrey;
+    color: $primary_lightgray;
   }
 
   &__row {
@@ -234,5 +234,5 @@
 }
 
 .text__green {
-  color: $text_color_green;
+  color: $primary_green;
 }

@@ -1,10 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./DropDown.scss";
-import { AppDispatch } from "@store/index";
-import { getFiltersWithNewBrand, updateUrl } from "@utils/filtersUtils";
-import { resetFilters } from "@store/filters/actions";
+import { AppDispatch, RootState } from "@store/index";
+import { updateFilters } from "@store/filters/actions";
+import { getNewFilters } from "@utils/filters/filterProducts";
+import { updateUrl } from "@utils/filters/searchParams";
 
 type Props = {
   brands: string[];
@@ -15,14 +16,12 @@ function DropDown({ brands, category }: Props) {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
+  const filters = useSelector((state: RootState) => state.filters);
 
   const handleBrandClick = (selectedBrand: string) => {
-    const resetFiltersWithNewBrand = getFiltersWithNewBrand(
-      category,
-      selectedBrand
-    );
-    dispatch(resetFilters(resetFiltersWithNewBrand));
-    updateUrl(resetFiltersWithNewBrand, navigate, location);
+    const newFilters = getNewFilters({ category, brands: [selectedBrand] });
+    dispatch(updateFilters(newFilters));
+    updateUrl(newFilters, navigate, location);
   };
 
   return (

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-import "./HomePage.scss";
+import "./Home.scss";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 
-function HomePage() {
+function Home() {
   return (
     <>
       <Header />
@@ -52,4 +52,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Home;

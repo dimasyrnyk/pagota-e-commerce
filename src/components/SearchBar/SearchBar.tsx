@@ -1,29 +1,28 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SearchBar.scss";
-import CustomSelect from "@components/CustomSelect/CustomSelect";
-import SearchIcon from "@components/Icons/SearchIcon";
-import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
 import {
   setFilterBrands,
   setFilterCategory,
   setFilterQuery,
 } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
-import { updateUrl } from "@utils/filtersUtils";
-import SearchBarBrandSelect from "./SearchBarBrandsSelect";
+import { updateUrl } from "@utils/filters/searchParams";
+import CustomSelect from "@components/CustomSelect/CustomSelect";
+import SearchIcon from "@components/Icons/SearchIcon";
+import CloseBtn from "@components/Buttons/CloseBtn/CloseBtn";
+import SearchBarProductSelect from "./SearchBarProductSelect";
 
 function SearchBar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
   const filters = useSelector((state: RootState) => state.filters);
   const { categories } = useSelector((state: RootState) => state.products);
   const [searchQuery, setSearchQuery] = useState<string>(filters.query);
   const [showBrands, setShowBrands] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch: AppDispatch = useDispatch();
 
   useEffect(() => {
     setSearchQuery(filters.query);
@@ -92,7 +91,7 @@ function SearchBar() {
         ) : (
           <CloseBtn onClick={handleInputReset} />
         )}
-        <SearchBarBrandSelect
+        <SearchBarProductSelect
           show={showBrands}
           setShow={setShowBrands}
           query={searchQuery}

@@ -1,6 +1,6 @@
 import "./FooterNavBar.scss";
-import FooterLink from "./FooterLink";
 import { LINKSLIST } from "@constants/app";
+import FooterLink from "./FooterLink";
 
 function FooterNavBar() {
   return (

@@ -1,5 +1,5 @@
-import CrossIcon from "@components/Icons/CrossIcon";
 import "./CloseBtn.scss";
+import CrossIcon from "@components/Icons/CrossIcon";
 
 type Props = {
   onClick: () => void;
