@@ -41,6 +41,9 @@ function SearchBar() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchValue = e.target.value;
+    if (searchQuery && !searchValue) {
+      dispatch(setFilterQuery(""));
+    }
     setSearchQuery(searchValue);
     setShowBrands(!!searchValue);
   };
@@ -82,7 +85,7 @@ function SearchBar() {
           value={searchQuery}
           onChange={handleInputChange}
           onKeyDown={handleInputKeyDown}
-          placeholder="Search Products, categories ..."
+          placeholder="Search Products ..."
         />
         {!searchQuery ? (
           <SearchIcon className="search-bar__icon-search" />

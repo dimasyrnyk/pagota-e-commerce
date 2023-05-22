@@ -43,13 +43,13 @@ export function getCurrentPrice(productPrice: number, productDiscount: number) {
 }
 
 export function getCategoryBrands(category: string) {
-  const { allProducts, brands } = store.getState().products;
+  const { brands } = store.getState().products;
   if (category === ALL_CATEGORIES) {
     return brands.map((brand: Brand) => brand.name);
   }
-  return allProducts.reduce((acc: string[], product: IProduct) => {
-    if (product.category === category) {
-      acc.push(product.producer);
+  return brands.reduce((acc: string[], brand: Brand) => {
+    if (brand.category === category) {
+      acc.push(brand.name);
     }
     return acc;
   }, []);
@@ -64,7 +64,7 @@ export function getCategoryLength(category: string) {
 }
 
 export function getTransformedData(products: IProduct[]) {
-  const uniqueBrands = new Set<Brand>();
+  const uniqueBrands = new Map<string, Brand>();
   const uniqueCategories = new Set<string>();
   let minPrice = Infinity;
   let maxPrice = 0;
@@ -74,7 +74,14 @@ export function getTransformedData(products: IProduct[]) {
       product.price * ((100 - product.discount) / 100)
     );
 
-    uniqueBrands.add({ name: product.producer, category: product.category });
+    const brandKey = `${product.producer}-${product.category}`;
+    if (!uniqueBrands.has(brandKey)) {
+      uniqueBrands.set(brandKey, {
+        name: product.producer,
+        category: product.category,
+      });
+    }
+
     uniqueCategories.add(product.category);
     minPrice = Math.min(minPrice, productCurrentPrice);
     maxPrice = Math.max(maxPrice, productCurrentPrice);
@@ -83,7 +90,7 @@ export function getTransformedData(products: IProduct[]) {
   return {
     products: products,
     categories: [...uniqueCategories],
-    brands: [...uniqueBrands],
+    brands: [...uniqueBrands.values()],
     minPrice: minPrice - 1,
     maxPrice: maxPrice + 1,
   };
