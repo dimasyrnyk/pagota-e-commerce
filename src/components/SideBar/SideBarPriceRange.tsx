@@ -47,26 +47,21 @@ const PriceRange = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     let newValue = parseInt(value, 10);
+    const isValidMin =
+      name === Prices.MIN && newValue >= minPrice && newValue <= priceRange.max;
+    const isValidMax =
+      name === Prices.MAX && newValue <= maxPrice && newValue >= priceRange.min;
 
     if (isNaN(newValue)) {
       newValue = 0;
       setIsValidPrices({ ...isValidPrices, [name]: false });
-    } else if (
-      (name === Prices.MIN &&
-        newValue >= minPrice &&
-        newValue <= priceRange.max) ||
-      (name === Prices.MAX &&
-        newValue <= maxPrice &&
-        newValue >= priceRange.min)
-    ) {
-      setValidPriceRange({ ...validPriceRange, [name]: newValue });
+    } else if (isValidMin || isValidMax) {
+      const newPriceRange = { ...validPriceRange, [name]: newValue };
+
+      setValidPriceRange(newPriceRange);
       setIsValidPrices({ ...isValidPrices, [name]: true });
-      dispatch(setFilterPrices({ ...validPriceRange, [name]: newValue }));
-      updateUrl(
-        { ...filters, prices: { ...validPriceRange, [name]: newValue } },
-        navigate,
-        location
-      );
+      dispatch(setFilterPrices(newPriceRange));
+      updateUrl({ ...filters, prices: newPriceRange }, navigate, location);
     } else {
       setIsValidPrices({ ...isValidPrices, [name]: false });
     }

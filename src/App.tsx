@@ -17,16 +17,16 @@ function App() {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
 
+  const getData = async () => {
+    await dispatch(getAllProducts());
+
+    const searchParams = queryString.parse(location.search, {
+      arrayFormat: "comma",
+    });
+    parseSearchParams(searchParams, dispatch);
+  };
+
   useEffect(() => {
-    const getData = async () => {
-      await dispatch(getAllProducts());
-
-      const searchParams = queryString.parse(location.search, {
-        arrayFormat: "comma",
-      });
-      parseSearchParams(searchParams, dispatch);
-    };
-
     getData();
   }, []);
 

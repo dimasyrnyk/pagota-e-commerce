@@ -43,6 +43,17 @@ function Pagination({ products, setProducts }: Props) {
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
   const isLastPage = indexOfLastItem >= products.length;
 
+  const scrollToTop = () => {
+    if (window.scrollY !== 0) {
+      window.scrollTo(0, window.scrollY - 20);
+      setTimeout(scrollToTop, 10);
+    }
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [currentPage]);
+
   useEffect(() => {
     setCurrentPage(CURRENT_PAGE);
     setItemsPerPage(ITEMS_PER_PAGE);
@@ -53,17 +64,6 @@ function Pagination({ products, setProducts }: Props) {
   useEffect(() => {
     setProducts(currentItems);
   }, [currentPage, itemsPerPage, products]);
-
-  useEffect(() => {
-    const scrollToTop = () => {
-      if (window.scrollY !== 0) {
-        window.scrollTo(0, window.scrollY - 20);
-        setTimeout(scrollToTop, 10);
-      }
-    };
-
-    scrollToTop();
-  }, [currentPage]);
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const element = e.target as HTMLElement;
