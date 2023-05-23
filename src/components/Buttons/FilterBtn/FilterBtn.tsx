@@ -1,6 +1,6 @@
 import "./FilterBtn.scss";
-import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 import filterIcon from "@assets/icons/filterIcon.svg";
+import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
 type Props = {
   onClick: () => void;

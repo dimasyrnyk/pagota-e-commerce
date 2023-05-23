@@ -6,8 +6,13 @@ import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
 import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 import PaginationButton from "./PaginationButton";
 import { IProduct } from "@constants/products";
-import { useSelector } from "react-redux";
-import { RootState } from "@store/index";
+import {
+  CURRENT_PAGE,
+  ITEMS_PER_PAGE,
+  MAX_PAGE_NUMBER_LIMIT,
+  MIN_PAGE_NUMBER_LIMIT,
+  PAGE_NUMBER_LIMIT,
+} from "@constants/app";
 
 type Props = {
   products: IProduct[];
@@ -15,26 +20,17 @@ type Props = {
 };
 
 function Pagination({ products, setProducts }: Props) {
-  const { sort } = useSelector((state: RootState) => state.filters);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(5);
+  const [currentPage, setCurrentPage] = useState<number>(CURRENT_PAGE);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(ITEMS_PER_PAGE);
 
-  const [pageNumberLimit, setPageNumberLimit] = useState<number>(5);
-  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(5);
-  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(0);
-
-  useEffect(() => {
-    setCurrentPage(1);
-    setItemsPerPage(5);
-    setMaxPageNumberLimit(5);
-    setMinPageNumberLimit(0);
-  }, [products.length]);
-
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    const element = e.target as HTMLElement;
-    const id = element.getAttribute("id") as string;
-    setCurrentPage(+id);
-  };
+  const [pageNumberLimit, setPageNumberLimit] =
+    useState<number>(PAGE_NUMBER_LIMIT);
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState<number>(
+    MAX_PAGE_NUMBER_LIMIT
+  );
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState<number>(
+    MIN_PAGE_NUMBER_LIMIT
+  );
 
   const pagesCount = Math.ceil(products.length / itemsPerPage);
   const pages: number[] = Array.from(
@@ -47,9 +43,33 @@ function Pagination({ products, setProducts }: Props) {
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
   const isLastPage = indexOfLastItem >= products.length;
 
+  const scrollToTop = () => {
+    if (window.scrollY !== 0) {
+      window.scrollTo(0, window.scrollY - 20);
+      setTimeout(scrollToTop, 10);
+    }
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(CURRENT_PAGE);
+    setItemsPerPage(ITEMS_PER_PAGE);
+    setMaxPageNumberLimit(MAX_PAGE_NUMBER_LIMIT);
+    setMinPageNumberLimit(MIN_PAGE_NUMBER_LIMIT);
+  }, [products.length]);
+
   useEffect(() => {
     setProducts(currentItems);
   }, [currentPage, itemsPerPage, products]);
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    const element = e.target as HTMLElement;
+    const id = element.getAttribute("id") as string;
+    setCurrentPage(+id);
+  };
 
   const renderPageNumbers = pages.map((number) => {
     if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -103,11 +123,13 @@ function Pagination({ products, setProducts }: Props) {
 
   const handleLoadMore = () => {
     const newPage = Math.ceil(
-      ((currentPage - 1) * itemsPerPage) / (itemsPerPage + 5) + 1
+      ((currentPage - 1) * itemsPerPage) / (itemsPerPage + ITEMS_PER_PAGE) + 1
     );
-    const newPagesCount = Math.ceil(products.length / (itemsPerPage + 5));
+    const newPagesCount = Math.ceil(
+      products.length / (itemsPerPage + ITEMS_PER_PAGE)
+    );
     setCurrentPage(newPage < newPagesCount ? newPage : newPagesCount);
-    setItemsPerPage(itemsPerPage + 5);
+    setItemsPerPage(itemsPerPage + ITEMS_PER_PAGE);
 
     if (newPage <= minPageNumberLimit && minPageNumberLimit) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);

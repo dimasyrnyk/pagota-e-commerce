@@ -5,7 +5,7 @@ import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
 import HeartIcon from "@components/Icons/HeartIcon";
 import Rating from "@components/Rating/Rating";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
-import { formatPrice, getCurrentPrice } from "@utils/productUtils";
+import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import { IProduct } from "@constants/products";
 
 type Props = {

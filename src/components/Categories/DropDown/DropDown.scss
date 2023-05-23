@@ -4,7 +4,7 @@
   &__container {
     position: absolute;
     top: 30px;
-    background-color: $background_color_lightgrey;
+    background-color: $primary_lightgray;
     z-index: 99;
   }
 
@@ -15,7 +15,7 @@
     width: 200px;
 
     &:hover {
-      background-color: darken($background_color_lightgrey, 10%);
+      background-color: darken($primary_lightgray, 10%);
     }
   }
 }

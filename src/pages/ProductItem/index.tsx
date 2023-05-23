@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 
-import "./NotFoundPage.scss";
+import "./ProductItem.scss";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 
-function NotFoundPage() {
+function ProductItem() {
   return (
     <>
       <Header />
-      <div className="not-found__container">
-        <h2>NotFoundPage</h2>
+      <div className="products-item__container">
+        <h2>ProductItemPage</h2>
         <Link to="/">HomePage</Link>
         <Link to="/cart">CartPage</Link>
         <Link to="/products">ProductsListPage</Link>
@@ -21,4 +21,4 @@ function NotFoundPage() {
   );
 }
 
-export default NotFoundPage;
+export default ProductItem;

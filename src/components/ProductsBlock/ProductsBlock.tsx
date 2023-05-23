@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./ProductsList.scss";
+import "./ProductsBlock.scss";
 import ProductCard from "@components/ProductCard/ProductCard";
 import AppLoader from "@components/AppLoader/AppLoader";
 import SideBar from "@components/SideBar/SideBar";
@@ -12,7 +12,7 @@ type Props = {
   isLoading: boolean;
 };
 
-function ProductsList({ products, isLoading }: Props) {
+function ProductsBlock({ products, isLoading }: Props) {
   const [currentProducts, setCurrentProducts] = useState<IProduct[]>([]);
 
   const renderProductsList = () => {
@@ -44,4 +44,4 @@ function ProductsList({ products, isLoading }: Props) {
   );
 }
 
-export default ProductsList;
+export default ProductsBlock;

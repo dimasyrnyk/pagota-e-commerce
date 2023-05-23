@@ -4,6 +4,11 @@ export const BASE_URL =
 export const ALL_CATEGORIES = "All categories";
 export const SIDEBAR_RATING = [5, 4, 3, 2, 1];
 export const SLIDER_STEP = 10;
+export const CURRENT_PAGE = 1;
+export const ITEMS_PER_PAGE = 5;
+export const PAGE_NUMBER_LIMIT = 5;
+export const MIN_PAGE_NUMBER_LIMIT = 0;
+export const MAX_PAGE_NUMBER_LIMIT = 5;
 
 export enum Prices {
   MIN = "min",

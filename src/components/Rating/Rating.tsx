@@ -1,5 +1,5 @@
 import "./Rating.scss";
-import { generateStars } from "@utils/productUtils";
+import { generateStars } from "@utils/rating";
 
 type Props = {
   rating: number;

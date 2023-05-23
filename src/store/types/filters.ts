@@ -1,6 +1,7 @@
 export interface IPrices {
   min: number;
   max: number;
+  [key: string]: number;
 }
 
 export interface FiltersState {
@@ -28,8 +29,9 @@ export enum FilterTypes {
   SET_FILTER_BRANDS = "filter/SET_BRANDS",
   SET_FILTER_RATINGS = "filter/SET_RATINGS",
   SET_FILTER_PRICES = "filter/SET_PRICES",
+  SET_FILTER_SORT_TYPE = "filter/SET_SORT_TYPE",
+  UPDATE_FILTERS = "filter/UPDATE",
   RESET_FILTERS = "filter/RESET",
-  SET_SORT_TYPE = "filter/SET_SORT_TYPE",
 }
 
 interface SetQueryAction {
@@ -57,14 +59,19 @@ interface SetPricesAction {
   payload: IPrices;
 }
 
-interface ResetFiltersAction {
-  type: FilterTypes.RESET_FILTERS;
+interface SetSortTypeAction {
+  type: FilterTypes.SET_FILTER_SORT_TYPE;
+  payload: string;
+}
+
+interface UpdateFiltersAction {
+  type: FilterTypes.UPDATE_FILTERS;
   payload: IFilters;
 }
 
-interface SetSortTypeAction {
-  type: FilterTypes.SET_SORT_TYPE;
-  payload: string;
+interface ResetFiltersAction {
+  type: FilterTypes.RESET_FILTERS;
+  payload: IPrices;
 }
 
 export type FiltersActionType =
@@ -73,5 +80,6 @@ export type FiltersActionType =
   | SetBrandsAction
   | SetRatingsAction
   | SetPricesAction
-  | ResetFiltersAction
-  | SetSortTypeAction;
+  | SetSortTypeAction
+  | UpdateFiltersAction
+  | ResetFiltersAction;

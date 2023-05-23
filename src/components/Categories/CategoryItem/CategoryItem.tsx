@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import "./CategoryItem.scss";
-import DropDown from "../DropDown/DropDown";
+import { getCategoryBrands } from "@utils/products/categories";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
-import { getCategoryBrands } from "@utils/productUtils";
+import DropDown from "../DropDown/DropDown";
 
 type Props = {
   category: string;

@@ -17,9 +17,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $border_color_grey;
+    border: 1px solid $primary_gray;
     border-radius: 12px;
-    background-color: $background_color_lightgrey;
+    background-color: $primary_lightgray;
     padding: 9px 16px;
     gap: 24px;
     max-width: 280px;
@@ -35,7 +35,7 @@
     span:first-child {
       font-size: 0.875rem;
       padding-right: 20px;
-      border-right: 1px solid $border_color_grey;
+      border-right: 1px solid $primary_gray;
     }
 
     span:last-child {

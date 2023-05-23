@@ -30,12 +30,17 @@ export const setFilterPrices = (prices: IPrices): FiltersActionType => ({
   payload: prices,
 });
 
-export const resetFilters = (filters: IFilters): FiltersActionType => ({
-  type: FilterTypes.RESET_FILTERS,
+export const setFilterSortType = (sortType: string): FiltersActionType => ({
+  type: FilterTypes.SET_FILTER_SORT_TYPE,
+  payload: sortType,
+});
+
+export const updateFilters = (filters: IFilters): FiltersActionType => ({
+  type: FilterTypes.UPDATE_FILTERS,
   payload: filters,
 });
 
-export const setSortType = (sortType: string): FiltersActionType => ({
-  type: FilterTypes.SET_SORT_TYPE,
-  payload: sortType,
+export const resetFilters = (prices: IPrices): FiltersActionType => ({
+  type: FilterTypes.RESET_FILTERS,
+  payload: prices,
 });

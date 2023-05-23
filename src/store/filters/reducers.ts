@@ -30,10 +30,12 @@ export default function filtersReducer(
       return { ...state, ratings: action.payload };
     case FilterTypes.SET_FILTER_PRICES:
       return { ...state, prices: action.payload };
-    case FilterTypes.RESET_FILTERS:
-      return { ...state, ...action.payload };
-    case FilterTypes.SET_SORT_TYPE:
+    case FilterTypes.SET_FILTER_SORT_TYPE:
       return { ...state, sort: action.payload };
+    case FilterTypes.UPDATE_FILTERS:
+      return { ...state, ...action.payload };
+    case FilterTypes.RESET_FILTERS:
+      return { ...initialState, prices: action.payload };
     default:
       return state;
   }

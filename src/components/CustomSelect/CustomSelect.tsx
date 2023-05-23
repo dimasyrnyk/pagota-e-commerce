@@ -1,7 +1,7 @@
-import "./CustomSelect.scss";
 import { useState } from "react";
+
+import "./CustomSelect.scss";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
-import { SortType } from "@constants/filters";
 
 type Props = {
   className: string;

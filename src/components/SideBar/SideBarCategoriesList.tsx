@@ -1,20 +1,20 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
-import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
-import { getCategoryLength } from "@utils/productUtils";
-import { setFilterBrands, setFilterCategory } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
-import { isBrandsInNewCategory, updateUrl } from "@utils/filtersUtils";
+import { setFilterBrands, setFilterCategory } from "@store/filters/actions";
+import { getCategoryLength } from "@utils/products/categories";
+import { isBrandsInNewCategory } from "@utils/filters/filterProducts";
+import { updateUrl } from "@utils/filters/searchParams";
+import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 
 function SideBarCategoriesList() {
-  const filters = useSelector((state: RootState) => state.filters);
-  const { categories } = useSelector((state: RootState) => state.products);
-  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
+  const filters = useSelector((state: RootState) => state.filters);
+  const { categories } = useSelector((state: RootState) => state.products);
 
   const handleCategoryChange = (categoryName: string) => {
     const updatedBrands = isBrandsInNewCategory(categoryName, filters.brands);

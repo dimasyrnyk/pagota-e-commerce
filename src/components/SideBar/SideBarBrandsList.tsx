@@ -1,21 +1,20 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
 import { setFilterBrands } from "@store/filters/actions";
 import { AppDispatch, RootState } from "@store/index";
+import { updateUrl } from "@utils/filters/searchParams";
+import { getCategoryBrands } from "@utils/products/categories";
 import CustomCheckbox from "@components/CustomCheckbox/CustomCheckbox";
-import { updateUrl } from "@utils/filtersUtils";
-import { useEffect, useState } from "react";
-import { getCategoryBrands } from "@utils/productUtils";
 
 function SideBarBrandsList() {
-  const filters = useSelector((state: RootState) => state.filters);
-  const [categoryBrands, setCategoryBrands] = useState<string[]>([]);
-  const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
+  const filters = useSelector((state: RootState) => state.filters);
+  const [categoryBrands, setCategoryBrands] = useState<string[]>([]);
 
   useEffect(() => {
     const updatedCategoryBrands = getCategoryBrands(filters.category);

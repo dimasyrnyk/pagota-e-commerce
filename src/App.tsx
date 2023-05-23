@@ -1,20 +1,33 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Route, Routes, useLocation } from "react-router-dom";
+import queryString from "query-string";
 
 import "./App.scss";
-import CartPage from "@pages/CartPage";
-import HomePage from "@pages/HomePage";
-import NotFoundPage from "@pages/NotFoundPage";
-import ProductItemPage from "@pages/ProductItemPage";
-import ProductsListPage from "@pages/ProductsListPage";
-import { useEffect } from "react";
-import { AppDispatch } from "./store";
+import { AppDispatch } from "@store/index";
 import { getAllProducts } from "@store/products/actions";
+import { parseSearchParams } from "@utils/filters/searchParams";
+import Cart from "@pages/Cart";
+import Home from "@pages/Home";
+import NotFound from "@pages/NotFound";
+import ProductItem from "@pages/ProductItem";
+import ProductsList from "@pages/ProductsList";
 
 function App() {
+  const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
+
+  const getData = async () => {
+    await dispatch(getAllProducts());
+
+    const searchParams = queryString.parse(location.search, {
+      arrayFormat: "comma",
+    });
+    parseSearchParams(searchParams, dispatch);
+  };
+
   useEffect(() => {
-    dispatch(getAllProducts());
+    getData();
   }, []);
 
   return (
@@ -22,23 +35,23 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<HomePage />}
+          element={<Home />}
         />
         <Route
           path="/products"
-          element={<ProductsListPage />}
+          element={<ProductsList />}
         />
         <Route
           path="/products/:id"
-          element={<ProductItemPage />}
+          element={<ProductItem />}
         />
         <Route
           path="/cart"
-          element={<CartPage />}
+          element={<Cart />}
         />
         <Route
           path="*"
-          element={<NotFoundPage />}
+          element={<NotFound />}
         />
       </Routes>
     </div>

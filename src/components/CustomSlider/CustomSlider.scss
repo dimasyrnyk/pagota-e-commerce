@@ -16,7 +16,7 @@ $thumb-size: 20px;
   border-radius: 0px;
   border: 0 none;
   cursor: grab;
-  background-color: $background_color_grey;
+  background-color: $secondary_lightgray;
 
   &:active {
     cursor: grabbing;
@@ -81,13 +81,13 @@ $thumb-size: 20px;
   transform: translateY(-50%);
   height: 6px;
   border-radius: 3px;
-  background: $background_color_grey2;
+  background: $secondary_gray;
 }
 
 .inner-rail {
   position: absolute;
   height: 100%;
-  background: $background_color_green;
+  background: $primary_green;
 }
 
 .control {
@@ -95,8 +95,8 @@ $thumb-size: 20px;
   height: $thumb-size;
   border-radius: 50%;
   position: absolute;
-  border: 1px solid $border_color_grey;
-  background: $background_color_lightgrey;
+  border: 1px solid $primary_gray;
+  background: $primary_lightgray;
   top: 50%;
   margin-left: calc(#{$thumb-size} / -2);
   transform: translate3d(0, -50%, 0);

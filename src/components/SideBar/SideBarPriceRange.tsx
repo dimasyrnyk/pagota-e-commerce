@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import "./SideBar.scss";
-import { Prices, SLIDER_STEP } from "@constants/app";
-import CustomSlider from "@components/CustomSlider/CustomSlider";
 import { AppDispatch, RootState } from "@store/index";
 import { setFilterPrices } from "@store/filters/actions";
-import { updateUrl } from "@utils/filtersUtils";
+import { Prices, SLIDER_STEP } from "@constants/app";
+import { updateUrl } from "@utils/filters/searchParams";
+import CustomSlider from "@components/CustomSlider/CustomSlider";
 
 const initState = {
   min: true,
@@ -27,6 +26,9 @@ type Price = {
 };
 
 const PriceRange = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch: AppDispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(
     (state: RootState) => state.products
   );
@@ -35,14 +37,6 @@ const PriceRange = () => {
   const [isValidPrices, setIsValidPrices] = useState<State>(initState);
   const [priceRange, setPriceRange] = useState<Price>({ ...prices });
   const [validPriceRange, setValidPriceRange] = useState<Price>({ ...prices });
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch: AppDispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setFilterPrices(validPriceRange));
-    updateUrl({ ...filters, prices: validPriceRange }, navigate, location);
-  }, [validPriceRange.min, validPriceRange.max]);
 
   useEffect(() => {
     setValidPriceRange({ ...prices });
@@ -53,20 +47,21 @@ const PriceRange = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     let newValue = parseInt(value, 10);
+    const isValidMin =
+      name === Prices.MIN && newValue >= minPrice && newValue <= priceRange.max;
+    const isValidMax =
+      name === Prices.MAX && newValue <= maxPrice && newValue >= priceRange.min;
 
     if (isNaN(newValue)) {
       newValue = 0;
       setIsValidPrices({ ...isValidPrices, [name]: false });
-    } else if (
-      (name === Prices.MIN &&
-        newValue >= minPrice &&
-        newValue <= priceRange.max) ||
-      (name === Prices.MAX &&
-        newValue <= maxPrice &&
-        newValue >= priceRange.min)
-    ) {
-      setValidPriceRange({ ...validPriceRange, [name]: newValue });
+    } else if (isValidMin || isValidMax) {
+      const newPriceRange = { ...validPriceRange, [name]: newValue };
+
+      setValidPriceRange(newPriceRange);
       setIsValidPrices({ ...isValidPrices, [name]: true });
+      dispatch(setFilterPrices(newPriceRange));
+      updateUrl({ ...filters, prices: newPriceRange }, navigate, location);
     } else {
       setIsValidPrices({ ...isValidPrices, [name]: false });
     }
@@ -75,8 +70,8 @@ const PriceRange = () => {
   };
 
   const handleSliderChange = (prices: Price) => {
-    setValidPriceRange(prices);
-    setPriceRange(prices);
+    dispatch(setFilterPrices(prices));
+    updateUrl({ ...filters, prices }, navigate, location);
   };
 
   return (
