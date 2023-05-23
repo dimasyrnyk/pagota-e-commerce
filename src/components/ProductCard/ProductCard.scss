@@ -165,14 +165,14 @@
     text-decoration: line-through;
     font-size: 0.75rem;
     font-weight: 600;
-    color: $primary_lightgray;
+    color: $secondary_darkgray;
   }
 
   &__shipping {
     display: flex;
     flex-direction: column;
     font-size: 0.75rem;
-    color: $primary_lightgray;
+    color: $secondary_darkgray;
 
     span:first-child {
       font-weight: 600;
@@ -218,7 +218,7 @@
     font-size: 0.875rem;
     gap: 12px;
     margin-top: 27px;
-    color: $primary_lightgray;
+    color: $secondary_darkgray;
   }
 
   &__row {
