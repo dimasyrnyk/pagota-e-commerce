@@ -17,9 +17,10 @@ import {
 type Props = {
   products: IProduct[];
   setProducts: (products: IProduct[]) => void;
+  setPage: (page: number) => void;
 };
 
-function Pagination({ products, setProducts }: Props) {
+function Pagination({ products, setProducts, setPage }: Props) {
   const [currentPage, setCurrentPage] = useState<number>(CURRENT_PAGE);
   const [itemsPerPage, setItemsPerPage] = useState<number>(ITEMS_PER_PAGE);
 
@@ -43,18 +44,8 @@ function Pagination({ products, setProducts }: Props) {
   const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
   const isLastPage = indexOfLastItem >= products.length;
 
-  const scrollToTop = () => {
-    if (window.scrollY !== 0) {
-      window.scrollTo(0, window.scrollY - 20);
-      setTimeout(scrollToTop, 10);
-    }
-  };
-
   useEffect(() => {
-    scrollToTop();
-  }, [currentPage]);
-
-  useEffect(() => {
+    setPage(CURRENT_PAGE);
     setCurrentPage(CURRENT_PAGE);
     setItemsPerPage(ITEMS_PER_PAGE);
     setMaxPageNumberLimit(MAX_PAGE_NUMBER_LIMIT);
@@ -68,6 +59,7 @@ function Pagination({ products, setProducts }: Props) {
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
     const element = e.target as HTMLElement;
     const id = element.getAttribute("id") as string;
+    setPage(+id);
     setCurrentPage(+id);
   };
 
@@ -90,7 +82,9 @@ function Pagination({ products, setProducts }: Props) {
 
   const handleNextbtn = (pageAmount: number) => {
     const isPage = currentPage + pageAmount < pagesCount;
-    setCurrentPage(isPage ? currentPage + pageAmount : pagesCount);
+    const newPage = isPage ? currentPage + pageAmount : pagesCount;
+    setPage(newPage);
+    setCurrentPage(newPage);
 
     if (currentPage + pageAmount > maxPageNumberLimit) {
       setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
@@ -99,7 +93,9 @@ function Pagination({ products, setProducts }: Props) {
   };
 
   const handlePrevbtn = (pageAmount: number) => {
-    setCurrentPage(currentPage - pageAmount);
+    const newPage = currentPage - pageAmount;
+    setPage(newPage);
+    setCurrentPage(newPage);
 
     if (currentPage - pageAmount <= minPageNumberLimit) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
@@ -122,13 +118,15 @@ function Pagination({ products, setProducts }: Props) {
   }
 
   const handleLoadMore = () => {
-    const newPage = Math.ceil(
+    const possiblePage = Math.ceil(
       ((currentPage - 1) * itemsPerPage) / (itemsPerPage + ITEMS_PER_PAGE) + 1
     );
     const newPagesCount = Math.ceil(
       products.length / (itemsPerPage + ITEMS_PER_PAGE)
     );
-    setCurrentPage(newPage < newPagesCount ? newPage : newPagesCount);
+    const newPage = possiblePage < newPagesCount ? possiblePage : newPagesCount;
+    setPage(newPage);
+    setCurrentPage(newPage);
     setItemsPerPage(itemsPerPage + ITEMS_PER_PAGE);
 
     if (newPage <= minPageNumberLimit && minPageNumberLimit) {

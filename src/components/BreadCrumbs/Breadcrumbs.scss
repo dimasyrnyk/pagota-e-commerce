@@ -23,21 +23,25 @@
     display: flex;
     justify-content: flex-start;
     font-size: 0.75rem;
-    color: $secondary_darkgray;
+    color: $black;
+
+    li:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    li:not(:last-child)::after {
+      content: "/";
+      color: $secondary_darkgray;
+      margin-left: 10px;
+    }
 
     a {
       text-decoration: none;
       color: $secondary_darkgray;
-      margin: 0 8px;
 
       &:hover {
         color: darken($secondary_darkgray, 10%);
       }
-    }
-
-    .disabled-link {
-      cursor: not-allowed;
-      color: $black;
     }
   }
 }
