@@ -26,7 +26,9 @@ function ProductCard({ product }: Props) {
     ),
     "Farm:": product.producer,
     "Delivery:": product.delivery.area,
-    "Stock:": product.quantity.pcs,
+    "Stock:": (
+      <span className="text_green">{`${product.quantity.pcs} pcs`}</span>
+    ),
   };
 
   return (

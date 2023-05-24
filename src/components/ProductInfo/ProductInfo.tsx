@@ -20,7 +20,7 @@ function ProductInfo({ product }: Props) {
     },
     right: {
       "Size:": product?.size,
-      "Buy by:": "pcs, kgs, box, pack",
+      "Buy by:": Object.keys(product.price).join(", "),
       "Delivery:": `in ${product?.delivery.time} days`,
       "Delivery area:": product?.delivery.area,
     },
