@@ -6,10 +6,19 @@ export interface IProduct {
   color: string;
   size: string;
   producer: string;
-  delivery: number;
-  deliveryArea: string;
-  quantity: number;
-  price: number;
+  delivery: {
+    area: string;
+    time: number;
+    price: number;
+  };
+  quantity: {
+    pcs: number;
+    [key: string]: number;
+  };
+  price: {
+    pcs: number;
+    [key: string]: number;
+  };
   discount: number;
   shortDescription: string;
   fullDescription: string;
@@ -23,3 +32,6 @@ export type Brand = {
   name: string;
   category: string;
 };
+
+export const INITIAL_QUANTITY = 1;
+export const INITIAL_UNIT = "pcs";

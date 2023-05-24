@@ -22,6 +22,11 @@ export enum Prices {
   MAX = "max",
 }
 
+export enum WishListBtnTitle {
+  PRODUCT_CARD = "Add to wish list",
+  PRODUCT_PAGE = "Add to my wish list",
+}
+
 export interface ILink {
   href: string;
   name: string;

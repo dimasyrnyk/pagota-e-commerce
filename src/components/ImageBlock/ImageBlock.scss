@@ -1,0 +1,22 @@
+@use "@styles/colors" as *;
+
+.image-block {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  &__primary {
+    border-radius: 12px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  &__secondary {
+    border-radius: 12px;
+    width: 47%;
+  }
+}

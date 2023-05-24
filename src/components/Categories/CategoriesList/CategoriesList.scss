@@ -1,4 +1,5 @@
 @use "@styles/colors" as *;
+@use "@styles/variables" as *;
 
 /* ---------- MEDIA SCREEN -- MOBILE ---------- */
 @media (max-width: 600px) {
@@ -11,7 +12,7 @@
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
-@media screen and (min-width: 601px) and (max-width: 900px) {
+@media screen and (min-width: 601px) and (max-width: 1000px) {
   .categories {
     &__list {
       display: grid;
@@ -23,7 +24,7 @@
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1001px) {
   .categories {
     &__list {
       display: flex;
@@ -40,5 +41,6 @@
     flex: 1;
     background-color: $primary_lightgray;
     padding: 16px 25px;
+    font-family: $font_poppins;
   }
 }

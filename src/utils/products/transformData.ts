@@ -13,7 +13,7 @@ export function getTransformedData(products: IProduct[]) {
 
   products.forEach((product: IProduct) => {
     const productCurrentPrice = Math.round(
-      product.price * ((100 - product.discount) / 100)
+      product.price.pcs * ((100 - product.discount) / 100)
     );
 
     const brandKey = `${product.producer}-${product.category}`;

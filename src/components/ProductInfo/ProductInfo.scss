@@ -1,0 +1,80 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .product-info {
+    &__short-description {
+      margin: 20px 0;
+    }
+
+    &__main-info {
+      flex-direction: column;
+      padding: 0 10px;
+      gap: 12px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .product-info {
+    &__short-description {
+      margin: 20px 0;
+    }
+
+    &__main-info {
+      gap: 20px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 1001px) {
+  .product-info {
+    flex: 1;
+
+    &__short-description {
+      margin: 40px 0;
+    }
+
+    &__main-info {
+      gap: 20px;
+    }
+  }
+}
+
+.product-info {
+  &__rating-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &_review {
+      font-size: 0.75rem;
+      color: $secondary_darkgray;
+    }
+  }
+
+  &__short-description {
+    font-size: 1.0625rem;
+  }
+
+  &__main-info {
+    display: flex;
+  }
+
+  &__wishlist-btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: $white;
+    font-weight: 700;
+    padding: 5px;
+    gap: 10px;
+
+    &:hover {
+      border-radius: 12px;
+      background-color: $primary_gray;
+    }
+  }
+}
