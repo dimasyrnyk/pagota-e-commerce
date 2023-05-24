@@ -2,7 +2,12 @@ import { useState } from "react";
 
 import "./OrderBlock.scss";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
-import { INITIAL_QUANTITY, INITIAL_UNIT, IProduct } from "@constants/products";
+import {
+  ERROR_DALAY,
+  INITIAL_QUANTITY,
+  INITIAL_UNIT,
+  IProduct,
+} from "@constants/products";
 import PlusIcon from "@components/Icons/PlusIcon";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import CustomSelect from "@components/CustomSelect/CustomSelect";
@@ -28,7 +33,7 @@ function OrderBlock({ product }: Props) {
         setError(`In stock only ${productTotalQuantity} ${unit}`);
         setTimeout(() => {
           setError("");
-        }, 4000);
+        }, ERROR_DALAY);
       }
     }
   };
