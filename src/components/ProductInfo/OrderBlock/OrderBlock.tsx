@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./OrderBlock.scss";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import {
-  ERROR_DALAY,
+  ERROR_DELAY,
   INITIAL_QUANTITY,
   INITIAL_UNIT,
   IProduct,
@@ -33,7 +33,7 @@ function OrderBlock({ product }: Props) {
         setError(`In stock only ${productTotalQuantity} ${unit}`);
         setTimeout(() => {
           setError("");
-        }, ERROR_DALAY);
+        }, ERROR_DELAY);
       }
     }
   };

@@ -35,4 +35,4 @@ export type Brand = {
 
 export const INITIAL_QUANTITY = 1;
 export const INITIAL_UNIT = "pcs";
-export const ERROR_DALAY = 3000;
+export const ERROR_DELAY = 3000;
