@@ -22,7 +22,7 @@ function Breadcrumbs() {
         />
       );
     });
-  const isHome = crumbs.length;
+  const isHome = !crumbs.length;
 
   return (
     <nav>
