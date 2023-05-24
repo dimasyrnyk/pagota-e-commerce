@@ -10,6 +10,13 @@ export const PAGE_NUMBER_LIMIT = 5;
 export const MIN_PAGE_NUMBER_LIMIT = 0;
 export const MAX_PAGE_NUMBER_LIMIT = 5;
 
+export enum Crumbs {
+  home = "Homepage",
+  products = "All products",
+  cart = "Cart",
+  notFound = "Page not found",
+}
+
 export enum Prices {
   MIN = "min",
   MAX = "max",

@@ -7,6 +7,7 @@ import { ALL_CATEGORIES } from "@constants/app";
 
 const initialState: ProductsState = {
   allProducts: [],
+  selectedProduct: null,
   categories: [ALL_CATEGORIES],
   brands: [],
   minPrice: 0,
@@ -32,6 +33,8 @@ export default function productsReducer(
         minPrice: action.payload.minPrice,
         maxPrice: action.payload.maxPrice,
       };
+    case ProductsTypes.GET_ONE_PRODUCT:
+      return { ...state, selectedProduct: action.payload };
     default:
       return state;
   }

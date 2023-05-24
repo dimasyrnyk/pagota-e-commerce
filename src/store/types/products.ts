@@ -2,6 +2,7 @@ import { Brand, IProduct } from "@constants/products";
 
 export interface ProductsState {
   allProducts: IProduct[];
+  selectedProduct: IProduct | null;
   categories: string[];
   brands: Brand[];
   minPrice: number;
@@ -13,6 +14,7 @@ export enum ProductsTypes {
   START_LOADING_PRODUCTS = "products/START_LOADING",
   END_LOADING_PRODUCTS = "products/END_LOADING",
   GET_ALL_PRODUCTS = "products/GET_ALL",
+  GET_ONE_PRODUCT = "products/GET_ONE",
 }
 
 interface StartLoadingAction {
@@ -34,7 +36,13 @@ interface GetAllAction {
   };
 }
 
+interface GetOneAction {
+  type: ProductsTypes.GET_ONE_PRODUCT;
+  payload: IProduct;
+}
+
 export type ProductsAction =
   | StartLoadingAction
   | EndLoadingAction
-  | GetAllAction;
+  | GetAllAction
+  | GetOneAction;
