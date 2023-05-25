@@ -1,8 +1,8 @@
 import "./InfoList.scss";
 
 type Props = {
-  className?: string;
   info: Record<string, number | string | JSX.Element | undefined>;
+  className?: string;
 };
 
 function InfoList({ className, info }: Props) {

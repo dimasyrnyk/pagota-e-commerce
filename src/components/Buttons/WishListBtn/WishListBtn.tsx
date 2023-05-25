@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import "./WishListBtn.scss";
 import { AppDispatch, RootState } from "@store/index";
 import {
   addProductToWishlist,
@@ -9,15 +8,16 @@ import {
 import { IProduct } from "@constants/products";
 import HeartIcon from "@components/Icons/HeartIcon";
 import HeartIconFull from "@components/Icons/HeartIconFull";
+import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 
 type Props = {
   product: IProduct;
-  className?: string;
   title: string | JSX.Element;
+  className?: string;
   disabled?: boolean;
 };
 
-function WishListBtn({ product, className, title, disabled }: Props) {
+function WishListBtn({ product, title, className, disabled }: Props) {
   const dispatch: AppDispatch = useDispatch();
   const { wishList } = useSelector((state: RootState) => state.products);
 
@@ -34,14 +34,14 @@ function WishListBtn({ product, className, title, disabled }: Props) {
   };
 
   return (
-    <button
-      className={"wishlist-btn " + className}
+    <SecondaryBtn
+      className={className}
       onClick={handleToggleWishList}
       disabled={disabled}
     >
       {isProductInWishList() ? <HeartIconFull /> : <HeartIcon />}
       {title}
-    </button>
+    </SecondaryBtn>
   );
 }
 
