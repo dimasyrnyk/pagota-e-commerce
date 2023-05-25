@@ -7,13 +7,29 @@ import Rating from "@components/Rating/Rating";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import { IProduct } from "@constants/products";
+import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
+import { WishListBtnTitle } from "@constants/app";
+import InfoList from "@components/ProductInfo/InfoList/InfoList";
 
 type Props = {
   product: IProduct;
 };
 
 function ProductCard({ product }: Props) {
-  const currentPrice = getCurrentPrice(product.price, product.discount);
+  const currentPrice = getCurrentPrice(product.price.pcs, product.discount);
+
+  const productInfo = {
+    "Fresheness:": (
+      <>
+        <span className="text_green">New</span> (Extra fresh){" "}
+      </>
+    ),
+    "Farm:": product.producer,
+    "Delivery:": product.delivery.area,
+    "Stock:": (
+      <span className="text_green">{`${product.quantity.pcs} pcs`}</span>
+    ),
+  };
 
   return (
     <li className="product-card__container">
@@ -37,30 +53,7 @@ function ProductCard({ product }: Props) {
           </p>
           <Rating rating={product.rating} />
           <div className="description__container">
-            <ul className="description__list">
-              <li className="description__row">
-                <span className="description__label">Fresheness:</span>
-                <span className="description__value">
-                  <span className="text__green">New</span> (Extra fresh)
-                </span>
-              </li>
-              <li className="description__row">
-                <span className="description__label">Farm:</span>
-                <span className="description__value">{product.producer}</span>
-              </li>
-              <li className="description__row">
-                <span className="description__label">Delivery:</span>
-                <span className="description__value">
-                  {product.deliveryArea}
-                </span>
-              </li>
-              <li className="description__row">
-                <span className="description__label">Stock:</span>
-                <span className="description__value">
-                  <span className="text__green">{product.quantity}</span>
-                </span>
-              </li>
-            </ul>
+            <InfoList info={productInfo} />
           </div>
         </div>
         <div className="product-card__second-column">
@@ -71,13 +64,15 @@ function ProductCard({ product }: Props) {
               </h3>
               {product.discount ? (
                 <span className="product-card__price-old">
-                  {formatPrice(product.price)}
+                  {formatPrice(product.price.pcs)}
                 </span>
               ) : null}
             </div>
             <div className="product-card__shipping">
-              <span>Free Shipping</span>
-              <span>Delivery in {product.delivery} days</span>
+              {!product.delivery.price ? (
+                <span className="shipping_free">Free shipping</span>
+              ) : null}
+              <span>Delivery in {product.delivery.time} days</span>
             </div>
           </div>
           <Link to={"/products/" + product.id}>
@@ -85,10 +80,11 @@ function ProductCard({ product }: Props) {
               Product Detail <ChevronRightIcon />
             </PrimaryBtn>
           </Link>
-          <button className="product-card__btn-wish-list">
-            <HeartIcon />
-            Add to wish list
-          </button>
+          <WishListBtn
+            className="product-card__btn-wish-list"
+            product={product}
+            title={WishListBtnTitle.PRODUCT_CARD}
+          />
         </div>
       </div>
     </li>

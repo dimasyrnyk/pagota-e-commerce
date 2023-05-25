@@ -1,0 +1,98 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .order-block {
+    &__controls {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .order-block {
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 1001px) {
+  .order-block {
+  }
+}
+
+.order-block {
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid $secondary_lightgray;
+    padding: 15px 20px;
+    margin: 40px 0 30px 0;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+
+    &-current {
+      font-size: 1.625rem;
+    }
+    &-old {
+      font-size: 0.75rem;
+      color: $secondary_darkgray;
+      text-decoration: line-through;
+      line-height: 1.125rem;
+    }
+  }
+
+  &__buttons-block {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__input {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid $primary_gray;
+    background: $primary_lightgray;
+
+    &-body {
+      width: 40px;
+      border: none;
+      border-right: 1px solid $primary_gray;
+      outline: none;
+      background: $primary_lightgray;
+    }
+
+    &-label {
+      font-size: 0.75rem;
+      margin-left: 16px;
+
+      img {
+        filter: invert(50%);
+      }
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 47px;
+    left: 0;
+    font-size: 0.8rem;
+    color: $primary_red;
+    white-space: nowrap;
+  }
+
+  &__add-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}

@@ -1,0 +1,19 @@
+@use "@styles/colors" as *;
+
+.wishlist-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: inherit;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  gap: 7px;
+
+  &:hover {
+    background-color: darken($secondary_lightgray, 10%);
+  }
+}

@@ -7,43 +7,70 @@ import { AppDispatch, RootState } from "@store/index";
 import { getOneProduct } from "@store/products/actions";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
+import AppLoader from "@components/AppLoader/AppLoader";
+import ImageBlock from "@components/ImageBlock/ImageBlock";
+import ProductInfo from "@components/ProductInfo/ProductInfo";
 
 function ProductItem() {
   const { id } = useParams();
   const dispatch: AppDispatch = useDispatch();
-  const { selectedProduct } = useSelector((state: RootState) => state.products);
+  const { selectedProduct, isLoading } = useSelector(
+    (state: RootState) => state.products
+  );
+  const product =
+    selectedProduct && selectedProduct.id === id ? selectedProduct : null;
 
   const getData = async () => {
-    id && (await dispatch(getOneProduct(id)));
+    if (id && !product) {
+      await dispatch(getOneProduct(id));
+    }
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  if (!selectedProduct || selectedProduct.id !== id) {
-    return (
-      <>
-        <Header />
-        <div className="products-item__container">
-          <h2>Please go back for safety.</h2>
+  const renderLoading = () => {
+    if (isLoading) {
+      return <AppLoader />;
+    }
+  };
+
+  const renderNotFoundProduct = () => {
+    if (!isLoading && !product) {
+      return (
+        <center>
+          <h3>Product not found. Please go back for safety.</h3>
           <Link to="/products">Back to products</Link>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+        </center>
+      );
+    }
+  };
+
+  const renderProduct = () => {
+    if (product) {
+      return (
+        <>
+          <div className="product-item__first-column">
+            <div className="product-item__additional-info">
+              {product.discount ? <span>- {product.discount} %</span> : null}
+              {!product.delivery.price ? <span>Free shipping</span> : null}
+            </div>
+            <ImageBlock product={product} />
+          </div>
+          <ProductInfo product={product} />
+        </>
+      );
+    }
+  };
 
   return (
     <>
       <Header />
-      <div className="products-item__container">
-        <h2>{selectedProduct.title}</h2>
-        <Link to="/">HomePage</Link>
-        <Link to="/cart">CartPage</Link>
-        <Link to="/products">ProductsListPage</Link>
-        <Link to="/products/id">ProductItemPage</Link>
-        <Link to="*">NotFoundPage</Link>
+      <div className="product-item__container">
+        {renderLoading()}
+        {renderNotFoundProduct()}
+        {renderProduct()}
       </div>
       <Footer />
     </>

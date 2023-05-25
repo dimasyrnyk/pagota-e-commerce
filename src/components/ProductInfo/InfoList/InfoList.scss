@@ -1,0 +1,42 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .info-list {
+    &__value {
+      justify-self: flex-end;
+      text-align: end;
+    }
+  }
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+  font-size: 0.875rem;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  gap: 12px;
+
+  &__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+
+  &__key,
+  &__value {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 120px;
+  }
+
+  &__key {
+    color: $secondary_darkgray;
+  }
+}
+
+.text__green {
+  color: $primary_green;
+}

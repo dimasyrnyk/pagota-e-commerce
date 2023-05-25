@@ -2,11 +2,16 @@
 
 .primary-btn {
   cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 12px;
-  border: 1px solid $secondary_green;
+  border: 2px solid $secondary_green;
   background: $primary_green;
+  font-style: normal;
   color: $white;
   padding: 9px 16px;
+  gap: 12px;
 
   &:hover {
     background: darken($primary_green, 10%);

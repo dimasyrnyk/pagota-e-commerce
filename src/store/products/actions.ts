@@ -1,8 +1,9 @@
 import { BASE_URL } from "@constants/app";
 import { AppDispatch } from "..";
-import { ProductsTypes } from "../types/products";
+import { ProductsAction, ProductsTypes } from "../types/products";
 import { getTransformedData } from "@utils/products/transformData";
 import { setFilterPrices } from "@store/filters/actions";
+import { IProduct } from "@constants/products";
 
 export function getAllProducts() {
   return async (dispatch: AppDispatch) => {
@@ -51,3 +52,15 @@ export function getOneProduct(productId: string) {
     dispatch({ type: ProductsTypes.END_LOADING_PRODUCTS });
   };
 }
+
+export const addProductToWishlist = (product: IProduct): ProductsAction => ({
+  type: ProductsTypes.ADD_PRODUCT_TO_WISHLIST,
+  payload: product,
+});
+
+export const removeProductFromWishlist = (
+  productId: string
+): ProductsAction => ({
+  type: ProductsTypes.REMOVE_PRODUCT_FROM_WISHLIST,
+  payload: productId,
+});

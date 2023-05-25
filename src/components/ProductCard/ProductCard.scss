@@ -1,7 +1,7 @@
 @use "@styles/colors" as *;
 
 /* ---------- MEDIA SCREEN -- MOBILE ---------- */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
   .product-card {
     &__container {
       flex-direction: column;
@@ -48,7 +48,7 @@
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
-@media screen and (min-width: 551px) and (max-width: 750px) {
+@media screen and (min-width: 601px) and (max-width: 750px) {
   .product-card {
     &__container {
       flex-direction: column;
@@ -173,42 +173,17 @@
     flex-direction: column;
     font-size: 0.75rem;
     color: $secondary_darkgray;
-
-    span:first-child {
-      font-weight: 600;
-    }
   }
 
   &__btn-detail {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 12px 16px;
-    gap: 12px;
-    font-style: normal;
     font-weight: 700;
     font-size: 0.9375rem;
     line-height: 1.375rem;
-    border-width: 2px;
   }
 
   &__btn-wish-list {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 6px 12px;
-    gap: 7px;
     background-color: $secondary_lightgray;
-    border-radius: 12px;
-    border: none;
-    font-weight: 700;
-    font-size: 0.9375rem;
-    line-height: 1.375rem;
-
-    &:hover {
-      background-color: darken($secondary_lightgray, 10%);
-    }
   }
 }
 
@@ -220,19 +195,12 @@
     margin-top: 27px;
     color: $secondary_darkgray;
   }
-
-  &__row {
-    display: grid;
-    grid-template-columns: 110px 1fr;
-    gap: 5px;
-
-    span {
-      word-wrap: break-word;
-      word-break: break-all;
-    }
-  }
 }
 
-.text__green {
+.text_green {
   color: $primary_green;
+}
+
+.shipping_free {
+  font-weight: 600;
 }
