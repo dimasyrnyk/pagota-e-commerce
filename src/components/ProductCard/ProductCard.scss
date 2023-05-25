@@ -1,7 +1,7 @@
 @use "@styles/colors" as *;
 
 /* ---------- MEDIA SCREEN -- MOBILE ---------- */
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
   .product-card {
     &__container {
       flex-direction: column;
@@ -48,7 +48,7 @@
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
-@media screen and (min-width: 551px) and (max-width: 750px) {
+@media screen and (min-width: 601px) and (max-width: 750px) {
   .product-card {
     &__container {
       flex-direction: column;

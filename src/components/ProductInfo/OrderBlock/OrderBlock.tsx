@@ -23,10 +23,12 @@ function OrderBlock({ product }: Props) {
   const currentPrice =
     getCurrentPrice(product.price[unit], product.discount) * quantity;
   const productTotalQuantity = product.quantity[unit];
+  const currentOldPrice = product.price[unit] * quantity;
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = +e.target.value;
-    if (newValue) {
+    const newValue = parseInt(e.target.value, 10);
+
+    if (newValue >= 0) {
       if (newValue <= productTotalQuantity) {
         setQuantity(newValue);
       } else {
@@ -35,6 +37,8 @@ function OrderBlock({ product }: Props) {
           setError("");
         }, ERROR_DELAY);
       }
+    } else {
+      setQuantity(0);
     }
   };
 
@@ -51,7 +55,7 @@ function OrderBlock({ product }: Props) {
         </h3>
         {product.discount ? (
           <span className="order-block__price-old">
-            {formatPrice(product.price.pcs)}
+            {formatPrice(currentOldPrice)}
           </span>
         ) : null}
       </div>
@@ -60,7 +64,9 @@ function OrderBlock({ product }: Props) {
           <input
             className="order-block__input-body"
             type="number"
-            value={quantity}
+            pattern="[0-9]*"
+            inputMode="numeric"
+            value={quantity.toString()}
             onChange={handleQuantityChange}
           />
           <CustomSelect
@@ -72,7 +78,10 @@ function OrderBlock({ product }: Props) {
           />
           {error ? <span className="order-block__error">{error}</span> : null}
         </span>
-        <PrimaryBtn className="order-block__add-btn">
+        <PrimaryBtn
+          disabled={!quantity}
+          className="order-block__add-btn"
+        >
           <PlusIcon /> Add to cart
         </PrimaryBtn>
       </div>

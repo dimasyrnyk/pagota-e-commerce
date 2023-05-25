@@ -8,9 +8,7 @@
     }
 
     &__main-info {
-      flex-direction: column;
       padding: 0 10px;
-      gap: 12px;
     }
   }
 }
@@ -23,7 +21,7 @@
     }
 
     &__main-info {
-      gap: 20px;
+      height: 120px;
     }
   }
 }
@@ -38,7 +36,7 @@
     }
 
     &__main-info {
-      gap: 20px;
+      height: 120px;
     }
   }
 }
@@ -57,10 +55,6 @@
 
   &__short-description {
     font-size: 1.0625rem;
-  }
-
-  &__main-info {
-    display: flex;
   }
 
   &__wishlist-btn {

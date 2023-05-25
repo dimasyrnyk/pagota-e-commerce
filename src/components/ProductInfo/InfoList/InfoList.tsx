@@ -1,12 +1,13 @@
 import "./InfoList.scss";
 
 type Props = {
+  className?: string;
   info: Record<string, number | string | JSX.Element | undefined>;
 };
 
-function InfoList({ info }: Props) {
+function InfoList({ className, info }: Props) {
   return (
-    <ul className="info-list">
+    <ul className={"info-list " + className}>
       {Object.entries(info).map(([key, value]) => (
         <li
           className="info-list__item"

@@ -12,18 +12,14 @@ type Props = {
 
 function ProductInfo({ product }: Props) {
   const mainInfo = {
-    left: {
-      "Country:": product?.country,
-      "Category:": product?.category,
-      "Stock:": product?.quantity.pcs ? "In Stok" : "Not avaliable",
-      "Color:": product?.color,
-    },
-    right: {
-      "Size:": product?.size,
-      "Buy by:": Object.keys(product.price).join(", "),
-      "Delivery:": `in ${product?.delivery.time} days`,
-      "Delivery area:": product?.delivery.area,
-    },
+    "Country:": product?.country,
+    "Category:": product?.category,
+    "Stock:": product?.quantity.pcs ? "In Stok" : "Not avaliable",
+    "Color:": product?.color,
+    "Size:": product?.size,
+    "Buy by:": Object.keys(product.price).join(", "),
+    "Delivery:": `in ${product?.delivery.time} days`,
+    "Delivery area:": product?.delivery.area,
   };
 
   return (
@@ -41,10 +37,10 @@ function ProductInfo({ product }: Props) {
       <p className="product-info__short-description">
         {product.shortDescription}
       </p>
-      <div className="product-info__main-info">
-        <InfoList info={mainInfo.left} />
-        <InfoList info={mainInfo.right} />
-      </div>
+      <InfoList
+        className="product-info__main-info"
+        info={mainInfo}
+      />
       <OrderBlock product={product} />
       <WishListBtn
         product={product}
