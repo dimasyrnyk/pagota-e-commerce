@@ -49,7 +49,7 @@ function ProductCard({ product }: Props) {
             <h2 className="product-card__title">{product.title}</h2>
           </Link>
           <p className="product-card__small-description">
-            {product.shortDescription}
+            {product.description.short}
           </p>
           <Rating rating={product.rating} />
           <div className="description__container">
@@ -70,7 +70,7 @@ function ProductCard({ product }: Props) {
             </div>
             <div className="product-card__shipping">
               {!product.delivery.price ? (
-                <span className="shipping_free">Free shipping</span>
+                <span className="font_600">Free shipping</span>
               ) : null}
               <span>Delivery in {product.delivery.time} days</span>
             </div>

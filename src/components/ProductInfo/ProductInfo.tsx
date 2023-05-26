@@ -1,16 +1,19 @@
 import "./ProductInfo.scss";
 import { WishListBtnTitle } from "@constants/app";
+import { IProduct } from "@constants/products";
 import Rating from "@components/Rating/Rating";
 import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import InfoList from "./InfoList/InfoList";
-import { IProduct } from "@constants/products";
 import OrderBlock from "./OrderBlock/OrderBlock";
+import TabsBlock from "./TabsBlock/TabsBlock";
 
 type Props = {
   product: IProduct;
 };
 
 function ProductInfo({ product }: Props) {
+  const reviewCount = product.reviews.length;
+
   const mainInfo = {
     "Country:": product?.country,
     "Category:": product?.category,
@@ -31,11 +34,12 @@ function ProductInfo({ product }: Props) {
           isMonochrome={true}
         />
         <span className="product-info__rating-block_review">
-          (1 customer review)
+          {reviewCount === 1 ? "(1 customer review)" : null}
+          {reviewCount > 1 ? `(${reviewCount} customer reviews)` : null}
         </span>
       </div>
       <p className="product-info__short-description">
-        {product.shortDescription}
+        {product.description.short}
       </p>
       <InfoList
         className="product-info__main-info"
@@ -46,6 +50,7 @@ function ProductInfo({ product }: Props) {
         product={product}
         title={WishListBtnTitle.PRODUCT_PAGE}
       />
+      <TabsBlock product={product} />
     </div>
   );
 }
