@@ -3,37 +3,35 @@
 /* ---------- MEDIA SCREEN -- MOBILE ---------- */
 @media (max-width: 600px) {
   .product-item {
-    &__container {
-      flex-direction: column;
-      padding: 0 15px;
-      gap: 16px;
-    }
+    flex-direction: column;
+    padding: 0 15px;
+    gap: 16px;
   }
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
 @media screen and (min-width: 601px) and (max-width: 1000px) {
   .product-item {
-    &__container {
-      flex-direction: column;
-      padding: 0 20px;
-    }
+    flex-direction: column;
+    padding: 0 20px;
   }
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
 @media screen and (min-width: 1001px) {
   .product-item {
-    &__container {
-      padding: 0 48px 0 43px;
-      gap: 32px;
-    }
+    padding: 0 48px 0 43px;
+    gap: 32px;
   }
 }
 
 .product-item {
+  display: flex;
+
   &__container {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     h2 {
       font-size: 2rem;

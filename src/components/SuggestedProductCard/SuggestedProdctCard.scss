@@ -1,0 +1,85 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .tabs-block {
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .tabs-block {
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 1001px) {
+  .tabs-block {
+  }
+}
+
+.suggested-product {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  margin: 0 auto;
+  gap: 16px;
+
+  &__discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-family: $font_poppins;
+    font-style: normal;
+    font-weight: 600;
+    color: $primary_green;
+    background: $primary_lightgreen;
+    padding: 0px 8px;
+  }
+
+  &__img {
+    cursor: pointer;
+    border-radius: 12px;
+    height: 180px;
+    width: 250px;
+    object-fit: cover;
+
+    &-link {
+      display: flex;
+    }
+  }
+
+  &__title {
+    font-family: $font_poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  &__description {
+    font-size: 0.75rem;
+    color: $primary_darkgray;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+  }
+
+  &__price {
+    font-family: $font_poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.125rem;
+
+    &-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
