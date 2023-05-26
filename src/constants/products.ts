@@ -77,3 +77,17 @@ export enum ReviewBtn {
   MORE = "read more",
   LESS = "read less",
 }
+
+export const screenWidth = {
+  MOBILE: { max: 600, min: 0 },
+  TABLET: { max: 900, min: 601 },
+  DESKTOP: { max: 1200, min: 901 },
+  LARGE_DESKTOP: { max: 4000, min: 1201 },
+};
+
+export enum ItemsPerPage {
+  MOBILE = 1,
+  TABLET = 2,
+  DESKTOP = 3,
+  LARGE_DESKTOP = 4,
+}

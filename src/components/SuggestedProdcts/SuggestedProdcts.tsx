@@ -6,6 +6,7 @@ import "./SuggestedProdcts.scss";
 import { RootState } from "@store/index";
 import SuggestedProdctCard from "@components/SuggestedProductCard/SuggestedProductCard";
 import ChevronDownIcon from "@components/Icons/ChevronDownIcon";
+import { ItemsPerPage, screenWidth } from "@constants/products";
 
 type Props = {
   category: string;
@@ -17,20 +18,20 @@ function SuggestedProdcts({ category }: Props) {
 
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 4000, min: 1201 },
-      items: 4,
+      breakpoint: screenWidth.LARGE_DESKTOP,
+      items: ItemsPerPage.LARGE_DESKTOP,
     },
     desktop: {
-      breakpoint: { max: 1200, min: 901 },
-      items: 3,
+      breakpoint: screenWidth.DESKTOP,
+      items: ItemsPerPage.DESKTOP,
     },
     tablet: {
-      breakpoint: { max: 900, min: 601 },
-      items: 2,
+      breakpoint: screenWidth.TABLET,
+      items: ItemsPerPage.TABLET,
     },
     mobile: {
-      breakpoint: { max: 600, min: 0 },
-      items: 1,
+      breakpoint: screenWidth.MOBILE,
+      items: ItemsPerPage.MOBILE,
     },
   };
 
