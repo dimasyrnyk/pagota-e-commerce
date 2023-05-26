@@ -20,7 +20,7 @@ function ReviewsList({ reviews }: Props) {
   const handleShowMore = () => {
     const newReviewsLength = showedReviewsLength + REVIEW_QUANTITY;
     setShowedReviewsLength(newReviewsLength);
-    setShowButton(reviews.length >= newReviewsLength);
+    setShowButton(reviews.length > newReviewsLength);
   };
 
   if (!reviews.length) {

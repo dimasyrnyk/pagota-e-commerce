@@ -36,7 +36,7 @@ function QuestionItem({ question }: Props) {
   return (
     <li className="question-item">
       <div>
-        <div className="review-item__author">{question.author}</div>
+        <span className="review-item__author">{question.author}</span>
         <p className="review-item__text">{question.question}</p>
         <ul className="question-item__answers">
           {showedAnswers.map((answer) => (

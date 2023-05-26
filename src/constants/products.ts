@@ -61,6 +61,7 @@ export type Brand = {
 export const INITIAL_QUANTITY = 1;
 export const INITIAL_UNIT = "pcs";
 export const ERROR_DELAY = 3000;
+export const DESCRIPTION_LENGTH = 800;
 export const REVIEW_QUANTITY = 3;
 export const REVIEW_TEXT_LENGTH = 200;
 export const ANSWERS_QUANTITY = 1;

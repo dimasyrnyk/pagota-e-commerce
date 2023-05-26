@@ -12,6 +12,8 @@ type Props = {
 };
 
 function ProductInfo({ product }: Props) {
+  const reviewCount = product.reviews.length;
+
   const mainInfo = {
     "Country:": product?.country,
     "Category:": product?.category,
@@ -32,7 +34,8 @@ function ProductInfo({ product }: Props) {
           isMonochrome={true}
         />
         <span className="product-info__rating-block_review">
-          (1 customer review)
+          {reviewCount === 1 ? "(1 customer review)" : null}
+          {reviewCount > 1 ? `(${reviewCount} customer reviews)` : null}
         </span>
       </div>
       <p className="product-info__short-description">

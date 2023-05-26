@@ -26,7 +26,7 @@ function ReviewItem({ review }: Props) {
 
   return (
     <li>
-      <div className="review-item__author">{review.author}</div>
+      <span className="review-item__author">{review.author}</span>
       <Rating rating={review.rating} />
       <p className="review-item__text">
         {showedReviewText}
@@ -40,7 +40,7 @@ function ReviewItem({ review }: Props) {
           </button>
         )}
       </p>
-      <div className="review-item__date">{review.date}</div>
+      <span className="review-item__date">{review.date}</span>
     </li>
   );
 }
