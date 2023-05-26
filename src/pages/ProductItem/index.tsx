@@ -10,6 +10,7 @@ import Footer from "@containers/Footer/Footer";
 import AppLoader from "@components/AppLoader/AppLoader";
 import ImageBlock from "@components/ImageBlock/ImageBlock";
 import ProductInfo from "@components/ProductInfo/ProductInfo";
+import SuggestedProducts from "@components/SuggestedProducts/SuggestedProducts";
 
 function ProductItem() {
   const { id } = useParams();
@@ -51,14 +52,17 @@ function ProductItem() {
     if (product) {
       return (
         <>
-          <div className="product-item__first-column">
-            <div className="product-item__additional-info">
-              {product.discount ? <span>- {product.discount} %</span> : null}
-              {!product.delivery.price ? <span>Free shipping</span> : null}
+          <div className="product-item">
+            <div className="product-item__first-column">
+              <div className="product-item__additional-info">
+                {product.discount ? <span>- {product.discount} %</span> : null}
+                {!product.delivery.price ? <span>Free shipping</span> : null}
+              </div>
+              <ImageBlock product={product} />
             </div>
-            <ImageBlock product={product} />
+            <ProductInfo product={product} />
           </div>
-          <ProductInfo product={product} />
+          <SuggestedProducts category={product.category} />
         </>
       );
     }

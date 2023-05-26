@@ -1,0 +1,86 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .suggested-products {
+    &__container {
+      justify-content: center;
+      padding: 40px 15px;
+    }
+
+    &__header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__controls {
+      display: none;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .suggested-products {
+    &__container {
+      padding: 40px 20px;
+    }
+
+    &__controls {
+      display: flex;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 1001px) {
+  .suggested-products {
+    &__container {
+      padding: 66px 48px 96px 45px;
+    }
+
+    &__controls {
+      display: flex;
+    }
+  }
+}
+
+.suggested-products {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background-color: $lightgray;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: $font_poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 37px;
+    order: 0;
+  }
+
+  &__controls {
+    gap: 10px;
+  }
+
+  &__btn-prev {
+    cursor: pointer;
+    transform: rotate(90deg);
+  }
+
+  &__btn-next {
+    cursor: pointer;
+    transform: rotate(270deg);
+  }
+}
+
+.react-multi-carousel-list {
+  order: 1;
+}

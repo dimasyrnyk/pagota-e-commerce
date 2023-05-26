@@ -1,6 +1,7 @@
 import "./ProductInfo.scss";
 import { WishListBtnTitle } from "@constants/app";
 import { IProduct } from "@constants/products";
+import { getReviewText } from "@utils/products/review";
 import Rating from "@components/Rating/Rating";
 import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import InfoList from "./InfoList/InfoList";
@@ -13,6 +14,7 @@ type Props = {
 
 function ProductInfo({ product }: Props) {
   const reviewCount = product.reviews.length;
+  const reviewText = getReviewText(reviewCount);
 
   const mainInfo = {
     "Country:": product?.country,
@@ -33,10 +35,7 @@ function ProductInfo({ product }: Props) {
           rating={product.rating}
           isMonochrome={true}
         />
-        <span className="product-info__rating-block_review">
-          {reviewCount === 1 ? "(1 customer review)" : null}
-          {reviewCount > 1 ? `(${reviewCount} customer reviews)` : null}
-        </span>
+        <span className="product-info__rating-block_review">{reviewText}</span>
       </div>
       <p className="product-info__short-description">
         {product.description.short}
