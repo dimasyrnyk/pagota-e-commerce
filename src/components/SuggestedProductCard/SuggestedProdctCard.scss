@@ -73,16 +73,27 @@
   }
 
   &__price {
+    display: flex;
+    flex-direction: column;
     font-family: $font_poppins;
     font-style: normal;
-    font-weight: 600;
-    font-size: 1.125rem;
 
     &-block {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 600;
       width: 100%;
+    }
+
+    &-current {
+      font-size: 1.125rem;
+    }
+
+    &-old {
+      font-size: 0.75rem;
+      text-decoration: line-through;
+      color: $secondary_darkgray;
     }
   }
 }

@@ -26,14 +26,21 @@ function SuggestedProdctCard({ product }: Props) {
       </Link>
       <div>
         <h4 className="suggested-product__title">{product.title}</h4>
-        <div className="suggested-product__description">
+        <p className="suggested-product__description">
           {product.description.short}
-        </div>
+        </p>
       </div>
       <div className="suggested-product__price-block">
-        <span className="suggested-product__price">
-          {formatPrice(currentPrice)} USD
-        </span>
+        <div className="suggested-product__price">
+          <h3 className="suggested-product__price-current">
+            {formatPrice(currentPrice)} USD
+          </h3>
+          {product.discount ? (
+            <span className="suggested-product__price-old">
+              {formatPrice(product.price.pcs)}
+            </span>
+          ) : null}
+        </div>
         <PrimaryBtn>Buy now</PrimaryBtn>
       </div>
     </div>

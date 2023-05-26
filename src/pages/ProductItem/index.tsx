@@ -10,7 +10,7 @@ import Footer from "@containers/Footer/Footer";
 import AppLoader from "@components/AppLoader/AppLoader";
 import ImageBlock from "@components/ImageBlock/ImageBlock";
 import ProductInfo from "@components/ProductInfo/ProductInfo";
-import SuggestedProdcts from "@components/SuggestedProdcts/SuggestedProdcts";
+import SuggestedProducts from "@components/SuggestedProducts/SuggestedProducts";
 
 function ProductItem() {
   const { id } = useParams();
@@ -62,7 +62,7 @@ function ProductItem() {
             </div>
             <ProductInfo product={product} />
           </div>
-          <SuggestedProdcts category={product.category} />
+          <SuggestedProducts category={product.category} />
         </>
       );
     }
