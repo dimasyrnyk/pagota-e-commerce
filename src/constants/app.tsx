@@ -27,6 +27,25 @@ export enum WishListBtnTitle {
   PRODUCT_PAGE = "Add to my wish list",
 }
 
+export interface IFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  country: string;
+  city: string;
+  address: string;
+  postCode: string;
+  additionalInfo: string;
+  agreementNewsletter: boolean;
+  agreementPrivacyPolicy: boolean;
+}
+
+export interface ISelectOption {
+  value: string;
+  label: string;
+}
+
 export interface ILink {
   href: string;
   name: string;

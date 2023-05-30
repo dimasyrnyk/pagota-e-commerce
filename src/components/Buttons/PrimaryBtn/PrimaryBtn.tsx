@@ -7,7 +7,9 @@ type Props = {
   title?: string | JSX.Element;
   disabled?: boolean;
   show?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
   onClick?: () => void;
+  onSubmit?: () => void;
 };
 
 function PrimaryBtn({
@@ -16,7 +18,9 @@ function PrimaryBtn({
   title,
   disabled,
   show = true,
+  type,
   onClick,
+  onSubmit,
 }: PropsWithChildren<Props>) {
   if (!show) {
     return null;
@@ -26,7 +30,9 @@ function PrimaryBtn({
     <button
       className={"primary-btn " + className}
       onClick={onClick}
+      onSubmit={onSubmit}
       disabled={disabled}
+      type={type}
     >
       {title}
       {children}
