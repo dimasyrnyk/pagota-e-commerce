@@ -1,24 +1,28 @@
 @use "@styles/colors" as *;
 @use "@styles/variables" as *;
 
-/* ---------- MEDIA SCREEN -- MOBILE & TABLET ---------- */
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
 @media (max-width: 600px) {
-  .billing-form {
-    flex-direction: column;
-
+  .checkout-form {
     &__container {
       order: 2;
     }
   }
 
-  .form-input__container {
-    width: 100%;
+  .form-input {
+    &__container {
+      width: 100%;
+    }
+
+    &__body {
+      font-size: 1rem;
+    }
   }
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
 @media (min-width: 601px) and (max-width: 1000px) {
-  .billing-form {
+  .checkout-form {
     &__container {
       order: 2;
     }
@@ -28,14 +32,28 @@
     }
   }
 
+  .form-input__body {
+    font-size: 0.875rem;
+  }
+
   .form-input__container {
     width: calc(50% - 15px);
+  }
+
+  .form-select {
+    &__value-container {
+      font-size: 0.875rem;
+    }
   }
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
 @media screen and (min-width: 1001px) {
-  .billing-form {
+  .form-input__body {
+    font-size: 0.875rem;
+  }
+
+  .checkout-form {
     &__btn-confirm {
       width: 217px;
     }
@@ -44,20 +62,25 @@
   .form-input__container {
     width: calc(50% - 15px);
   }
+
+  .form-select {
+    &__value-container {
+      font-size: 0.875rem;
+    }
+  }
 }
 
-.billing-form {
+.checkout-form {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
   flex: 1;
-  gap: 30px;
+  gap: 60px;
 
   &__container {
     flex: 1;
   }
 
-  &__section-header {
+  &__header-section {
     width: 100%;
 
     h1,
@@ -123,6 +146,13 @@
   }
 }
 
+.additional-info__container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 30px;
+}
+
 .form-text-area__container {
   position: relative;
   display: flex;
@@ -131,6 +161,12 @@
 }
 
 .form-select {
+  &--is-disabled {
+    .form-select__control {
+      background-color: $secondary_gray !important;
+    }
+  }
+
   &__container {
     outline: none;
     border-radius: 12px;
@@ -141,6 +177,18 @@
     border: 1px solid $primary_gray !important;
     background: $primary_lightgray !important;
     box-shadow: none !important;
+  }
+
+  &__value-container {
+    padding-left: 12px !important;
+  }
+
+  &__placeholder {
+    color: $secondary_darkgray !important;
+  }
+
+  &__indicator {
+    cursor: pointer;
   }
 }
 

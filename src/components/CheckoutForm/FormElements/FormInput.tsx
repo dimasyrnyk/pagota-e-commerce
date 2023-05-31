@@ -1,22 +1,30 @@
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, useField } from "formik";
 
-import "./../BillingForm.scss";
+import "../CheckoutForm.scss";
 
 type Props = {
   name: string;
-  title: string;
+  label: string;
+  onBlur: () => void;
   placeholder?: string;
   type?: string;
 };
 
-function FormInput({ name, title, placeholder, type = "text" }: Props) {
+function FormInput({ name, label, onBlur, placeholder, type = "text" }: Props) {
+  const [field] = useField(name);
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    field.onBlur(e);
+    onBlur();
+  };
+
   return (
     <div className="form-input__container">
       <label
         className="form-input__label"
         htmlFor={name}
       >
-        {title}
+        {label}
         <span className="text_red">*</span>
       </label>
       <Field
@@ -24,8 +32,9 @@ function FormInput({ name, title, placeholder, type = "text" }: Props) {
         type={type}
         id={name}
         name={name}
-        placeholder={placeholder || title}
+        placeholder={placeholder || label}
         autoComplete="off"
+        onBlur={handleBlur}
       />
       <ErrorMessage
         className="form-input__error"

@@ -10,10 +10,10 @@ export const validationSchema = Yup.object({
     .max(20, "Last name must be 20 charrccters or less.")
     .required("Last name is required"),
   email: Yup.string()
-    .email("Invalid email addres")
+    .email("Invalid email address")
     .required("Email is required"),
   phoneNumber: Yup.string()
-    .required("required")
+    .required("Is required")
     .matches(phoneRegExp, "Phone number is not valid")
     .min(10, "too short")
     .max(20, "too long"),

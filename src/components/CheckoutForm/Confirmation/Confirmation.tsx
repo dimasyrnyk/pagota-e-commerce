@@ -1,21 +1,21 @@
-import "./BillingForm.scss";
-import FormCheckbox from "./FormElements/FormCheckbox";
+import "./../CheckoutForm.scss";
+import FormCheckbox from "./../FormElements/FormCheckbox";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 
 type Props = {
   isFormValid: boolean;
 };
 
-function FormConfirmation({ isFormValid }: Props) {
+function Confirmation({ isFormValid }: Props) {
   return (
-    <div className="billing-form__confirmation">
-      <div className="billing-form__section-header">
+    <div className="checkout-form__confirmation">
+      <div className="checkout-form__header-section">
         <h2>Confirmation</h2>
         <span>
           We are getting to the end. Just few clicks and your order si ready!
         </span>
       </div>
-      <div className="billing-form__checkboxes">
+      <div className="checkout-form__checkboxes">
         <FormCheckbox
           name="agreementNewsletter"
           title="I agree with sending an Marketing and newsletter emails. No spam, promissed!"
@@ -30,7 +30,7 @@ function FormConfirmation({ isFormValid }: Props) {
       </div>
       <PrimaryBtn
         type="submit"
-        className="billing-form__btn-confirm"
+        className="checkout-form__btn-confirm"
         disabled={!isFormValid}
       >
         Complete Order
@@ -39,4 +39,4 @@ function FormConfirmation({ isFormValid }: Props) {
   );
 }
 
-export default FormConfirmation;
+export default Confirmation;

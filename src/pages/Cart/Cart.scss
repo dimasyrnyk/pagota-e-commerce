@@ -28,6 +28,10 @@
 @media screen and (min-width: 1001px) {
   .cart__container {
     padding: 0 45px;
+
+    .order-info__container {
+      width: 42%;
+    }
   }
 }
 
@@ -37,10 +41,6 @@
     gap: 32px;
     padding-bottom: 100px;
   }
-
-  .order-info__container {
-    width: 37%;
-  }
 }
 
 .order-info__container {
@@ -48,4 +48,10 @@
   border-radius: 12px;
   border: 1px solid $primary_gray;
   padding: 30px 15px;
+
+  span {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: $secondary_darkgray;
+  }
 }

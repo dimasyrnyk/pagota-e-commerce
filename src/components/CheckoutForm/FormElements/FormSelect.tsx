@@ -1,26 +1,41 @@
 import { useField } from "formik";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 
-import "./../BillingForm.scss";
-import { ISelectOption } from "@constants/app";
+import "../CheckoutForm.scss";
+import { ISelectOption } from "@constants/cart";
 
 type Props = {
   name: string;
   title: string;
   options: ISelectOption[];
+  onBlur: () => void;
   disabled?: boolean;
   placeholder?: string;
 };
 
-function FormSelect({ name, title, options, disabled, placeholder }: Props) {
+function FormSelect({
+  name,
+  title,
+  options,
+  onBlur,
+  disabled,
+  placeholder,
+}: Props) {
   const [field, meta, helpers] = useField(name);
 
-  const handleChange = (selectedOption: any) => {
-    helpers.setValue(selectedOption.value);
+  const handleChange = (selectedOption: SingleValue<ISelectOption>) => {
+    if (selectedOption) {
+      helpers.setValue(selectedOption.value);
+    }
   };
 
   const selectedOption =
     options.find((option) => option.value === field.value) || null;
+
+  const handleBlur = () => {
+    field.onBlur({ target: { name } });
+    onBlur();
+  };
 
   return (
     <div className="form-input__container">
@@ -41,6 +56,7 @@ function FormSelect({ name, title, options, disabled, placeholder }: Props) {
         onChange={handleChange}
         isDisabled={disabled}
         placeholder={placeholder || title}
+        onBlur={handleBlur}
       />
       {meta.touched && meta.error && (
         <div className="form-input__error">{meta.error}</div>

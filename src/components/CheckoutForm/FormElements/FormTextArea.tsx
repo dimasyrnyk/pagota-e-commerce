@@ -1,6 +1,6 @@
 import { Field, ErrorMessage } from "formik";
 
-import "./../BillingForm.scss";
+import "../CheckoutForm.scss";
 
 type Props = {
   name: string;

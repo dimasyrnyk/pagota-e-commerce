@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 
 import "./Cart.scss";
 import Header from "@containers/Header/Header";
-import BillingForm from "@components/BillingForm/BillingForm";
+import CheckoutForm from "@components/CheckoutForm/CheckoutForm";
 
 function Cart() {
   return (
     <>
       <Header />
       <div className="cart__container">
-        <BillingForm />
+        <CheckoutForm />
         <div className="order-info__container">
-          <div className="billing-form__section-header">
+          <div className="billing-form__header-section">
             <h2>Order Summary</h2>
             <span>
               Price can change depending on shipping method and taxes of your
