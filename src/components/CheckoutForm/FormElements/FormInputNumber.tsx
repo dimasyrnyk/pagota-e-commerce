@@ -1,6 +1,7 @@
-import { useField } from "formik";
+import { ErrorMessage, Field, useField } from "formik";
 
 import "../CheckoutForm.scss";
+import { useEffect, useState } from "react";
 
 type Props = {
   name: string;
@@ -20,14 +21,20 @@ function FormInputNumber({
   type,
 }: Props) {
   const [field, meta, helpers] = useField(name);
+  const [inputValue, setInputValue] = useState<string>(field.value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const newValue = e.target.value;
-    if (regex.test(newValue) || newValue === "") {
-      helpers.setValue(newValue);
+    if (regex.test(newValue) || !newValue) {
+      setInputValue(newValue);
     }
     helpers.setTouched(true);
   };
+
+  useEffect(() => {
+    helpers.setValue(inputValue);
+  }, [inputValue]);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     field.onBlur(e);
@@ -53,11 +60,14 @@ function FormInputNumber({
         autoComplete="off"
         onChange={handleChange}
         onBlur={handleBlur}
+        pattern="[0-9]*"
       />
-
-      {meta.touched && meta.error ? (
-        <div className="form-input__error">{meta.error}</div>
-      ) : null}
+      <ErrorMessage
+        className="form-input__error"
+        name={name}
+        component="div"
+      />
+      {/* {error ? <div className="form-input__error">{error}</div> : null} */}
     </div>
   );
 }

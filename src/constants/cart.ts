@@ -18,4 +18,4 @@ export interface ISelectOption {
 }
 
 export const PHONE_REGEX = /^[()\-\+\d]{0,20}$/;
-export const ZIP_CODE_REGEX = /^[0-9-]{0,6}$/;
+export const ZIP_CODE_REGEX = /^[0-9]{0,5}$/;

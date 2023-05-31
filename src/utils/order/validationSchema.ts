@@ -1,13 +1,15 @@
 import * as Yup from "yup";
 
 const phoneRegExp = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/;
+const postCodeRegExp = /^[0-9]{5}/;
 
 export const validationSchema = Yup.object({
   firstName: Yup.string()
-    .max(20, "Name must be 20 charrccters or less.")
+    .min(5, "Name must be from 5 to 20 charracters.")
+    .max(20, "Name must be 20 charracters or less.")
     .required("Name is required"),
   lastName: Yup.string()
-    .max(20, "Last name must be 20 charrccters or less.")
+    .max(20, "Last name must be 20 charrscters or less.")
     .required("Last name is required"),
   email: Yup.string()
     .email("Invalid email address")
@@ -15,17 +17,18 @@ export const validationSchema = Yup.object({
   phoneNumber: Yup.string()
     .required("Is required")
     .matches(phoneRegExp, "Phone number is not valid")
-    .min(10, "too short")
-    .max(20, "too long"),
+    .min(10, "Must be 10 numbers or more")
+    .max(20, "Too long"),
   country: Yup.string().required("Is required"),
-  city: Yup.string().required("Is required"),
+  city: Yup.string(),
   address: Yup.string()
     .required("Is required")
-    .max(25, "Addres must be 25 charrccters or less."),
+    .max(25, "Addres must be 25 charracters or less."),
   postCode: Yup.string()
-    .length(5)
-    .matches(/^[0-9]{5}/)
-    .label("Postal code"),
+    .required("Is required")
+    .matches(postCodeRegExp, "Must be 5 numbers")
+    .min(5)
+    .max(5),
   additionalInfo: Yup.string(),
   agreementNewsletter: Yup.boolean().oneOf(
     [true],

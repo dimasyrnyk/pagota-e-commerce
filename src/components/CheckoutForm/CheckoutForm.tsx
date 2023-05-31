@@ -41,6 +41,7 @@ function CheckoutForm() {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: onSubmit,
+    validateOnChange: true,
   });
   const [cities, setCities] = useState<ISelectOption[]>([]);
   const isFormValid = formik.dirty && !formik.isSubmitting && formik.isValid;
@@ -65,9 +66,6 @@ function CheckoutForm() {
           label: city.name,
         })) || [];
       setCities(newCities);
-    } else {
-      setCities([]);
-      formik.setFieldValue("city", "");
     }
   }, [selectedCountry]);
 

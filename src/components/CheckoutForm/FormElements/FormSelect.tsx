@@ -10,6 +10,7 @@ type Props = {
   options: ISelectOption[];
   onBlur: () => void;
   disabled?: boolean;
+  isRequired?: boolean;
   placeholder?: string;
 };
 
@@ -19,6 +20,7 @@ function FormSelect({
   options,
   onBlur,
   disabled,
+  isRequired = false,
   placeholder,
 }: Props) {
   const [field, meta, helpers] = useField(name);
@@ -44,7 +46,7 @@ function FormSelect({
         htmlFor={name}
       >
         {title}
-        <span className="text_red">*</span>
+        {isRequired ? <span className="text_red">*</span> : null}
       </label>
       <Select
         className="form-select__container"

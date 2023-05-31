@@ -47,6 +47,7 @@ function BillingInfo({ countries, cities, isCitiesDisabled, onBlur }: Props) {
         options={countries}
         placeholder="Choose a Country"
         onBlur={onBlur}
+        isRequired={true}
       />
       <FormSelect
         name="city"
