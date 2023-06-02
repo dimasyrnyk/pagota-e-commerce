@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import "./OrderBlock.scss";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";

@@ -41,7 +41,9 @@ function SuggestedProdctCard({ product }: Props) {
             </span>
           ) : null}
         </div>
-        <PrimaryBtn>Buy now</PrimaryBtn>
+        <Link to={"/products/" + product.id}>
+          <PrimaryBtn>Buy now</PrimaryBtn>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .billing-info__container {
+    flex-direction: column;
+  }
+
+  .form-input__container {
+    width: 100%;
+  }
+}
+
+.billing-info {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex: 1;
+    gap: 30px;
+  }
+}
