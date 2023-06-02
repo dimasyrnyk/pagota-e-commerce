@@ -1,3 +1,4 @@
+import React from "react";
 import { Field, ErrorMessage, useField } from "formik";
 
 import "../CheckoutForm.scss";
@@ -5,17 +6,19 @@ import "../CheckoutForm.scss";
 type Props = {
   name: string;
   label: string;
-  onBlur: () => void;
+  onBlur: (object: { [key: string]: string }) => void;
   placeholder?: string;
   type?: string;
 };
 
 function FormInput({ name, label, onBlur, placeholder, type = "text" }: Props) {
-  const [field] = useField(name);
+  const [field, meta] = useField(name);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     field.onBlur(e);
-    onBlur();
+    if (!meta.error) {
+      onBlur({ [name]: field.value });
+    }
   };
 
   return (

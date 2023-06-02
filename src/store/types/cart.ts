@@ -32,6 +32,7 @@ export interface CartState {
 
 export enum CartTypes {
   SET_BILLING_INFO = "cart/SET_BILLING_INFO",
+  UPDATE_BILLING_INFO = "cart/UPDATE_BILLING_INFO",
   RESET_BILLING_INFO = "cart/RESET_BILLING_INFO",
 }
 
@@ -40,8 +41,16 @@ interface SetBillingInfoAction {
   payload: IFormValues;
 }
 
+interface UpdateBillingInfoAction {
+  type: CartTypes.UPDATE_BILLING_INFO;
+  payload: { [key: string]: string };
+}
+
 interface ResetBillingInfoAction {
   type: CartTypes.RESET_BILLING_INFO;
 }
 
-export type CartActionType = SetBillingInfoAction | ResetBillingInfoAction;
+export type CartActionType =
+  | SetBillingInfoAction
+  | UpdateBillingInfoAction
+  | ResetBillingInfoAction;

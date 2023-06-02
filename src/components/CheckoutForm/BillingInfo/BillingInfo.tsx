@@ -8,7 +8,7 @@ type Props = {
   countries: ISelectOption[];
   cities: ISelectOption[];
   isCitiesDisabled: boolean;
-  onBlur: () => void;
+  onBlur: (object: { [key: string]: string }) => void;
 };
 
 function BillingInfo({ countries, cities, isCitiesDisabled, onBlur }: Props) {
@@ -37,7 +37,6 @@ function BillingInfo({ countries, cities, isCitiesDisabled, onBlur }: Props) {
       <FormInputNumber
         name="phoneNumber"
         label="Phone number"
-        type="tel"
         regex={PHONE_REGEX}
         onBlur={onBlur}
       />
@@ -65,7 +64,6 @@ function BillingInfo({ countries, cities, isCitiesDisabled, onBlur }: Props) {
       <FormInputNumber
         name="postCode"
         label="ZIP/Postal code"
-        type="text"
         placeholder="Postal code or ZIP"
         regex={ZIP_CODE_REGEX}
         onBlur={onBlur}

@@ -17,5 +17,5 @@ export interface ISelectOption {
   label: string;
 }
 
-export const PHONE_REGEX = /^[()\-\+\d]{0,20}$/;
+export const PHONE_REGEX = /^[()\-\+\d]{0,15}$/;
 export const ZIP_CODE_REGEX = /^[0-9]{0,5}$/;

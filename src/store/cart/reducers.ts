@@ -1,3 +1,4 @@
+import BillingInfo from "@components/CheckoutForm/BillingInfo/BillingInfo";
 import { CartActionType, CartState, CartTypes } from "@store/types/cart";
 
 const initialState: CartState = {
@@ -31,6 +32,11 @@ export default function cartReducer(
   switch (action.type) {
     case CartTypes.SET_BILLING_INFO:
       return { ...state, billingInfo: action.payload };
+    case CartTypes.UPDATE_BILLING_INFO:
+      return {
+        ...state,
+        billingInfo: { ...state.billingInfo, ...action.payload },
+      };
     case CartTypes.RESET_BILLING_INFO:
       return { ...state, billingInfo: initialState.billingInfo };
     default:

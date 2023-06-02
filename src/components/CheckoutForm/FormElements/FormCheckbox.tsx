@@ -1,7 +1,7 @@
+import { PropsWithChildren } from "react";
 import { Field, ErrorMessage } from "formik";
 
 import "../CheckoutForm.scss";
-import { PropsWithChildren } from "react";
 
 type Props = {
   name: string;

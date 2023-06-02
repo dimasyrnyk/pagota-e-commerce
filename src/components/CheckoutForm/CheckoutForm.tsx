@@ -11,7 +11,7 @@ import { validationSchema } from "@utils/order/validationSchema";
 import Confirmation from "./Confirmation/Confirmation";
 import BillingInfo from "./BillingInfo/BillingInfo";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
-import { resetBillingInfo, setBillingInfo } from "@store/cart/actions";
+import { resetBillingInfo, updateBillingInfo } from "@store/cart/actions";
 
 const initialValues: IFormValues = {
   firstName: "",
@@ -69,8 +69,8 @@ function CheckoutForm() {
     }
   }, [selectedCountry]);
 
-  const handleBlur = () => {
-    dispatch(setBillingInfo(values));
+  const handleBlur = (info: { [key: string]: string }) => {
+    dispatch(updateBillingInfo(info));
   };
 
   return (
@@ -83,7 +83,7 @@ function CheckoutForm() {
             isCitiesDisabled={!values.country}
             onBlur={handleBlur}
           />
-          <AdditionalInfo />
+          <AdditionalInfo onBlur={handleBlur} />
           <Confirmation isFormValid={isFormValid} />
         </Form>
       </FormikProvider>

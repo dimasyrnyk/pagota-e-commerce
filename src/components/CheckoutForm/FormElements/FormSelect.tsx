@@ -8,7 +8,7 @@ type Props = {
   name: string;
   title: string;
   options: ISelectOption[];
-  onBlur: () => void;
+  onBlur: (object: { [key: string]: string }) => void;
   disabled?: boolean;
   isRequired?: boolean;
   placeholder?: string;
@@ -36,7 +36,9 @@ function FormSelect({
 
   const handleBlur = () => {
     field.onBlur({ target: { name } });
-    onBlur();
+    if (!meta.error) {
+      onBlur({ [name]: field.value });
+    }
   };
 
   return (

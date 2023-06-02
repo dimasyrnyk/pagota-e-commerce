@@ -6,6 +6,11 @@ export const setBillingInfo = (info: IFormValues) => ({
   payload: info,
 });
 
+export const updateBillingInfo = (info: { [key: string]: string }) => ({
+  type: CartTypes.UPDATE_BILLING_INFO,
+  payload: info,
+});
+
 export const resetBillingInfo = () => ({
   type: CartTypes.RESET_BILLING_INFO,
 });

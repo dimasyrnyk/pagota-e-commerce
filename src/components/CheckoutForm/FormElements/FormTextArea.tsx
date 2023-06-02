@@ -1,12 +1,22 @@
-import { Field, ErrorMessage } from "formik";
+import { Field, ErrorMessage, useField } from "formik";
 
 import "../CheckoutForm.scss";
 
 type Props = {
   name: string;
+  onBlur: (object: { [key: string]: string }) => void;
 };
 
-function FormTextArea({ name }: Props) {
+function FormTextArea({ name, onBlur }: Props) {
+  const [field, meta] = useField(name);
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    field.onBlur(e);
+    if (!meta.error) {
+      onBlur({ [name]: field.value });
+    }
+  };
+
   return (
     <div className="form-text-area__container">
       <label
@@ -23,6 +33,7 @@ function FormTextArea({ name }: Props) {
         placeholder="Need a specific delivery day? Sending a gitf? Let’s say ..."
         rows="4"
         autoComplete="off"
+        onBlur={handleBlur}
       />
       <ErrorMessage
         className="form-input__error"

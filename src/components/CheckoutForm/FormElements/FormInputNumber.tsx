@@ -1,44 +1,34 @@
+import React from "react";
 import { ErrorMessage, Field, useField } from "formik";
 
 import "../CheckoutForm.scss";
-import { useEffect, useState } from "react";
 
 type Props = {
   name: string;
   label: string;
   regex: RegExp;
-  onBlur: () => void;
+  onBlur: (object: { [key: string]: string }) => void;
   placeholder?: string;
-  type?: string;
 };
 
-function FormInputNumber({
-  name,
-  label,
-  regex,
-  onBlur,
-  placeholder,
-  type,
-}: Props) {
+function FormInputNumber({ name, label, regex, onBlur, placeholder }: Props) {
   const [field, meta, helpers] = useField(name);
-  const [inputValue, setInputValue] = useState<string>(field.value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const newValue = e.target.value;
-    if (regex.test(newValue) || !newValue) {
-      setInputValue(newValue);
-    }
     helpers.setTouched(true);
-  };
 
-  useEffect(() => {
-    helpers.setValue(inputValue);
-  }, [inputValue]);
+    const newValue = e.target.value;
+
+    if (regex.test(newValue) || !newValue) {
+      helpers.setValue(newValue);
+    }
+  };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     field.onBlur(e);
-    onBlur();
+    if (!meta.error) {
+      onBlur({ [name]: field.value });
+    }
   };
 
   return (
@@ -50,24 +40,22 @@ function FormInputNumber({
         {label}
         <span className="text_red">*</span>
       </label>
-      <input
+      <Field
         className="form-input__body"
         id={name}
-        type={type}
+        type="text"
         name={name}
         value={field.value}
         placeholder={placeholder || label}
         autoComplete="off"
         onChange={handleChange}
         onBlur={handleBlur}
-        pattern="[0-9]*"
       />
       <ErrorMessage
         className="form-input__error"
         name={name}
         component="div"
       />
-      {/* {error ? <div className="form-input__error">{error}</div> : null} */}
     </div>
   );
 }

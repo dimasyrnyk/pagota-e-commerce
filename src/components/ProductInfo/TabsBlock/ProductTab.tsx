@@ -1,5 +1,5 @@
-import { Tabs } from "@constants/products";
 import "./TabsBlock.scss";
+import { Tabs } from "@constants/products";
 import ProductsQuantity from "@components/ProductsQuantity/ProductsQuantity";
 
 type Props = {
