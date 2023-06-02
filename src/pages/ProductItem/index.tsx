@@ -29,7 +29,7 @@ function ProductItem() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [id]);
 
   const renderLoading = () => {
     if (isLoading) {

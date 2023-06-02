@@ -5,7 +5,7 @@ type Props = {
   className?: string;
 };
 
-function InfoList({ className, info }: Props) {
+function InfoList({ className = "", info }: Props) {
   return (
     <ul className={"info-list " + className}>
       {Object.entries(info).map(([key, value]) => (

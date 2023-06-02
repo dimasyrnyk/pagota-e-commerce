@@ -1,24 +1,27 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Cart.scss";
+import { AppDispatch, RootState } from "@store/index";
+import { getCartProducts } from "@store/cart/actions";
 import Header from "@containers/Header/Header";
 import CheckoutForm from "@components/CheckoutForm/CheckoutForm";
+import OrderForm from "@components/OrderForm/OrderForm";
 
 function Cart() {
+  const dispatch: AppDispatch = useDispatch();
+  const { cart } = useSelector((state: RootState) => state.cart);
+
+  useEffect(() => {
+    dispatch(getCartProducts(cart.products));
+  }, []);
+
   return (
     <>
       <Header />
       <div className="cart__container">
         <CheckoutForm />
-        <div className="order-info__container">
-          <div className="billing-form__header-section">
-            <h2>Order Summary</h2>
-            <span>
-              Price can change depending on shipping method and taxes of your
-              state.
-            </span>
-          </div>
-        </div>
+        <OrderForm />
       </div>
     </>
   );

@@ -19,3 +19,9 @@ export interface ISelectOption {
 
 export const PHONE_REGEX = /^[()\-\+\d]{0,15}$/;
 export const ZIP_CODE_REGEX = /^[0-9]{0,5}$/;
+
+export enum Units {
+  PCS = "pcs",
+  PACK = "pack",
+  KG = "kg",
+}

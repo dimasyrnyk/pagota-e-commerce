@@ -6,10 +6,6 @@
     padding: 0 15px;
     flex-direction: column;
   }
-
-  .order-info__container {
-    order: 1;
-  }
 }
 
 /* ---------- MEDIA SCREEN -- TABLET ---------- */
@@ -18,40 +14,17 @@
     padding: 0 20px;
     flex-direction: column;
   }
-
-  .order-info__container {
-    order: 1;
-  }
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
 @media screen and (min-width: 1001px) {
   .cart__container {
     padding: 0 45px;
-
-    .order-info__container {
-      width: 42%;
-    }
   }
 }
 
-.cart {
-  &__container {
-    display: flex;
-    gap: 32px;
-    padding-bottom: 100px;
-  }
-}
-
-.order-info__container {
+.cart__container {
   display: flex;
-  border-radius: 12px;
-  border: 1px solid $primary_gray;
-  padding: 30px 15px;
-
-  span {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: $secondary_darkgray;
-  }
+  gap: 32px;
+  padding-bottom: 100px;
 }

@@ -22,7 +22,7 @@ function ProductInfo({ product }: Props) {
     "Stock:": product?.quantity.pcs ? "In Stok" : "Not avaliable",
     "Color:": product?.color,
     "Size:": product?.size,
-    "Buy by:": Object.keys(product.price).join(", "),
+    "Buy by:": Object.keys(product.quantity).join(", "),
     "Delivery:": `in ${product?.delivery.time} days`,
     "Delivery area:": product?.delivery.area,
   };

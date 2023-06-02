@@ -1,0 +1,151 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .order-form {
+    &__container {
+      order: 1;
+    }
+
+    &__products {
+      width: 100%;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 1000px) {
+  .order-form {
+    &__container {
+      order: 1;
+    }
+
+    &__products {
+      width: 500px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 1001px) {
+  .order-form {
+    &__container {
+      width: 42%;
+    }
+
+    &__products {
+      width: 100%;
+    }
+  }
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 1px solid $primary_gray;
+  padding: 30px 15px;
+  gap: 30px;
+
+  & > span {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: $secondary_darkgray;
+  }
+
+  &__header-section {
+    width: 100%;
+
+    h1,
+    h2 {
+      font-family: $font_poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.375rem;
+    }
+
+    span {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      color: $secondary_darkgray;
+    }
+  }
+
+  &__products {
+    display: flex;
+    height: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  &__taxes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: $font_poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+  }
+
+  &__promo-code {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid $primary_gray;
+    padding: 10px;
+
+    & > input {
+      border: none;
+      outline: none;
+      margin: 0 10px;
+      width: 100%;
+
+      &::placeholder {
+        color: $secondary_darkgray;
+      }
+    }
+
+    &-btn {
+      white-space: nowrap;
+    }
+  }
+
+  &__total-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_left {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.75rem;
+
+      & > span:first-child {
+        font-family: $font_poppins;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      & > span:last-child {
+        color: $primary_green;
+      }
+    }
+
+    &_right {
+      font-family: $font_poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.625rem;
+      color: $primary_green;
+    }
+  }
+}
