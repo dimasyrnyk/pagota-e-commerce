@@ -16,7 +16,7 @@ type Props = {
 
 function ProductCard({ product }: Props) {
   const currentPrice = getCurrentPrice(
-    product.quantity.pcs.value,
+    product.quantity.pcs.price,
     product.discount
   );
 
@@ -66,7 +66,7 @@ function ProductCard({ product }: Props) {
               </h3>
               {product.discount ? (
                 <span className="product-card__price-old">
-                  {formatPrice(product.quantity.pcs.value)}
+                  {formatPrice(product.quantity.pcs.price)}
                 </span>
               ) : null}
             </div>

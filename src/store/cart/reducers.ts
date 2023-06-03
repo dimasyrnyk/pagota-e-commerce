@@ -28,6 +28,7 @@ const initialState: CartState = {
       },
     ],
   },
+  order: "",
   isLoading: false,
 };
 
@@ -80,6 +81,12 @@ export default function cartReducer(
         action.payload
       );
       return { ...state, cart: cart };
+    case CartTypes.RESET_PRODUCT_CART:
+      return { ...state, cart: initialState.cart };
+    case CartTypes.CREATE_ORDER:
+      return { ...state, order: action.payload };
+    case CartTypes.CREATE_ORDER:
+      return { ...state, order: "" };
     default:
       return state;
   }

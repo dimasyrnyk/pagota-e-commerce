@@ -24,6 +24,7 @@ export interface ICart {
 export interface CartState {
   billingInfo: IFormValues;
   cart: ICart;
+  order: string;
   isLoading: boolean;
 }
 
@@ -39,6 +40,9 @@ export enum CartTypes {
   UPDATE_PRODUCT_IN_CART = "cart/UPDATE_PRODUCT_IN_CART",
   CHANGE_PRODUCT_UNIT = "cart/CHANGE_PRODUCT_UNIT",
   REMOVE_PRODUCT_FROM_CART = "cart/REMOVE_PRODUCT",
+  RESET_PRODUCT_CART = "cart/RESET",
+  CREATE_ORDER = "cart/CREATE_ORDER",
+  DELETE_ORDER = "cart/DELETE_ORDER",
 }
 
 interface SetBillingInfoAction {
@@ -93,6 +97,19 @@ interface RemoveProductAction {
   payload: IProductDTO;
 }
 
+interface ResetProductsAction {
+  type: CartTypes.RESET_PRODUCT_CART;
+}
+
+interface CreateOrderAction {
+  type: CartTypes.CREATE_ORDER;
+  payload: string;
+}
+
+interface DeleteOrderAction {
+  type: CartTypes.DELETE_ORDER;
+}
+
 export type CartActionType =
   | SetBillingInfoAction
   | UpdateBillingInfoAction
@@ -104,4 +121,7 @@ export type CartActionType =
   | AddProductAction
   | UpdateProductAction
   | ChangeProductUnitAction
-  | RemoveProductAction;
+  | RemoveProductAction
+  | ResetProductsAction
+  | CreateOrderAction
+  | DeleteOrderAction;

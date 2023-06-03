@@ -90,15 +90,20 @@ function CartProductItem({ product }: Props) {
     };
 
     if (matchedUnits.length) {
-      dispatch(updateProductInCart(newCartProduct));
-      dispatch(removeProductFromCart(product));
+      const isConfirmedAction = window.confirm(
+        "Do you really want to merge products?"
+      );
+      if (isConfirmedAction) {
+        dispatch(updateProductInCart(newCartProduct));
+        dispatch(removeProductFromCart(product));
+        setUnit(selectedUnit);
+      }
     } else {
       const changedProduct = { ...product };
       changedProduct.quantity.amount = newCartQuantity;
       dispatch(changeProductUnit(changedProduct, selectedUnit));
+      setUnit(selectedUnit);
     }
-
-    setUnit(selectedUnit);
   };
 
   const handleRemove = () => {

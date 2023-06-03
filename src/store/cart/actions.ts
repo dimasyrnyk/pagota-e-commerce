@@ -65,3 +65,16 @@ export const removeProductFromCart = (product: IProductDTO) => ({
   type: CartTypes.REMOVE_PRODUCT_FROM_CART,
   payload: product,
 });
+
+export const resetProductCart = () => ({
+  type: CartTypes.RESET_PRODUCT_CART,
+});
+
+export const createOrderInCart = (order: string) => ({
+  type: CartTypes.CREATE_ORDER,
+  payload: order,
+});
+
+export const deleteOrderInCart = () => ({
+  type: CartTypes.DELETE_ORDER,
+});

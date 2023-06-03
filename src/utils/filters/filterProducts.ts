@@ -15,7 +15,7 @@ export const filterProducts = (
   return products
     .filter((product) => {
       const currentPrice = getCurrentPrice(
-        product.quantity.pcs.value,
+        product.quantity.pcs.price,
         product.discount
       );
       const isTitleMatch = product.title.toLowerCase().includes(searchQuery);
@@ -43,11 +43,11 @@ const sortFunctions: { [key: string]: (a: IProduct, b: IProduct) => number } = {
   [SortType.TITLE_FROM_LOW]: (a, b) => a.title.localeCompare(b.title),
   [SortType.TITLE_FROM_HIGH]: (a, b) => b.title.localeCompare(a.title),
   [SortType.PRICE_FROM_LOW]: (a, b) =>
-    getCurrentPrice(a.quantity.pcs.value, a.discount) -
-    getCurrentPrice(b.quantity.pcs.value, b.discount),
+    getCurrentPrice(a.quantity.pcs.price, a.discount) -
+    getCurrentPrice(b.quantity.pcs.price, b.discount),
   [SortType.PRICE_FROM_HIGH]: (a, b) =>
-    getCurrentPrice(b.quantity.pcs.value, b.discount) -
-    getCurrentPrice(a.quantity.pcs.value, a.discount),
+    getCurrentPrice(b.quantity.pcs.price, b.discount) -
+    getCurrentPrice(a.quantity.pcs.price, a.discount),
   [SortType.RATING_FROM_LOW]: (a, b) => a.rating - b.rating,
   [SortType.RATING_FROM_HIGH]: (a, b) => b.rating - a.rating,
   [SortType.DEFAULT]: () => 0,
