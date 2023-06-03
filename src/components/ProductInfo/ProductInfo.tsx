@@ -7,6 +7,7 @@ import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import InfoList from "./InfoList/InfoList";
 import OrderBlock from "./OrderBlock/OrderBlock";
 import TabsBlock from "./TabsBlock/TabsBlock";
+import CartInfo from "./CartInfo/CartInfo";
 
 type Props = {
   product: IProduct;
@@ -45,6 +46,7 @@ function ProductInfo({ product }: Props) {
         info={mainInfo}
       />
       <OrderBlock product={product} />
+      <CartInfo product={product} />
       <WishListBtn
         product={product}
         title={WishListBtnTitle.PRODUCT_PAGE}

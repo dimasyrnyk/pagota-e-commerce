@@ -57,6 +57,11 @@
     font-size: 1.0625rem;
   }
 
+  &__additional {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__wishlist-btn {
     display: flex;
     align-items: center;

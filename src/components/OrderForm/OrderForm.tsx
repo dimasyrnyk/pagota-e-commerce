@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./OrderForm.scss";
 import { AppDispatch, RootState } from "@store/index";
+import { setTotlaPrice } from "@store/cart/actions";
+import emptyCart from "@assets/images/empty-cart.svg";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import { getDeliveryDate } from "@utils/order/getters";
 import SecondaryBtn from "@components/Buttons/SecondaryBtn/SecondaryBtn";
 import AppLoader from "@components/AppLoader/AppLoader";
 import CartProductsList from "./CartProductsList/CartProductsList";
-import { setTotlaPrice } from "@store/cart/actions";
+import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 
 function OrderForm() {
   const dispatch: AppDispatch = useDispatch();
@@ -57,10 +59,15 @@ function OrderForm() {
   if (!cart.products.length) {
     return (
       <div className="order-form__container">
-        <div className="order-form">
-          <h3>YOUR CATR IS EMPTY</h3>
-          <Link to="/products">Please chose your products</Link>
-        </div>
+        <center className="order-form">
+          <img src={emptyCart} />
+          <h3>Your cart is empty</h3>
+          <p>You have no items in your shopping cart</p>
+          <p>Let's go buy something.</p>
+          <Link to="/products">
+            <PrimaryBtn title="Shop Now" />
+          </Link>
+        </center>
       </div>
     );
   }
