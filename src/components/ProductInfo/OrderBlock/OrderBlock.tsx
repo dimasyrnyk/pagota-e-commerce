@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./OrderBlock.scss";
@@ -20,13 +20,20 @@ function OrderBlock({ product }: Props) {
   const { products } = useSelector((state: RootState) => state.cart.cart);
   const [quantity, setQuantity] = useState<number>(INITIAL_QUANTITY);
   const [unit, setUnit] = useState<string>(INITIAL_UNIT);
+  const [counter, setCounter] = useState<number>(0);
   const productTotalQuantity = useMemo(
-    () => getNewTotalQuantity(product, unit),
-    [unit]
+    () => getNewTotalQuantity(product, unit, true),
+    [unit, counter]
   );
   const currentPrice =
     getCurrentPrice(product.quantity[unit].price, product.discount) * quantity;
   const currentOldPrice = product.quantity[unit].price * quantity;
+
+  useEffect(() => {
+    if (!productTotalQuantity) {
+      setQuantity(0);
+    }
+  }, [productTotalQuantity]);
 
   const handleAddToCart = () => {
     const matchedProducts = products.filter((p) => p.id === product.id);
@@ -52,6 +59,8 @@ function OrderBlock({ product }: Props) {
     } else {
       dispatch(addProductToCart(newCartProduct));
     }
+    setQuantity(INITIAL_QUANTITY);
+    setCounter(counter + 1);
   };
 
   const handleSetUnit = (selectedUnit: string) => {

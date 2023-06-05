@@ -38,7 +38,7 @@ function CartProductItem({ product }: Props) {
   const [quantity, setQuantity] = useState<number>(product.quantity.amount);
   const [unit, setUnit] = useState<string>(product.quantity.unit);
   const productTotalQuantity = useMemo(
-    () => getNewTotalQuantity(product.item, unit),
+    () => getNewTotalQuantity(product.item, unit, false),
     [unit, quantity]
   );
   const currentPrice =

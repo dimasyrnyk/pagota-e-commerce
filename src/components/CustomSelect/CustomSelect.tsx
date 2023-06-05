@@ -23,7 +23,9 @@ function SearchBar({
   const toggleOpen = () => setIsOpen(!isOpen);
 
   const handleSelect = (value: string) => {
-    onChange(value);
+    if (value !== title) {
+      onChange(value);
+    }
     setIsOpen(false);
   };
 

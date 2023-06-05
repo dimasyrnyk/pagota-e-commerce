@@ -11,7 +11,7 @@ export interface IProductDTO {
 }
 
 export interface IPromoCode {
-  promoCode: string;
+  value: string;
   discount: number;
 }
 

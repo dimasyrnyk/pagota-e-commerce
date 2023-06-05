@@ -16,4 +16,8 @@
   &:hover {
     background-color: darken($secondary_lightgray, 10%);
   }
+
+  &:disabled {
+    background-color: $secondary_darkgray;
+  }
 }

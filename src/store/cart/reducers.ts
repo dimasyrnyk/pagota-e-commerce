@@ -23,7 +23,7 @@ const initialState: CartState = {
     totalPrice: 0,
     promoCode: [
       {
-        promoCode: "SUMMER",
+        value: "SUMMER",
         discount: 10,
       },
     ],
@@ -85,7 +85,7 @@ export default function cartReducer(
       return { ...state, cart: initialState.cart };
     case CartTypes.CREATE_ORDER:
       return { ...state, order: action.payload };
-    case CartTypes.CREATE_ORDER:
+    case CartTypes.DELETE_ORDER:
       return { ...state, order: "" };
     default:
       return state;

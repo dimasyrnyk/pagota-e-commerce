@@ -23,7 +23,7 @@ function OrderBlockInput({
   options,
   className,
 }: Props) {
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>();
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
@@ -33,9 +33,11 @@ function OrderBlockInput({
         setQuantity(newValue);
       } else {
         setError(`In stock only ${totalQuantity} ${unit}`);
-        setTimeout(() => {
-          setError("");
-        }, ERROR_DELAY);
+        if (totalQuantity) {
+          setTimeout(() => {
+            setError("");
+          }, ERROR_DELAY);
+        }
       }
     } else {
       setQuantity(0);

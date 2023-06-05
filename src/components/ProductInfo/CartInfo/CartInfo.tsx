@@ -4,6 +4,7 @@ import "./CartInfo.scss";
 import { RootState } from "@store/index";
 import { IProduct } from "@constants/products";
 import CartIcon from "@components/Icons/CartIcon";
+import { Link } from "react-router-dom";
 
 type Props = {
   product: IProduct;
@@ -26,10 +27,15 @@ function CartInfo({ product }: Props) {
           className="cart-info__item"
         >{`${product.quantity.amount} ${product.quantity.unit}`}</span>
       ))}
-      <span className="cart-info__icon-section">
-        <span>In cart</span>
-        <CartIcon />
-      </span>
+      <Link
+        to={"/cart"}
+        className="cart-info__link"
+      >
+        <span className="cart-info__icon-section">
+          <span>In cart</span>
+          <CartIcon />
+        </span>
+      </Link>
     </div>
   );
 }

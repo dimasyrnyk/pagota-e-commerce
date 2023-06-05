@@ -46,7 +46,11 @@ export const getCartWithoutRemovedProducts = (
   return { ...cart, products: result };
 };
 
-export const getNewTotalQuantity = (product: IProduct, unit: string) => {
+export const getNewTotalQuantity = (
+  product: IProduct,
+  unit: string,
+  isUnitNeedToUpdate: boolean
+) => {
   const products = store.getState().cart.cart.products;
   const matchedProducts: IProductDTO[] = products.filter(
     (p: IProductDTO) => p.id === product.id
@@ -55,6 +59,14 @@ export const getNewTotalQuantity = (product: IProduct, unit: string) => {
   if (!matchedProducts.length) {
     return product.quantity[unit].value;
   }
+
+  const isUnitMatched = (product: IProductDTO) => {
+    if (isUnitNeedToUpdate) {
+      return true;
+    }
+
+    return product.quantity.unit !== unit;
+  };
 
   let quantity = product.quantity;
   const productWithPcs = matchedProducts.find(
@@ -67,17 +79,17 @@ export const getNewTotalQuantity = (product: IProduct, unit: string) => {
     (p) => p.quantity.unit === Units.KG
   );
 
-  if (productWithPcs && unit !== Units.PCS) {
+  if (productWithPcs && isUnitMatched(productWithPcs)) {
     quantity = updateQuantity(quantity, productWithPcs.quantity.amount);
   }
 
-  if (productWithPack && unit !== Units.PACK) {
+  if (productWithPack && isUnitMatched(productWithPack)) {
     const amountInPcs =
       productWithPack.quantity.amount * product.quantity[Units.PACK].proportion;
     quantity = updateQuantity(quantity, amountInPcs);
   }
 
-  if (productWithKg && unit !== Units.KG) {
+  if (productWithKg && isUnitMatched(productWithKg)) {
     const amountInPcs =
       productWithKg.quantity.amount * quantity[Units.KG].proportion;
     quantity = updateQuantity(quantity, amountInPcs);
