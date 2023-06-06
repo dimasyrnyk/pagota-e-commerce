@@ -19,17 +19,17 @@ type Props = {
 
 function WishListBtn({ product, title, className, disabled }: Props) {
   const dispatch: AppDispatch = useDispatch();
-  const { wishList } = useSelector((state: RootState) => state.products);
+  const { wishListIds } = useSelector((state: RootState) => state.products);
 
   const isProductInWishList = () => {
-    return wishList.find((item) => item.id === product.id);
+    return wishListIds.find((id) => id === product.id);
   };
 
   const handleToggleWishList = () => {
     if (isProductInWishList()) {
       dispatch(removeProductFromWishlist(product.id));
     } else {
-      dispatch(addProductToWishlist(product));
+      dispatch(addProductToWishlist(product.id));
     }
   };
 
@@ -40,8 +40,7 @@ function WishListBtn({ product, title, className, disabled }: Props) {
       disabled={disabled}
     >
       {isProductInWishList() ? <HeartIconFull /> : <HeartIcon />}
-      {isProductInWishList() ? "Remove from " : "Add to "}
-      {title}
+      {isProductInWishList() ? "Remove wish " : "Add to " + title}
     </SecondaryBtn>
   );
 }

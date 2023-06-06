@@ -53,9 +53,9 @@ export function getOneProduct(productId: string) {
   };
 }
 
-export const addProductToWishlist = (product: IProduct): ProductsAction => ({
+export const addProductToWishlist = (productId: string): ProductsAction => ({
   type: ProductsTypes.ADD_PRODUCT_TO_WISHLIST,
-  payload: product,
+  payload: productId,
 });
 
 export const removeProductFromWishlist = (
@@ -64,3 +64,26 @@ export const removeProductFromWishlist = (
   type: ProductsTypes.REMOVE_PRODUCT_FROM_WISHLIST,
   payload: productId,
 });
+
+export function getWishListCartProducts(productsIds: string[]) {
+  return async (dispatch: AppDispatch) => {
+    dispatch({ type: ProductsTypes.START_LOADING_PRODUCTS });
+
+    const products: IProduct[] = await productsIds.reduce(
+      async (accPromise, id) => {
+        const acc = await accPromise;
+        const response = await fetch(BASE_URL + `/${id}`);
+        const data: IProduct = await response.json();
+        if (response.ok) {
+          return [...acc, data];
+        }
+        return acc;
+      },
+      Promise.resolve([] as IProduct[])
+    );
+
+    dispatch({ type: ProductsTypes.GET_WISHLIST_PRODUCTS, payload: products });
+
+    dispatch({ type: ProductsTypes.END_LOADING_PRODUCTS });
+  };
+}

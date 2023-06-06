@@ -7,7 +7,8 @@ export interface ProductsState {
   brands: Brand[];
   minPrice: number;
   maxPrice: number;
-  wishList: IProduct[];
+  wishListIds: string[];
+  wishListItems: IProduct[];
   isLoading: boolean;
 }
 
@@ -18,6 +19,7 @@ export enum ProductsTypes {
   GET_ONE_PRODUCT = "products/GET_ONE",
   ADD_PRODUCT_TO_WISHLIST = "products/ADD_TO_WISHLIST",
   REMOVE_PRODUCT_FROM_WISHLIST = "products/REMOVE_FROM_WISHLIST",
+  GET_WISHLIST_PRODUCTS = "products/GET_WISHLIST",
 }
 
 interface StartLoadingAction {
@@ -46,12 +48,17 @@ interface GetOneAction {
 
 interface AddToWishListAction {
   type: ProductsTypes.ADD_PRODUCT_TO_WISHLIST;
-  payload: IProduct;
+  payload: string;
 }
 
 interface RemoveFromWishListAction {
   type: ProductsTypes.REMOVE_PRODUCT_FROM_WISHLIST;
   payload: string;
+}
+
+interface GetWishListAction {
+  type: ProductsTypes.GET_WISHLIST_PRODUCTS;
+  payload: IProduct[];
 }
 
 export type ProductsAction =
@@ -60,4 +67,5 @@ export type ProductsAction =
   | GetAllAction
   | GetOneAction
   | AddToWishListAction
-  | RemoveFromWishListAction;
+  | RemoveFromWishListAction
+  | GetWishListAction;

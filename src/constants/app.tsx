@@ -14,6 +14,7 @@ export enum Crumbs {
   home = "Homepage",
   products = "All products",
   cart = "Cart",
+  wishlist = "Wishlist",
   notFound = "Page not found",
 }
 
