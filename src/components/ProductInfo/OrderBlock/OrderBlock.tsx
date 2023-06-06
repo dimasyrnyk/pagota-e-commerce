@@ -1,48 +1,69 @@
-import React, { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./OrderBlock.scss";
+import { AppDispatch, RootState } from "@store/index";
+import { addProductToCart, updateProductInCart } from "@store/cart/actions";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
-import {
-  ERROR_DELAY,
-  INITIAL_QUANTITY,
-  INITIAL_UNIT,
-  IProduct,
-} from "@constants/products";
+import { getNewTotalQuantity } from "@utils/order/getters";
+import { INITIAL_QUANTITY, INITIAL_UNIT, IProduct } from "@constants/products";
 import PlusIcon from "@components/Icons/PlusIcon";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
-import CustomSelect from "@components/CustomSelect/CustomSelect";
+import OrderBlockInput from "./OrderBlockInput";
 
 type Props = {
   product: IProduct;
 };
 
 function OrderBlock({ product }: Props) {
+  const dispatch: AppDispatch = useDispatch();
+  const { products } = useSelector((state: RootState) => state.cart.cart);
   const [quantity, setQuantity] = useState<number>(INITIAL_QUANTITY);
   const [unit, setUnit] = useState<string>(INITIAL_UNIT);
-  const [error, setError] = useState<string>("");
+  const [counter, setCounter] = useState<number>(0);
+  const productTotalQuantity = useMemo(
+    () => getNewTotalQuantity(product, unit, true),
+    [unit, counter]
+  );
   const currentPrice =
-    getCurrentPrice(product.price[unit], product.discount) * quantity;
-  const productTotalQuantity = product.quantity[unit];
-  const currentOldPrice = product.price[unit] * quantity;
+    getCurrentPrice(product.quantity[unit].price, product.discount) * quantity;
+  const currentOldPrice = product.quantity[unit].price * quantity;
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
-
-    if (newValue >= 0) {
-      if (newValue <= productTotalQuantity) {
-        setQuantity(newValue);
-      } else {
-        setError(`In stock only ${productTotalQuantity} ${unit}`);
-        setTimeout(() => {
-          setError("");
-        }, ERROR_DELAY);
-      }
-    } else {
+  useEffect(() => {
+    if (!productTotalQuantity) {
       setQuantity(0);
     }
+  }, [productTotalQuantity]);
+
+  const handleAddToCart = () => {
+    const matchedProducts = products.filter((p) => p.id === product.id);
+    const matchedUnits = matchedProducts.filter(
+      (p) => p.quantity.unit === unit
+    );
+
+    const newCartQuantity = matchedUnits.length
+      ? quantity + matchedUnits[0].quantity.amount
+      : quantity;
+
+    const newCartProduct = {
+      id: product.id,
+      item: product,
+      quantity: {
+        unit: unit,
+        amount: newCartQuantity,
+      },
+    };
+
+    if (matchedUnits.length) {
+      dispatch(updateProductInCart(newCartProduct));
+    } else {
+      dispatch(addProductToCart(newCartProduct));
+    }
+    setQuantity(INITIAL_QUANTITY);
+    setCounter(counter + 1);
   };
 
-  const handleUnitChange = (selectedUnit: string) => {
+  const handleSetUnit = (selectedUnit: string) => {
     setUnit(selectedUnit);
     setQuantity(INITIAL_QUANTITY);
   };
@@ -60,26 +81,18 @@ function OrderBlock({ product }: Props) {
         ) : null}
       </div>
       <div className="order-block__buttons-block">
-        <span className="order-block__input">
-          <input
-            className="order-block__input-body"
-            type="number"
-            pattern="[0-9]*"
-            inputMode="numeric"
-            value={quantity.toString()}
-            onChange={handleQuantityChange}
-          />
-          <CustomSelect
-            className="order-block__input-label"
-            title={unit}
-            options={Object.keys(product.price)}
-            activeOption={unit}
-            onChange={handleUnitChange}
-          />
-          {error ? <span className="order-block__error">{error}</span> : null}
-        </span>
+        <OrderBlockInput
+          unit={unit}
+          setUnit={handleSetUnit}
+          quantity={quantity}
+          setQuantity={setQuantity}
+          totalQuantity={productTotalQuantity}
+          options={Object.keys(product.quantity)}
+          className="unit-input"
+        />
         <PrimaryBtn
           disabled={!quantity}
+          onClick={handleAddToCart}
           className="order-block__add-btn"
         >
           <PlusIcon /> Add to cart

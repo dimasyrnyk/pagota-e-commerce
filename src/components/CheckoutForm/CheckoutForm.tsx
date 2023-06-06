@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, useFormik, FormikProvider } from "formik";
 import { Country, City } from "country-state-city";
 import { ICity } from "country-state-city";
+import { v4 as uuidv4 } from "uuid";
 
 import "./CheckoutForm.scss";
 import { AppDispatch, RootState } from "@store/index";
@@ -11,7 +12,12 @@ import { validationSchema } from "@utils/order/validationSchema";
 import Confirmation from "./Confirmation/Confirmation";
 import BillingInfo from "./BillingInfo/BillingInfo";
 import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
-import { resetBillingInfo, updateBillingInfo } from "@store/cart/actions";
+import {
+  createOrderInCart,
+  resetBillingInfo,
+  resetProductCart,
+  updateBillingInfo,
+} from "@store/cart/actions";
 
 const initialValues: IFormValues = {
   firstName: "",
@@ -31,10 +37,12 @@ function CheckoutForm() {
   const dispatch: AppDispatch = useDispatch();
   const billingInfo = useSelector((state: RootState) => state.cart.billingInfo);
 
-  const onSubmit = (values: IFormValues) => {
-    console.log(values);
+  const onSubmit = () => {
     formik.setValues(initialValues);
     dispatch(resetBillingInfo());
+    dispatch(resetProductCart());
+    const orderNumber = uuidv4();
+    dispatch(createOrderInCart(orderNumber));
   };
 
   const formik = useFormik<IFormValues>({

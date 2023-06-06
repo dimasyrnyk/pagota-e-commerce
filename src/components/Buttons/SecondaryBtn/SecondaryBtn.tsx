@@ -12,7 +12,7 @@ type Props = {
 
 function SecondaryBtn({
   children,
-  className,
+  className = "",
   title,
   disabled,
   show = true,

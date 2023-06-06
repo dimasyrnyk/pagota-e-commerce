@@ -1,0 +1,37 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+.cart-info {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid $secondary_lightgray;
+  background-color: $primary_lightgreen;
+  padding: 10px;
+  margin-bottom: 10px;
+  gap: 10px;
+
+  &__icon-section {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__item {
+    border-right: 1px solid $primary_gray;
+    color: $primary_green;
+    font-weight: 600;
+    padding-right: 10px;
+  }
+
+  &__link {
+    color: $black;
+
+    &:hover {
+      color: $primary_green;
+
+      img {
+        filter: invert(52%) sepia(11%) saturate(2522%) hue-rotate(47deg)
+          brightness(102%) contrast(70%);
+      }
+    }
+  }
+}

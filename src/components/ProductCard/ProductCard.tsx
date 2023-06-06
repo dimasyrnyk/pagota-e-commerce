@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
 
 import "./ProductCard.scss";
-import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
-import HeartIcon from "@components/Icons/HeartIcon";
-import Rating from "@components/Rating/Rating";
-import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
-import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import { IProduct } from "@constants/products";
-import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import { WishListBtnTitle } from "@constants/app";
+import { formatPrice, getCurrentPrice } from "@utils/products/prices";
+import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
+import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
+import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import InfoList from "@components/ProductInfo/InfoList/InfoList";
+import Rating from "@components/Rating/Rating";
 
 type Props = {
   product: IProduct;
 };
 
 function ProductCard({ product }: Props) {
-  const currentPrice = getCurrentPrice(product.price.pcs, product.discount);
+  const currentPrice = getCurrentPrice(
+    product.quantity.pcs.price,
+    product.discount
+  );
 
   const productInfo = {
     "Fresheness:": (
@@ -27,7 +29,7 @@ function ProductCard({ product }: Props) {
     "Farm:": product.producer,
     "Delivery:": product.delivery.area,
     "Stock:": (
-      <span className="text_green">{`${product.quantity.pcs} pcs`}</span>
+      <span className="text_green">{`${product.quantity.pcs.value} pcs`}</span>
     ),
   };
 
@@ -64,7 +66,7 @@ function ProductCard({ product }: Props) {
               </h3>
               {product.discount ? (
                 <span className="product-card__price-old">
-                  {formatPrice(product.price.pcs)}
+                  {formatPrice(product.quantity.pcs.price)}
                 </span>
               ) : null}
             </div>

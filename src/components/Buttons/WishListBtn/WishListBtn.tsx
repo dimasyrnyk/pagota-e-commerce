@@ -40,6 +40,7 @@ function WishListBtn({ product, title, className, disabled }: Props) {
       disabled={disabled}
     >
       {isProductInWishList() ? <HeartIconFull /> : <HeartIcon />}
+      {isProductInWishList() ? "Remove from " : "Add to "}
       {title}
     </SecondaryBtn>
   );

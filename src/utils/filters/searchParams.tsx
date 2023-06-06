@@ -71,7 +71,8 @@ export const parseSearchParams = (
   const category = searchParams.category as string;
   const brands = (searchParams.brands as string[]) || [];
   const ratings = (searchParams.ratings as string[]) || [];
-  const ratingsAsNumbers: number[] = ratings.map((i) => parseInt(i, 10));
+  const newRatings = Array.isArray(ratings) ? ratings : [ratings];
+  const ratingsAsNumbers: number[] = newRatings.map((i) => parseInt(i, 10));
   const prices = (searchParams.prices as string[]) || [];
   const pricesAsNumbers: number[] = prices.map((i) => parseInt(i, 10));
   const sort = searchParams.sort as string;

@@ -19,6 +19,19 @@ export interface IQuestion {
   answers: IAnswer[];
 }
 
+export interface IQuantity {
+  pcs: {
+    value: number;
+    price: number;
+    proportion: 1;
+  };
+  [key: string]: {
+    value: number;
+    price: number;
+    proportion: number;
+  };
+}
+
 export interface IProduct {
   title: string;
   image: string;
@@ -32,14 +45,7 @@ export interface IProduct {
     time: number;
     price: number;
   };
-  quantity: {
-    pcs: number;
-    [key: string]: number;
-  };
-  price: {
-    pcs: number;
-    [key: string]: number;
-  };
+  quantity: IQuantity;
   discount: number;
   description: {
     short: string;
