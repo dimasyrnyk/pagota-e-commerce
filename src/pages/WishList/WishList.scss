@@ -54,6 +54,7 @@
   }
 
   &__btn-remove {
+    cursor: pointer;
     padding: 2px 5px;
     border-radius: 12px;
     border: 1px solid $primary_green;
