@@ -116,39 +116,31 @@ const updateQuantity = (quantity: IQuantity, decreaseValue: number) => {
 };
 
 export const getConvertedQuantity = (product: IProductDTO, newUnit: string) => {
-  let quantityInPcs = 0;
-  switch (product.quantity.unit) {
-    case Units.PCS:
-      quantityInPcs = product.quantity.amount;
-      break;
-    case Units.PACK:
-      quantityInPcs =
-        product.quantity.amount * product.item.quantity.pack.proportion;
-      break;
-    case Units.KG:
-      quantityInPcs =
-        product.quantity.amount * product.item.quantity.kg.proportion;
-      break;
-    default:
-      break;
-  }
+  const quantityInPcs = getQuantityInPcs(product);
+  const productQuantity = product.item.quantity;
 
-  let convertedQuantity = 0;
-  switch (newUnit) {
-    case Units.PCS:
-      convertedQuantity = quantityInPcs;
-      break;
-    case Units.PACK:
-      convertedQuantity = quantityInPcs / product.item.quantity.pack.proportion;
-      break;
-    case Units.KG:
-      convertedQuantity = quantityInPcs / product.item.quantity.kg.proportion;
-      break;
-    default:
-      break;
-  }
+  const conversionFactors: { [key: string]: number } = {
+    [Units.PCS]: 1,
+    [Units.PACK]: productQuantity.pack.proportion,
+    [Units.KG]: productQuantity.kg.proportion,
+  };
+
+  const convertedQuantity = quantityInPcs / conversionFactors[newUnit];
 
   return Math.floor(convertedQuantity);
+};
+
+const getQuantityInPcs = (product: IProductDTO) => {
+  const cartQuantity = product.quantity;
+  const productQuantity = product.item.quantity;
+
+  const quantityFactors: { [key: string]: number } = {
+    [Units.PCS]: cartQuantity.amount,
+    [Units.PACK]: cartQuantity.amount * productQuantity.pack.proportion,
+    [Units.KG]: cartQuantity.amount * productQuantity.kg.proportion,
+  };
+
+  return quantityFactors[cartQuantity.unit] || 0;
 };
 
 export const getDeliveryDate = (days: number) => {
