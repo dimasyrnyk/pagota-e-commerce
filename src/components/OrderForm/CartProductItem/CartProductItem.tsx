@@ -34,7 +34,7 @@ type Props = {
 function CartProductItem({ product }: Props) {
   const dispatch: AppDispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.cart.cart);
-  const { wishList } = useSelector((state: RootState) => state.products);
+  const { wishListIds } = useSelector((state: RootState) => state.products);
   const [quantity, setQuantity] = useState<number>(product.quantity.amount);
   const [unit, setUnit] = useState<string>(product.quantity.unit);
   const productTotalQuantity = useMemo(
@@ -51,14 +51,14 @@ function CartProductItem({ product }: Props) {
   }, [product.quantity.amount]);
 
   const isProductInWishList = () => {
-    return wishList.find((item) => item.id === product.id);
+    return wishListIds.find((id) => id === product.id);
   };
 
   const toggleWishList = () => {
     if (isProductInWishList()) {
       dispatch(removeProductFromWishlist(product.id));
     } else {
-      dispatch(addProductToWishlist(product.item));
+      dispatch(addProductToWishlist(product.id));
     }
   };
 

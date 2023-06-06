@@ -68,7 +68,7 @@
 }
 
 /* ---------- MEDIA SCREEN -- DESKTOP ---------- */
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   .header {
     &__first-row {
       margin: 0 45px;
@@ -87,7 +87,8 @@
     &__user-profile {
       display: flex;
       justify-content: space-between;
-      width: 8%;
+      align-items: flex-start;
+      width: 100px;
     }
   }
 }

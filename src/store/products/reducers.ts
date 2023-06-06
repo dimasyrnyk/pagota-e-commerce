@@ -12,7 +12,8 @@ const initialState: ProductsState = {
   brands: [],
   minPrice: 0,
   maxPrice: 0,
-  wishList: [],
+  wishListIds: [],
+  wishListItems: [],
   isLoading: false,
 };
 
@@ -37,10 +38,17 @@ export default function productsReducer(
     case ProductsTypes.GET_ONE_PRODUCT:
       return { ...state, selectedProduct: action.payload };
     case ProductsTypes.ADD_PRODUCT_TO_WISHLIST:
-      return { ...state, wishList: [...state.wishList, action.payload] };
+      return { ...state, wishListIds: [...state.wishListIds, action.payload] };
     case ProductsTypes.REMOVE_PRODUCT_FROM_WISHLIST:
-      const newWishlist = state.wishList.filter((p) => p.id !== action.payload);
-      return { ...state, wishList: newWishlist };
+      return {
+        ...state,
+        wishListIds: state.wishListIds.filter((id) => id !== action.payload),
+        wishListItems: state.wishListItems.filter(
+          (p) => p.id !== action.payload
+        ),
+      };
+    case ProductsTypes.GET_WISHLIST_PRODUCTS:
+      return { ...state, wishListItems: action.payload };
     default:
       return state;
   }

@@ -12,6 +12,7 @@ import Home from "@pages/Home";
 import NotFound from "@pages/NotFound";
 import ProductItem from "@pages/ProductItem";
 import ProductsList from "@pages/ProductsList";
+import WishList from "@pages/WishList";
 
 function App() {
   const location = useLocation();
@@ -48,6 +49,10 @@ function App() {
         <Route
           path="/cart"
           element={<Cart />}
+        />
+        <Route
+          path="/wishlist"
+          element={<WishList />}
         />
         <Route
           path="*"

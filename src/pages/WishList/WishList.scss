@@ -1,0 +1,78 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .wish-list {
+    &__container {
+      padding: 0 15px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .wish-list {
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 901px) {
+  .wish-list {
+    &__container {
+      padding: 0 45px;
+    }
+  }
+}
+
+.wish-list {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    width: 100%;
+    gap: 40px;
+  }
+
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  &__item {
+    margin: 0 auto;
+  }
+
+  &__btn-remove {
+    cursor: pointer;
+    padding: 2px 5px;
+    border-radius: 12px;
+    border: 1px solid $primary_green;
+    background-color: $primary_lightgreen;
+    color: $primary_green;
+    outline: none;
+
+    & > img {
+      filter: invert(52%) sepia(11%) saturate(2522%) hue-rotate(47deg)
+        brightness(102%) contrast(70%);
+    }
+
+    &:hover {
+      scale: 0.95;
+    }
+
+    &:focus {
+      scale: 1.02;
+    }
+  }
+}
