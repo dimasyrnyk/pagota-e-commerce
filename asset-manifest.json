@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/pagota-e-commerce/static/css/main.a2027e64.css",
-    "main.js": "/pagota-e-commerce/static/js/main.49c6a3fc.js",
+    "main.css": "/pagota-e-commerce/static/css/main.6fdbc6f1.css",
+    "main.js": "/pagota-e-commerce/static/js/main.277d143a.js",
     "static/media/empty-cart.svg": "/pagota-e-commerce/static/media/empty-cart.332c1789c26236d2322f5125874d5e91.svg",
     "static/media/revicons.eot": "/pagota-e-commerce/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/pagota-e-commerce/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/pagota-e-commerce/static/media/revicons.e8746a624ed098489406.woff",
     "static/media/logo.svg": "/pagota-e-commerce/static/media/logo.b57d9120996d735aac5f2a6415103304.svg",
+    "static/media/googleLogoIcon.svg": "/pagota-e-commerce/static/media/googleLogoIcon.6230348253d997a90515e8239e1582a5.svg",
     "static/media/filterIcon.svg": "/pagota-e-commerce/static/media/filterIcon.d6393bf28af3141c65206156fcf4a6e8.svg",
     "static/media/heartWishListIcon.svg": "/pagota-e-commerce/static/media/heartWishListIcon.a80223023e78954cd51b9f01aac89b39.svg",
     "static/media/starBigWhiteIcon.svg": "/pagota-e-commerce/static/media/starBigWhiteIcon.367792338bd1aa4d2b54ab2429ee0ff0.svg",
@@ -28,11 +29,11 @@
     "static/media/chevronDownIcon.svg": "/pagota-e-commerce/static/media/chevronDownIcon.28574778042690fa9522348886018fc0.svg",
     "static/media/plusIcon.svg": "/pagota-e-commerce/static/media/plusIcon.cd93dc10677c7e25a48bc0ad5412649d.svg",
     "static/media/chevronRightIcon.svg": "/pagota-e-commerce/static/media/chevronRightIcon.87d311cb5d3a3c19143d202cb54e789f.svg",
-    "main.a2027e64.css.map": "/pagota-e-commerce/static/css/main.a2027e64.css.map",
-    "main.49c6a3fc.js.map": "/pagota-e-commerce/static/js/main.49c6a3fc.js.map"
+    "main.6fdbc6f1.css.map": "/pagota-e-commerce/static/css/main.6fdbc6f1.css.map",
+    "main.277d143a.js.map": "/pagota-e-commerce/static/js/main.277d143a.js.map"
   },
   "entrypoints": [
-    "static/css/main.a2027e64.css",
-    "static/js/main.49c6a3fc.js"
+    "static/css/main.6fdbc6f1.css",
+    "static/js/main.277d143a.js"
   ]
 }
