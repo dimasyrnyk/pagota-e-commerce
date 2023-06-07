@@ -36,6 +36,7 @@ const initialValues: IFormValues = {
 function CheckoutForm() {
   const dispatch: AppDispatch = useDispatch();
   const billingInfo = useSelector((state: RootState) => state.cart.billingInfo);
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const onSubmit = () => {
     formik.setValues(initialValues);
@@ -63,7 +64,15 @@ function CheckoutForm() {
   );
 
   useEffect(() => {
-    formik.setValues(billingInfo);
+    const newBillingInfo = { ...billingInfo };
+
+    if (user) {
+      newBillingInfo.firstName = user.given_name;
+      newBillingInfo.lastName = user.family_name;
+      newBillingInfo.email = user.email;
+    }
+
+    formik.setValues(newBillingInfo);
   }, []);
 
   useEffect(() => {
