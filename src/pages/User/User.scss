@@ -1,0 +1,51 @@
+@use "@styles/colors" as *;
+
+/* ---------- MEDIA SCREEN -- MOBILE ---------- */
+@media (max-width: 600px) {
+  .user-page {
+    &__container {
+      padding: 0 15px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- TABLET ---------- */
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .user-page {
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
+@media screen and (min-width: 901px) {
+  .user-page {
+    &__container {
+      padding: 0 45px;
+    }
+  }
+}
+
+.user-page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__image {
+    border-radius: 100px;
+  }
+
+  &__btn-block {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__btn {
+    background-color: $secondary_darkgray;
+  }
+}
