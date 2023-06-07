@@ -16,13 +16,13 @@
 
   &__container {
     position: fixed;
-    top: calc(50% - 130px);
+    top: calc(50% - 150px);
     right: calc(50% - 200px);
-    bottom: calc(50% - 130px);
+    bottom: calc(50% - 150px);
     left: calc(50% - 200px);
     padding: 7vmin;
     background: $white;
-    height: 260px;
+    height: 300px;
     width: 400px;
     border: 1px solid $primary_gray;
     box-shadow: 0px 0px 4px $primary_darkgray;
@@ -34,5 +34,9 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+
+    & > p {
+      font-size: 0.75rem;
+    }
   }
 }

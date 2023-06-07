@@ -9,9 +9,10 @@ import GoogleAauthBtn from "@components/Buttons/GoogleAuthBtn/GoogleAauthBtn";
 
 type Props = {
   onClose: () => void;
+  message?: string;
 };
 
-function GoogleAuthModal({ onClose }: Props) {
+function GoogleAuthModal({ onClose, message = "" }: Props) {
   const dispatch: AppDispatch = useDispatch();
   const [user, setUser] = useState<TokenResponse | null>(null);
 
@@ -30,6 +31,7 @@ function GoogleAuthModal({ onClose }: Props) {
   return (
     <Modal onClose={onClose}>
       <h3>Login</h3>
+      <p>{message}</p>
       <GoogleAauthBtn onClick={() => login()} />
     </Modal>
   );

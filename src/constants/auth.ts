@@ -9,3 +9,7 @@ export interface IUserProfile {
   name: string;
   email: string;
 }
+
+export enum ModalMessage {
+  ACCESS_TO_WISH_LIST = "Please login for access to wish list",
+}

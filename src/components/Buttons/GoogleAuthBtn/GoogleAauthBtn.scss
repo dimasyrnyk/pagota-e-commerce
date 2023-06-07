@@ -1,6 +1,7 @@
 @use "@styles/colors" as *;
 
 .google-auth-btn {
+  cursor: pointer;
   display: flex;
   align-items: center;
   border: none;

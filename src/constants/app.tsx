@@ -30,6 +30,8 @@ export enum Prices {
 export enum WishListBtnTitle {
   PRODUCT_CARD = "wish list",
   PRODUCT_PAGE = "my wish list",
+  ADD_TO = "Add to ",
+  REMOVE = "Remove wish",
 }
 
 export interface ILink {

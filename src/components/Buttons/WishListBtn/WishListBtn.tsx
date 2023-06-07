@@ -11,6 +11,8 @@ import HeartIcon from "@components/Icons/HeartIcon";
 import HeartIconFull from "@components/Icons/HeartIconFull";
 import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 import GoogleAuthModal from "@components/Modal/GoogleAuthModal/GoogleAuthModal";
+import { ModalMessage } from "@constants/auth";
+import { WishListBtnTitle } from "@constants/app";
 
 type Props = {
   product: IProduct;
@@ -53,9 +55,16 @@ function WishListBtn({ product, title, className, disabled }: Props) {
         disabled={disabled}
       >
         {isProductInWishList() ? <HeartIconFull /> : <HeartIcon />}
-        {isProductInWishList() ? "Remove wish " : "Add to " + title}
+        {isProductInWishList()
+          ? WishListBtnTitle.REMOVE
+          : WishListBtnTitle.ADD_TO + title}
       </SecondaryBtn>
-      {isOpen ? <GoogleAuthModal onClose={handleClose} /> : null}
+      {isOpen ? (
+        <GoogleAuthModal
+          onClose={handleClose}
+          message={ModalMessage.ACCESS_TO_WISH_LIST}
+        />
+      ) : null}
     </div>
   );
 }
