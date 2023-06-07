@@ -6,6 +6,7 @@ import { googleLogout } from "@react-oauth/google";
 import "./User.scss";
 import { AppDispatch, RootState } from "@store/index";
 import { userLogOut } from "@store/auth/actions";
+import { updateBillingInfo } from "@store/cart/actions";
 import Header from "@containers/Header/Header";
 import Footer from "@containers/Footer/Footer";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
@@ -23,6 +24,9 @@ function User() {
   const logOut = () => {
     googleLogout();
     dispatch(userLogOut());
+    dispatch(updateBillingInfo({ firstName: "" }));
+    dispatch(updateBillingInfo({ lastName: "" }));
+    dispatch(updateBillingInfo({ email: "" }));
   };
 
   return (

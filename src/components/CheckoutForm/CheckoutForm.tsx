@@ -16,6 +16,7 @@ import {
   createOrderInCart,
   resetBillingInfo,
   resetProductCart,
+  setBillingInfo,
   updateBillingInfo,
 } from "@store/cart/actions";
 
@@ -70,6 +71,8 @@ function CheckoutForm() {
       newBillingInfo.firstName = user.given_name;
       newBillingInfo.lastName = user.family_name;
       newBillingInfo.email = user.email;
+
+      dispatch(setBillingInfo(newBillingInfo));
     }
 
     formik.setValues(newBillingInfo);
