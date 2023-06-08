@@ -21,17 +21,9 @@ function Header() {
   const { isAuth } = useSelector((state: RootState) => state.auth);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleClick = () => {
+  const handleClick = (path: string) => {
     if (isAuth) {
-      navigate("/wishlist");
-    } else {
-      setIsOpen(true);
-    }
-  };
-
-  const handleOpen = () => {
-    if (isAuth) {
-      navigate("/user");
+      navigate(path);
     } else {
       setIsOpen(true);
     }
@@ -49,7 +41,7 @@ function Header() {
           <NavBar />
           <span
             className="icon-mobile"
-            onClick={handleClick}
+            onClick={() => handleClick("/wihlist")}
           >
             <HeartWishListIcon
               className="icon-mobile"
@@ -58,7 +50,7 @@ function Header() {
           </span>
           <UserIcon
             className="icon-mobile"
-            onClick={handleOpen}
+            onClick={() => handleClick("/user")}
           />
           <span className="icon-mobile">
             <Link to="/cart">
@@ -73,10 +65,10 @@ function Header() {
             </Link>
             <SearchBar />
             <div className="main-section__user-profile">
-              <UserIcon onClick={handleOpen} />
+              <UserIcon onClick={() => handleClick("/user")} />
               <span>
                 <HeartWishListIcon
-                  onClick={handleClick}
+                  onClick={() => handleClick("/wihlist")}
                   productsCount={wishListIds.length}
                 />
               </span>

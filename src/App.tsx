@@ -14,6 +14,7 @@ import ProductItem from "@pages/ProductItem";
 import ProductsList from "@pages/ProductsList";
 import WishList from "@pages/WishList";
 import User from "@pages/User";
+import PrivateRoute from "@utils/routes/PrivateRoute";
 
 function App() {
   const location = useLocation();
@@ -55,27 +56,17 @@ function App() {
         <Route
           path="/wishlist"
           element={
-            isAuth ? (
+            <PrivateRoute isAuth={isAuth}>
               <WishList />
-            ) : (
-              <Navigate
-                to="/"
-                replace
-              />
-            )
+            </PrivateRoute>
           }
         />
         <Route
           path="/user"
           element={
-            isAuth ? (
+            <PrivateRoute isAuth={isAuth}>
               <User />
-            ) : (
-              <Navigate
-                to="/"
-                replace
-              />
-            )
+            </PrivateRoute>
           }
         />
         <Route

@@ -10,13 +10,14 @@ import "./styles/cssReset.css";
 import App from "./App";
 import { store, persistor } from "./store";
 import ErrorFallback from "@components/ErrorFallback/ErrorFallback";
-import { GOOGLE_CLIENT_ID } from "@constants/app";
+
+const clientId: string = process.env.REACT_APP_GOOGLE_CLIENT_ID!;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+  <GoogleOAuthProvider clientId={clientId}>
     <React.StrictMode>
       <Provider store={store}>
         <PersistGate
