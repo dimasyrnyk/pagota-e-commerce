@@ -15,6 +15,7 @@ export enum Crumbs {
   products = "All products",
   cart = "Cart",
   wishlist = "Wishlist",
+  user = "User profile",
   notFound = "Page not found",
 }
 
@@ -26,6 +27,8 @@ export enum Prices {
 export enum WishListBtnTitle {
   PRODUCT_CARD = "wish list",
   PRODUCT_PAGE = "my wish list",
+  ADD_TO = "Add to ",
+  REMOVE = "Remove wish",
 }
 
 export interface ILink {

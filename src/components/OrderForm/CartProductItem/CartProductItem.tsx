@@ -35,6 +35,7 @@ function CartProductItem({ product }: Props) {
   const dispatch: AppDispatch = useDispatch();
   const { products } = useSelector((state: RootState) => state.cart.cart);
   const { wishListIds } = useSelector((state: RootState) => state.products);
+  const { isAuth } = useSelector((state: RootState) => state.auth);
   const [quantity, setQuantity] = useState<number>(product.quantity.amount);
   const [unit, setUnit] = useState<string>(product.quantity.unit);
   const productTotalQuantity = useMemo(
@@ -131,16 +132,18 @@ function CartProductItem({ product }: Props) {
         >
           <CrossIcon /> Remove
         </SecondaryBtn>
-        <SecondaryBtn
-          className="cart-item__btn_wishlist"
-          onClick={toggleWishList}
-        >
-          <img
-            src={isProductInWishList() ? heartFull : heart}
-            alt="Heart icon"
-          />
-          Wishlist
-        </SecondaryBtn>
+        {isAuth ? (
+          <SecondaryBtn
+            className="cart-item__btn_wishlist"
+            onClick={toggleWishList}
+          >
+            <img
+              src={isProductInWishList() ? heartFull : heart}
+              alt="Heart icon"
+            />
+            Wishlist
+          </SecondaryBtn>
+        ) : null}
       </div>
       <div className="cart-item__right-side">
         <Link

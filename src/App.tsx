@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import queryString from "query-string";
 
 import "./App.scss";
-import { AppDispatch } from "@store/index";
+import { AppDispatch, RootState } from "@store/index";
 import { getAllProducts } from "@store/products/actions";
 import { parseSearchParams } from "@utils/filters/searchParams";
 import Cart from "@pages/Cart";
@@ -13,10 +13,13 @@ import NotFound from "@pages/NotFound";
 import ProductItem from "@pages/ProductItem";
 import ProductsList from "@pages/ProductsList";
 import WishList from "@pages/WishList";
+import User from "@pages/User";
+import PrivateRoute from "@utils/routes/PrivateRoute";
 
 function App() {
   const location = useLocation();
   const dispatch: AppDispatch = useDispatch();
+  const { isAuth } = useSelector((state: RootState) => state.auth);
 
   const getData = async () => {
     await dispatch(getAllProducts());
@@ -52,7 +55,19 @@ function App() {
         />
         <Route
           path="/wishlist"
-          element={<WishList />}
+          element={
+            <PrivateRoute isAuth={isAuth}>
+              <WishList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <PrivateRoute isAuth={isAuth}>
+              <User />
+            </PrivateRoute>
+          }
         />
         <Route
           path="*"
