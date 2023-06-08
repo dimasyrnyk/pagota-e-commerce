@@ -47,6 +47,19 @@ function WishListBtn({ product, title, className, disabled }: Props) {
     setIsOpen(false);
   };
 
+  const btnTitle = {
+    remove: (
+      <>
+        <HeartIconFull /> {WishListBtnTitle.REMOVE}
+      </>
+    ),
+    add: (
+      <>
+        <HeartIcon /> {WishListBtnTitle.ADD_TO + title}
+      </>
+    ),
+  };
+
   return (
     <div>
       <SecondaryBtn
@@ -54,10 +67,7 @@ function WishListBtn({ product, title, className, disabled }: Props) {
         onClick={handleToggleWishList}
         disabled={disabled}
       >
-        {isProductInWishList() ? <HeartIconFull /> : <HeartIcon />}
-        {isProductInWishList()
-          ? WishListBtnTitle.REMOVE
-          : WishListBtnTitle.ADD_TO + title}
+        {isProductInWishList() ? btnTitle.remove : btnTitle.add}
       </SecondaryBtn>
       {isOpen ? (
         <GoogleAuthModal

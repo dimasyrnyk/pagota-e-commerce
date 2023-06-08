@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./OrderBlock.scss";
-import { AppDispatch, RootState } from "@store/index";
+import { AppDispatch } from "@store/index";
 import { addProductToCart, updateProductInCart } from "@store/cart/actions";
-import { formatPrice, getCurrentPrice } from "@utils/products/prices";
-import { getNewTotalQuantity } from "@utils/order/getters";
+import { getNewTotalQuantity } from "@utils/order/quantity";
+import { getMatchedUnits } from "@utils/order/units";
 import { INITIAL_QUANTITY, INITIAL_UNIT, IProduct } from "@constants/products";
 import PlusIcon from "@components/Icons/PlusIcon";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import OrderBlockInput from "./OrderBlockInput";
+import ProductPrice from "@components/ProductCard/ProductPrice/ProductPrice";
+import { getNewCartProduct } from "@utils/order/cart";
 
 type Props = {
   product: IProduct;
@@ -17,7 +19,6 @@ type Props = {
 
 function OrderBlock({ product }: Props) {
   const dispatch: AppDispatch = useDispatch();
-  const { products } = useSelector((state: RootState) => state.cart.cart);
   const [quantity, setQuantity] = useState<number>(INITIAL_QUANTITY);
   const [unit, setUnit] = useState<string>(INITIAL_UNIT);
   const [counter, setCounter] = useState<number>(0);
@@ -25,9 +26,6 @@ function OrderBlock({ product }: Props) {
     () => getNewTotalQuantity(product, unit, true),
     [unit, counter]
   );
-  const currentPrice =
-    getCurrentPrice(product.quantity[unit].price, product.discount) * quantity;
-  const currentOldPrice = product.quantity[unit].price * quantity;
 
   useEffect(() => {
     if (!productTotalQuantity) {
@@ -36,23 +34,13 @@ function OrderBlock({ product }: Props) {
   }, [productTotalQuantity]);
 
   const handleAddToCart = () => {
-    const matchedProducts = products.filter((p) => p.id === product.id);
-    const matchedUnits = matchedProducts.filter(
-      (p) => p.quantity.unit === unit
-    );
+    const matchedUnits = getMatchedUnits(product, unit);
 
     const newCartQuantity = matchedUnits.length
       ? quantity + matchedUnits[0].quantity.amount
       : quantity;
 
-    const newCartProduct = {
-      id: product.id,
-      item: product,
-      quantity: {
-        unit: unit,
-        amount: newCartQuantity,
-      },
-    };
+    const newCartProduct = getNewCartProduct(product, unit, newCartQuantity);
 
     if (matchedUnits.length) {
       dispatch(updateProductInCart(newCartProduct));
@@ -70,16 +58,12 @@ function OrderBlock({ product }: Props) {
 
   return (
     <div className="order-block__controls">
-      <div className="order-block__price">
-        <h3 className="order-block__price-current">
-          {formatPrice(currentPrice)} USD
-        </h3>
-        {product.discount ? (
-          <span className="order-block__price-old">
-            {formatPrice(currentOldPrice)}
-          </span>
-        ) : null}
-      </div>
+      <ProductPrice
+        className="order-block__price"
+        price={product.quantity[unit].price}
+        discount={product.discount}
+        quantity={quantity}
+      />
       <div className="order-block__buttons-block">
         <OrderBlockInput
           unit={unit}

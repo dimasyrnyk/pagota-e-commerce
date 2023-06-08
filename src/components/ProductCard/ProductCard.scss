@@ -112,16 +112,6 @@
     margin-bottom: 32px;
   }
 
-  &__image {
-    cursor: pointer;
-    border-radius: 12px 12px;
-    object-fit: cover;
-
-    &-link {
-      display: flex;
-    }
-  }
-
   &__info {
     display: flex;
     flex: 1;
@@ -155,17 +145,6 @@
 
   &__second-column {
     flex: 3;
-  }
-
-  &__price-current {
-    font-size: 1.125rem;
-  }
-
-  &__price-old {
-    text-decoration: line-through;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: $secondary_darkgray;
   }
 
   &__shipping {

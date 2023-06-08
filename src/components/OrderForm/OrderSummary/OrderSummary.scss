@@ -1,0 +1,34 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+.order-summary {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__left-side {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+
+    & > span:first-child {
+      font-family: $font_poppins;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    & > span:last-child {
+      color: $primary_green;
+    }
+  }
+
+  &__right-side {
+    font-family: $font_poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.625rem;
+    color: $primary_green;
+  }
+}

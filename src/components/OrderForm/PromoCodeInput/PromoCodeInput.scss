@@ -1,0 +1,35 @@
+@use "@styles/colors" as *;
+
+.promo-code {
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    border: 1px solid $primary_gray;
+    padding: 10px;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    margin: 0 10px;
+    width: 100%;
+
+    &::placeholder {
+      color: $secondary_darkgray;
+    }
+  }
+
+  &__btn {
+    white-space: nowrap;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: -20px;
+    font-size: 0.75rem;
+    color: $primary_red;
+  }
+}

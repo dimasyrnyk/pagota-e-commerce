@@ -6,12 +6,6 @@ import { ICity } from "country-state-city";
 import { v4 as uuidv4 } from "uuid";
 
 import "./CheckoutForm.scss";
-import { AppDispatch, RootState } from "@store/index";
-import { IFormValues, ISelectOption } from "@constants/cart";
-import { validationSchema } from "@utils/order/validationSchema";
-import Confirmation from "./Confirmation/Confirmation";
-import BillingInfo from "./BillingInfo/BillingInfo";
-import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
 import {
   createOrderInCart,
   resetBillingInfo,
@@ -19,20 +13,13 @@ import {
   setBillingInfo,
   updateBillingInfo,
 } from "@store/cart/actions";
-
-const initialValues: IFormValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  phoneNumber: "",
-  country: "",
-  city: "",
-  address: "",
-  postCode: "",
-  additionalInfo: "",
-  agreementNewsletter: false,
-  agreementPrivacyPolicy: false,
-};
+import { AppDispatch, RootState } from "@store/index";
+import { IFormValues, ISelectOption } from "@constants/cart";
+import { validationSchema } from "@utils/order/validationSchema";
+import Confirmation from "./Confirmation/Confirmation";
+import BillingInfo from "./BillingInfo/BillingInfo";
+import AdditionalInfo from "./AdditionalInfo/AdditionalInfo";
+import { initialValues } from "@utils/order/billingInitialValues";
 
 function CheckoutForm() {
   const dispatch: AppDispatch = useDispatch();

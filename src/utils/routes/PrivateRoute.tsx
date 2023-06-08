@@ -18,3 +18,4 @@ const PrivateRoute = ({ isAuth, children }: PropsWithChildren<Props>) => {
 };
 
 export default PrivateRoute;
+

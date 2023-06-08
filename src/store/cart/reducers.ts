@@ -2,7 +2,7 @@ import { CartActionType, CartState, CartTypes, ICart } from "@store/types/cart";
 import {
   getCartWithUpdatedProduct,
   getCartWithoutRemovedProducts,
-} from "@utils/order/getters";
+} from "@utils/order/cart";
 
 const initialState: CartState = {
   billingInfo: {

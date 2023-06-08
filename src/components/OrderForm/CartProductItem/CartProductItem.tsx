@@ -17,8 +17,7 @@ import {
 import {
   getConvertedQuantity,
   getNewTotalQuantity,
-} from "@utils/order/getters";
-import { formatPrice, getCurrentPrice } from "@utils/products/prices";
+} from "@utils/order/quantity";
 import heart from "@assets/icons/heartRedIcon.svg";
 import heartFull from "@assets/icons/heartRedFullIcon.svg";
 import InfoList from "@components/ProductInfo/InfoList/InfoList";
@@ -26,6 +25,8 @@ import Rating from "@components/Rating/Rating";
 import SecondaryBtn from "@components/Buttons/SecondaryBtn/SecondaryBtn";
 import OrderBlockInput from "@components/ProductInfo/OrderBlock/OrderBlockInput";
 import CrossIcon from "@components/Icons/CrossIcon";
+import ProductImage from "@components/ProductCard/ProductImage/ProductImage";
+import ProductPrice from "@components/ProductCard/ProductPrice/ProductPrice";
 
 type Props = {
   product: IProductDTO;
@@ -42,10 +43,6 @@ function CartProductItem({ product }: Props) {
     () => getNewTotalQuantity(product.item, unit, false),
     [unit, quantity]
   );
-  const currentPrice =
-    getCurrentPrice(product.item.quantity[unit].price, product.item.discount) *
-    quantity;
-  const currentOldPrice = product.item.quantity[unit].price * quantity;
 
   useEffect(() => {
     setQuantity(product.quantity.amount);
@@ -119,13 +116,10 @@ function CartProductItem({ product }: Props) {
   return (
     <div className="cart-item__container">
       <div className="cart-item__left-side">
-        <Link to={"/products/" + product.item.id}>
-          <img
-            className="cart-item__image"
-            src={product.item.image}
-            alt={product.item.title}
-          />
-        </Link>
+        <ProductImage
+          className="cart-item__image"
+          product={product.item}
+        />
         <SecondaryBtn
           className="cart-item__btn_remove"
           onClick={handleRemove}
@@ -161,16 +155,12 @@ function CartProductItem({ product }: Props) {
           isMonochrome={false}
         />
         <div className="cart-item__controls">
-          <div>
-            <h3 className="cart-item__total-price">
-              {formatPrice(currentPrice)} USD
-            </h3>
-            {product.item.discount ? (
-              <span className="cart-item__total-price-old">
-                {formatPrice(currentOldPrice)}
-              </span>
-            ) : null}
-          </div>
+          <ProductPrice
+            className="cart-item__price"
+            price={product.item.quantity[unit].price}
+            discount={product.item.discount}
+            quantity={quantity}
+          />
           <OrderBlockInput
             unit={unit}
             setUnit={handleUnit}

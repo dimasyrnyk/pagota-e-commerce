@@ -3,23 +3,19 @@ import { Link } from "react-router-dom";
 import "./ProductCard.scss";
 import { IProduct } from "@constants/products";
 import { WishListBtnTitle } from "@constants/app";
-import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import ChevronRightIcon from "@components/Icons/ChevronRightIcon";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import WishListBtn from "@components/Buttons/WishListBtn/WishListBtn";
 import InfoList from "@components/ProductInfo/InfoList/InfoList";
 import Rating from "@components/Rating/Rating";
+import ProductImage from "@components/ProductCard/ProductImage/ProductImage";
+import ProductPrice from "./ProductPrice/ProductPrice";
 
 type Props = {
   product: IProduct;
 };
 
 function ProductCard({ product }: Props) {
-  const currentPrice = getCurrentPrice(
-    product.quantity.pcs.price,
-    product.discount
-  );
-
   const productInfo = {
     "Fresheness:": (
       <>
@@ -35,16 +31,10 @@ function ProductCard({ product }: Props) {
 
   return (
     <li className="product-card__container">
-      <Link
-        className="product-card__image-link"
-        to={"/products/" + product.id}
-      >
-        <img
-          className="product-card__image"
-          src={product.image}
-          alt={product.title}
-        />
-      </Link>
+      <ProductImage
+        className="product-card__image"
+        product={product}
+      />
       <div className="product-card__info">
         <div className="product-card__first-column">
           <Link to={"/products/" + product.id}>
@@ -60,16 +50,10 @@ function ProductCard({ product }: Props) {
         </div>
         <div className="product-card__second-column">
           <div className="product-card__payment-info">
-            <div className="product-card__price">
-              <h3 className="product-card__price-current">
-                {formatPrice(currentPrice)} USD
-              </h3>
-              {product.discount ? (
-                <span className="product-card__price-old">
-                  {formatPrice(product.quantity.pcs.price)}
-                </span>
-              ) : null}
-            </div>
+            <ProductPrice
+              price={product.quantity.pcs.price}
+              discount={product.discount}
+            />
             <div className="product-card__shipping">
               {!product.delivery.price ? (
                 <span className="font_600">Free shipping</span>
