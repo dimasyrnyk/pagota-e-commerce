@@ -10,18 +10,6 @@
   }
 }
 
-/* ---------- MEDIA SCREEN -- TABLET ---------- */
-@media screen and (min-width: 601px) and (max-width: 1000px) {
-  .order-block {
-  }
-}
-
-/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
-@media screen and (min-width: 1001px) {
-  .order-block {
-  }
-}
-
 .order-block {
   &__controls {
     display: flex;
@@ -31,21 +19,6 @@
     border: 1px solid $secondary_lightgray;
     padding: 15px 20px;
     margin: 40px 0 10px 0;
-  }
-
-  &__price {
-    display: flex;
-    flex-direction: column;
-
-    &-current {
-      font-size: 1.625rem;
-    }
-    &-old {
-      font-size: 0.75rem;
-      color: $secondary_darkgray;
-      text-decoration: line-through;
-      line-height: 1.125rem;
-    }
   }
 
   &__buttons-block {
@@ -95,4 +68,8 @@
     align-items: center;
     gap: 6px;
   }
+}
+
+.product-price__current.order-block__price {
+  font-size: 1.625rem;
 }

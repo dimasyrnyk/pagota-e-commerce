@@ -1,0 +1,22 @@
+@use "@styles/colors" as *;
+@use "@styles/variables" as *;
+
+.product-price {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    font-family: $font_poppins;
+    font-style: normal;
+  }
+
+  &__current {
+    font-size: 1.125rem;
+  }
+
+  &__old {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: line-through;
+    color: $secondary_darkgray;
+  }
+}

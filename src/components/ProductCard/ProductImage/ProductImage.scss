@@ -1,0 +1,9 @@
+.product__image {
+  cursor: pointer;
+  border-radius: 12px;
+  object-fit: cover;
+
+  &-link {
+    display: flex;
+  }
+}

@@ -18,7 +18,6 @@
   &__image {
     width: 100px;
     margin-bottom: 10px;
-    border-radius: 12px;
   }
 
   &__btn_remove,
@@ -62,19 +61,8 @@
     flex-wrap: wrap;
   }
 
-  &__total-price {
-    font-family: $font_poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 1.125rem;
+  &__price {
     color: $primary_green;
-
-    &-old {
-      font-size: 0.75rem;
-      color: $secondary_darkgray;
-      text-decoration: line-through;
-      line-height: 1.125rem;
-    }
   }
 
   &__unit-input {

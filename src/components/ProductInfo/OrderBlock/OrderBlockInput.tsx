@@ -25,22 +25,25 @@ function OrderBlockInput({
 }: Props) {
   const [error, setError] = useState<string>();
 
-  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value, 10);
+  const showError = () => {
+    setError(`In stock only ${totalQuantity} ${unit}`);
 
-    if (newValue >= 0) {
-      if (newValue <= totalQuantity) {
-        setQuantity(newValue);
-      } else {
-        setError(`In stock only ${totalQuantity} ${unit}`);
-        if (totalQuantity) {
-          setTimeout(() => {
-            setError("");
-          }, ERROR_DELAY);
-        }
-      }
-    } else {
-      setQuantity(0);
+    // if totalQuantity is more than zero than hide error
+    if (totalQuantity) {
+      setTimeout(() => {
+        setError("");
+      }, ERROR_DELAY);
+    }
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
+    const newValue = value >= 0 ? value : 0;
+    const newQuantity = newValue <= totalQuantity ? newValue : quantity;
+
+    setQuantity(newQuantity);
+    if (newValue > totalQuantity) {
+      showError();
     }
   };
 

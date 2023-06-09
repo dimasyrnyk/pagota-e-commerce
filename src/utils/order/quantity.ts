@@ -1,50 +1,7 @@
 import { store } from "@store/index";
 import { IProduct, IQuantity } from "@constants/products";
-import { ICart, IProductDTO } from "@store/types/cart";
+import { IProductDTO } from "@store/types/cart";
 import { Units } from "@constants/cart";
-
-export const getCartWithUpdatedProduct = (
-  cart: ICart,
-  productToUpdate: IProductDTO,
-  newUnit?: string
-) => {
-  const result = cart.products.map((product) => {
-    const isMatched =
-      product.id === productToUpdate.id &&
-      product.quantity.unit === productToUpdate.quantity.unit;
-
-    if (isMatched) {
-      product.quantity.amount = productToUpdate.quantity.amount;
-      if (newUnit) {
-        product.quantity.unit = newUnit;
-      }
-      return product;
-    } else {
-      return product;
-    }
-  });
-
-  return { ...cart, products: result };
-};
-
-export const getCartWithoutRemovedProducts = (
-  cart: ICart,
-  productToRemove: IProductDTO
-) => {
-  const result = cart.products.reduce((acc, product) => {
-    const isMatched =
-      product.id === productToRemove.id &&
-      product.quantity.unit === productToRemove.quantity.unit;
-
-    if (isMatched) {
-      return acc;
-    } else {
-      return [...acc, product];
-    }
-  }, [] as IProductDTO[]);
-
-  return { ...cart, products: result };
-};
 
 export const getNewTotalQuantity = (
   product: IProduct,
@@ -141,19 +98,4 @@ const getQuantityInPcs = (product: IProductDTO) => {
   };
 
   return quantityFactors[cartQuantity.unit] || 0;
-};
-
-export const getDeliveryDate = (days: number) => {
-  const today = new Date();
-
-  const deliveryDate = new Date(today.getTime());
-  deliveryDate.setDate(deliveryDate.getDate() + days);
-
-  const options = { year: "numeric", month: "long", day: "numeric" } as const;
-  const formattedDeliveryDate = deliveryDate.toLocaleDateString(
-    "en-US",
-    options
-  );
-
-  return formattedDeliveryDate;
 };

@@ -1,24 +1,6 @@
 @use "@styles/colors" as *;
 @use "@styles/variables" as *;
 
-/* ---------- MEDIA SCREEN -- MOBILE ---------- */
-@media (max-width: 600px) {
-  .tabs-block {
-  }
-}
-
-/* ---------- MEDIA SCREEN -- TABLET ---------- */
-@media screen and (min-width: 601px) and (max-width: 1000px) {
-  .tabs-block {
-  }
-}
-
-/* ---------- MEDIA SCREEN -- DESKTOP ---------- */
-@media screen and (min-width: 1001px) {
-  .tabs-block {
-  }
-}
-
 .suggested-product {
   position: relative;
   display: flex;
@@ -42,15 +24,8 @@
   }
 
   &__img {
-    cursor: pointer;
-    border-radius: 12px;
     height: 180px;
     width: 250px;
-    object-fit: cover;
-
-    &-link {
-      display: flex;
-    }
   }
 
   &__title {
@@ -72,28 +47,11 @@
     max-width: 250px;
   }
 
-  &__price {
+  &__price-block {
     display: flex;
-    flex-direction: column;
-    font-family: $font_poppins;
-    font-style: normal;
-
-    &-block {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 600;
-      width: 100%;
-    }
-
-    &-current {
-      font-size: 1.125rem;
-    }
-
-    &-old {
-      font-size: 0.75rem;
-      text-decoration: line-through;
-      color: $secondary_darkgray;
-    }
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    width: 100%;
   }
 }
