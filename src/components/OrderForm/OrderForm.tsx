@@ -8,7 +8,7 @@ import { setTotlaPrice } from "@store/cart/actions";
 import emptyCart from "@assets/images/empty-cart.svg";
 import { formatPrice, getCurrentPrice } from "@utils/products/prices";
 import { getDeliveryDate } from "@utils/order/delivery";
-import { Discount } from "@constants/cart";
+import { Discount, Taxes } from "@constants/cart";
 import AppLoader from "@components/AppLoader/AppLoader";
 import PrimaryBtn from "@components/Buttons/PrimaryBtn/PrimaryBtn";
 import CartProductsList from "./CartProductsList/CartProductsList";
@@ -30,7 +30,7 @@ function OrderForm() {
 
     return acc + currentPrice;
   }, 0);
-  const taxes = subTotal * 0.17;
+  const taxes = subTotal * Taxes.COEFFICIENT;
   const maxDeliveryTime = cart.products.reduce((maxTime, product) => {
     return Math.max(maxTime, product.item.delivery.time);
   }, 0);

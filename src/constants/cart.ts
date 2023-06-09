@@ -30,3 +30,8 @@ export enum Units {
   PACK = "pack",
   KG = "kg",
 }
+
+export enum Taxes {
+  PERCENT = 17,
+  COEFFICIENT = 0.17,
+}

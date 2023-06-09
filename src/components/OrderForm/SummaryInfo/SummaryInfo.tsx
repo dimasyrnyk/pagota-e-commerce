@@ -1,6 +1,6 @@
 import "./SummaryInfo.scss";
 import { formatPrice } from "@utils/products/prices";
-import { Discount } from "@constants/cart";
+import { Discount, Taxes } from "@constants/cart";
 
 type Props = {
   subTotal: number;
@@ -25,7 +25,9 @@ function SummaryInfo({ subTotal, discount, taxes }: Props) {
       ) : null}
       <li className="summary-info__item">
         <span>Tax</span>
-        <span>17% {formatPrice(taxes)} USD</span>
+        <span>
+          {Taxes.PERCENT}% {formatPrice(taxes)} USD
+        </span>
       </li>
     </ul>
   );
